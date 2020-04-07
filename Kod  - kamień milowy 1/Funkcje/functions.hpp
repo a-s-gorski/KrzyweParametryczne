@@ -2,17 +2,20 @@
 #define FUNCTIONS_H
 
 #include<iostream>
+#include<vector>
 
 using namespace std;
 
 class Function{
 protected:
     int parameters_number;
-    double *parameters;
+    vector<double> parameters;
+
 public:
+    Function();
     virtual ~Function();
-    virtual bool check_parameters(double parameters[])=0;
-    virtual void set_parameters(double parameters[]);
+    virtual bool check_parameters(vector<double> parameters)=0;
+    virtual void set_parameters(vector<double> parameters);
     virtual double calculate_value(double t)=0;
 };
 
@@ -28,7 +31,7 @@ class FCos: public Function{
 public:
     FCos();
     ~FCos();
-    bool check_parameters(double new_parameters[]);
+    bool check_parameters(vector<double> parameters);
     double calculate_value(double t);
 };
 
@@ -44,7 +47,7 @@ class FSin: public Function{
 public:
     FSin();
     ~FSin();
-    bool check_parameters(double new_parameters[]);
+    bool check_parameters(vector<double> parameters);
     double calculate_value(double t);
 };
 #endif
