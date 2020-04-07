@@ -4,12 +4,6 @@
 
 using namespace std;
 
-Function::Function(){
-    #ifdef _DEBUG
-        cout << "Function: Creating Function\n";
-    #endif // _DEBUG
-}
-
 Function::~Function(){
     #ifdef _DEBUG
         cout << "Function: Destroying Function\n";
