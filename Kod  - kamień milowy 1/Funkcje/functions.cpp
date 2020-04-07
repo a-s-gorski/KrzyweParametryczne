@@ -4,13 +4,19 @@
 
 using namespace std;
 
+Function::Function(){
+    #ifdef _DEBUG
+        cout << "Function: Creating Function\n";
+    #endif // _DEBUG
+}
+
 Function::~Function(){
     #ifdef _DEBUG
         cout << "Function: Destroying Function\n";
     #endif // _DEBUG
 }
 
-void Function::set_parameters(double new_parameters[]){
+void Function::set_parameters(vector<double> new_parameters){
     #ifdef _DEBUG
         cout << "Function: New parameters\n";
         for(int i =0; i<parameters_number; i++){
@@ -25,16 +31,15 @@ FCos::FCos(){
         cout << "FCos: Creating FCos\n";
     #endif // _DEBUG
     parameters_number = 3;
-    parameters = new double[parameters_number];
     /*
         In default:
             a = 1
             b = 1
             c = 1
     */
-    parameters[0] = 1;
-    parameters[1] = 1;
-    parameters[2] = 1;
+    parameters.push_back(1);
+    parameters.push_back(1);
+    parameters.push_back(1);
 }
 
 FCos::~FCos(){
@@ -43,21 +48,20 @@ FCos::~FCos(){
     #endif // _DEBUG
 }
 
-bool FCos::check_parameters(double new_parameters[]){
+bool FCos::check_parameters(vector<double> new_parameters){
 
-    int new_parameters_number = sizeof(new_parameters)/sizeof(double);
     bool is_correct = true;
 
     #ifdef _DEBUG
         cout << "FCos: Checking parameters\n";
-        for(int i=0; i<new_parameters_number; i++){
+        for(int i=0; i<new_parameters.size(); i++){
             cout << new_parameters[i] << " ";
         }
         cout << "\n";
     #endif // _DEBUG
     //Check if parameters are good
 
-    if (new_parameters_number!=parameters_number)
+    if (new_parameters.size()!=parameters_number)
         is_correct = false;
 
     if (new_parameters[0]==0)
@@ -99,16 +103,15 @@ FSin::FSin(){
         cout << "FSin: Creating FSin\n";
     #endif // _DEBUG
     parameters_number = 3;
-    parameters = new double[parameters_number];
     /*
         In default:
             a = 1
             b = 1
             c = 1
     */
-    parameters[0] = 1;
-    parameters[1] = 1;
-    parameters[2] = 1;
+    parameters.push_back(1);
+    parameters.push_back(1);
+    parameters.push_back(1);
 }
 
 FSin::~FSin(){
@@ -117,21 +120,20 @@ FSin::~FSin(){
     #endif // _DEBUG
 }
 
-bool FSin::check_parameters(double new_parameters[]){
+bool FSin::check_parameters(vector<double> new_parameters){
 
-    int new_parameters_number = sizeof(new_parameters)/sizeof(double);
     bool is_correct = true;
 
     #ifdef _DEBUG
         cout << "FSin: Checking parameters\n";
-        for(int i=0; i<new_parameters_number; i++){
+        for(int i=0; i<new_parameters.size(); i++){
             cout << new_parameters[i] << " ";
         }
         cout << "\n";
     #endif // _DEBUG
     //Check if parameters are good
 
-    if (new_parameters_number!=parameters_number)
+    if (new_parameters.size()!=parameters_number)
         is_correct = false;
 
     if (new_parameters[0]==0)
