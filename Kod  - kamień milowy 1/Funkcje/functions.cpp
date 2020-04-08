@@ -170,3 +170,11 @@ double FSin::calculate_value(double t){
     return result;
 }
 
+void FCos::showFunction() {
+    if(parameters[0] > 0)
+        cout << parameters[0] << "cos(" << parameters[1] << "*t)^" << parameters[2] << " ";
+}
+
+void FSin::showFunction() {
+    cout << parameters[0] << "sin(" << parameters[1] << "*t)^" << parameters[2] << " ";
+}
