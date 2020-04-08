@@ -1,5 +1,5 @@
-#ifndef TEST_CALCULATOR_H
-#define TEST_CALCULATOR_H
+#ifndef TESTCALCULATOR_H
+#define TESTCALCULATOR_H
 
 #include <iostream>
 #include <cmath>
