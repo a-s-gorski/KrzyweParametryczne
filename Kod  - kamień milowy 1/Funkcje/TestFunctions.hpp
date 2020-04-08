@@ -1,5 +1,5 @@
-#ifndef TEST_FUNCTIONS_H
-#define TEST_FUNCTIONS_H
+#ifndef TESTFUNCTIONS_H
+#define TESTFUNCTIONS_H
 
 #include "Functions.hpp"
 
