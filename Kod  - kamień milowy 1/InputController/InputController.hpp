@@ -23,6 +23,7 @@ class InputController {
     double right_border;
     Equation X;
     Equation Y;
+    void addComponents(Equation* eq);
 
 public:
     InputController();
