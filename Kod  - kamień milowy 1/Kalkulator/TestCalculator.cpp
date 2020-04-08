@@ -2,12 +2,12 @@
 #include <vector>
 #include <cmath>
 #include "functions.hpp"
-#include "calculator.hpp"
-#include "test_calculator.hpp"
+#include "Calculator.hpp"
+#include "TestCalculator.hpp"
 
 using namespace std;
 
-bool test_calculator_calculate_value(){
+bool testCalculatorCalculateValue(){
 
     Calculator cal;
 
@@ -25,25 +25,25 @@ bool test_calculator_calculate_value(){
     cout << "Calculate value started: \n";
 
     pair<double, double> test = make_pair(cos(1), sin(1));
-    assert *=  test == cal.calculate_value(x_function, y_function, 1);
+    assert *=  test == cal.calculateValue(x_function, y_function, 1);
     cout << "   assert: " << (assert ? "Correct\n" : "Failed\n");
 
     test = make_pair(cos(0), sin(0));
-    assert *=  test == cal.calculate_value(x_function, y_function, 0);
+    assert *=  test == cal.calculateValue(x_function, y_function, 0);
     cout << "   assert: " << (assert ? "Correct\n" : "Failed\n");
 
     test = make_pair(cos(3.14), sin(3.14));
-    assert *=  test == cal.calculate_value(x_function, y_function, 3.14);
+    assert *=  test == cal.calculateValue(x_function, y_function, 3.14);
     cout << "   assert: " << (assert ? "Correct\n" : "Failed\n");
 
     test = make_pair(cos(-1), sin(-1));
-    assert *=  test == cal.calculate_value(x_function, y_function, -1);
+    assert *=  test == cal.calculateValue(x_function, y_function, -1);
     cout << "   assert: " << (assert ? "Correct\n" : "Failed\n");
 
     return assert;
 }
 
-bool test_calculator_calculate_serie(){
+bool testCalculatorCalculateSerie(){
     Calculator cal;
 
     vector<Function*> x_function;
@@ -61,11 +61,11 @@ bool test_calculator_calculate_serie(){
 
     vector<pair<double, double> > points;
 
-    points = cal.calculate_serie(x_function, y_function, 1, 1, 1);
+    points = cal.calculateSerie(x_function, y_function, 1, 1, 1);
     assert *= (points[0].first == cos(1) && points[0].second == sin(1));
     cout << "   assert: " << (assert ? "Correct\n" : "Failed\n");
 
-    points = cal.calculate_serie(x_function, y_function, 1, 2, 2);
+    points = cal.calculateSerie(x_function, y_function, 1, 2, 2);
     assert *= (points[0].first == cos(2) && points[0].second == sin(2));
     assert *= (points[1].first == cos(1) && points[1].second == sin(1));
     cout << "   assert: " << (assert ? "Correct\n" : "Failed\n");
@@ -74,9 +74,9 @@ bool test_calculator_calculate_serie(){
 
 }
 
-void test_calculator(){
+void testCalculator(){
     cout << "Test Calculator.\n\n";
-    cout << "Calculate value : " << (test_calculator_calculate_value()? "Correct\n\n" : "Failed\n\n");
-    cout << "Calculate serie: " << (test_calculator_calculate_serie()? "Correct\n\n" : "Failed\n\n");
+    cout << "Calculate value : " << (testCalculatorCalculateValue()? "Correct\n\n" : "Failed\n\n");
+    cout << "Calculate serie: " << (testCalculatorCalculateSerie()? "Correct\n\n" : "Failed\n\n");
 }
 
