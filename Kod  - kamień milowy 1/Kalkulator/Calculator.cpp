@@ -2,7 +2,7 @@
 #include<cmath>
 #include<vector>
 #include<algorithm>
-#include "Functions.hpp"
+#include "../Funkcje/Functions.hpp"
 #include "Calculator.hpp"
 
 using namespace std;

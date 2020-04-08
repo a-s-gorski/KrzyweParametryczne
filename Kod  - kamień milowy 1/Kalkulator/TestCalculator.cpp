@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
-#include "Functions.hpp"
+#include "../Funkcje/Functions.hpp"
 #include "Calculator.hpp"
 #include "TestCalculator.hpp"
 

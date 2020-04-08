@@ -5,7 +5,7 @@
 #include <cmath>
 #include <vector>
 
-#include "Functions.hpp"
+#include "../Funkcje/Functions.hpp"
 #include "Calculator.hpp"
 
 bool testCalculatorCalculateValue();
