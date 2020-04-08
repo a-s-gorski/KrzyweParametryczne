@@ -12,9 +12,9 @@ protected:
     vector<double> parameters;
 public:
     virtual ~Function();
-    virtual bool check_parameters(vector<double> parameters)=0;
-    virtual void set_parameters(vector<double> parameters);
-    virtual double calculate_value(double t)=0;
+    virtual bool checkParameters(vector<double> parameters)=0;
+    virtual void setParameters(vector<double> parameters);
+    virtual double calculateValue(double t)=0;
     virtual void showFunction()=0;
 };
 
@@ -30,8 +30,8 @@ class FCos: public Function{
 public:
     FCos();
     ~FCos();
-    bool check_parameters(vector<double> parameters);
-    double calculate_value(double t);
+    bool checkParameters(vector<double> parameters);
+    double calculateValue(double t);
     void showFunction();
 };
 
@@ -47,8 +47,8 @@ class FSin: public Function{
 public:
     FSin();
     ~FSin();
-    bool check_parameters(vector<double> parameters);
-    double calculate_value(double t);
+    bool checkParameters(vector<double> parameters);
+    double calculateValue(double t);
     void showFunction();
 };
 #endif
