@@ -1,6 +1,6 @@
 #include<iostream>
 #include<cmath>
-#include "functions.hpp"
+#include "Functions.hpp"
 
 using namespace std;
 
@@ -10,7 +10,7 @@ Function::~Function(){
     #endif // _DEBUG
 }
 
-void Function::set_parameters(vector<double> new_parameters){
+void Function::setParameters(vector<double> new_parameters){
     #ifdef _DEBUG
         cout << "Function: New parameters\n";
         for(int i =0; i<parameters_number; i++){
@@ -42,7 +42,7 @@ FCos::~FCos(){
     #endif // _DEBUG
 }
 
-bool FCos::check_parameters(vector<double> new_parameters){
+bool FCos::checkParameters(vector<double> new_parameters){
 
     bool is_correct = true;
 
@@ -70,7 +70,7 @@ bool FCos::check_parameters(vector<double> new_parameters){
     return is_correct;
 }
 
-double FCos::calculate_value(double t){
+double FCos::calculateValue(double t){
     #ifdef _DEBUG
         cout<< "FCos: Count value of t\n";
         cout << "   Cos(t) = a*cos(b*t)^c\n";
@@ -90,6 +90,12 @@ double FCos::calculate_value(double t){
     #endif // _DEBUG
 
     return result;
+}
+
+
+void FCos::showFunction() {
+    if(parameters[0] > 0)
+        cout << parameters[0] << "cos(" << parameters[1] << "*t)^" << parameters[2] << " ";
 }
 
 FSin::FSin(){
@@ -114,7 +120,7 @@ FSin::~FSin(){
     #endif // _DEBUG
 }
 
-bool FSin::check_parameters(vector<double> new_parameters){
+bool FSin::checkParameters(vector<double> new_parameters){
 
     bool is_correct = true;
 
@@ -142,7 +148,7 @@ bool FSin::check_parameters(vector<double> new_parameters){
     return is_correct;
 }
 
-double FSin::calculate_value(double t){
+double FSin::calculateValue(double t){
     #ifdef _DEBUG
         cout<< "FSin: Count value of t\n";
         cout << "   Sin(t) = a*sin(b*t)^c\n";
@@ -162,11 +168,6 @@ double FSin::calculate_value(double t){
     #endif // _DEBUG
 
     return result;
-}
-
-void FCos::showFunction() {
-    if(parameters[0] > 0)
-        cout << parameters[0] << "cos(" << parameters[1] << "*t)^" << parameters[2] << " ";
 }
 
 void FSin::showFunction() {
