@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "Functions.hpp"
+#include "../Funkcje/Functions.hpp"
 #include "InputController.hpp"
 
 
