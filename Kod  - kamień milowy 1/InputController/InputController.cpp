@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "functions.hpp"
+#include "Functions.hpp"
 #include "InputController.hpp"
 
 
@@ -56,14 +56,14 @@ void InputController::getInput() {
         if(s == "sin") {
             static FSin temp;
             X.equation.push_back(&temp);
-            X.equation[i]->check_parameters(parameters);
-            X.equation[i]->set_parameters(parameters);
+            X.equation[i]->checkParameters(parameters);
+            X.equation[i]->setParameters(parameters);
         }
         if(s == "cos") {
             static FCos temp;
             X.equation.push_back(&temp);
-            X.equation[i]->check_parameters(parameters);
-            X.equation[i]->set_parameters(parameters);
+            X.equation[i]->checkParameters(parameters);
+            X.equation[i]->setParameters(parameters);
         }
     }
 
@@ -82,14 +82,14 @@ void InputController::getInput() {
         if(s == "sin") {
             static FSin temp;
             Y.equation.push_back(&temp);
-            Y.equation[i]->check_parameters(parameters);
-            Y.equation[i]->set_parameters(parameters);
+            Y.equation[i]->checkParameters(parameters);
+            Y.equation[i]->setParameters(parameters);
         }
         if(s == "cos") {
             static FCos temp;
             Y.equation.push_back(&temp);
-            Y.equation[i]->check_parameters(parameters);
-            Y.equation[i]->set_parameters(parameters);
+            Y.equation[i]->checkParameters(parameters);
+            Y.equation[i]->setParameters(parameters);
         }
     }
 }
