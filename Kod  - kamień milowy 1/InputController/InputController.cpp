@@ -6,17 +6,6 @@
 
 using namespace std;
 
-InputController::InputController() {
-    #ifdef _DEBUG
-        cout << "Creating InputController\n";
-    #endif // _DEBUG
-}
-
-InputController::~InputController() {
-    #ifdef _DEBUG
-        cout << "Destroying InputController\n";
-    #endif // _DEBUG
-}
 
 Equation::Equation() {
     #ifdef _DEBUG
@@ -36,6 +25,7 @@ Equation::~Equation() {
     }
 }
 
+
 void Equation::addElementCos(double a, double b, double c) {
     vector<double> parameters{0, 0, 0};
     parameters.at(0) = a;
@@ -46,6 +36,7 @@ void Equation::addElementCos(double a, double b, double c) {
     equation.back()->setParameters(parameters);
 }
 
+
 void Equation::addElementSin(double a, double b, double c) {
     vector<double> parameters{0, 0, 0};
     parameters.at(0) = a;
@@ -55,6 +46,25 @@ void Equation::addElementSin(double a, double b, double c) {
     equation.push_back(p);
     equation.back()->setParameters(parameters);
 }
+
+
+const vector<Function*>& Equation::getEquation() {
+    return equation;
+}
+
+
+InputController::InputController() {
+    #ifdef _DEBUG
+        cout << "Creating InputController\n";
+    #endif // _DEBUG
+}
+
+InputController::~InputController() {
+    #ifdef _DEBUG
+        cout << "Destroying InputController\n";
+    #endif // _DEBUG
+}
+
 
 void InputController::addToEquation(Equation* Eq) {
     int n;
@@ -160,7 +170,8 @@ void InputController::getInput() {
     addToEquation(&Y);
 }
 
-void Equation::printEquation() {
+
+void Equation::printEquation() const{
     bool not_first = false;
     for(auto v : equation) {
         v->showFunction(not_first);
@@ -169,7 +180,8 @@ void Equation::printEquation() {
     cout << endl;
 }
 
-void InputController::printEquations() {
+
+void InputController::printEquations() const {
     cout << "X(t) = ";
     X.printEquation();
     cout << "Y(t) = ";
@@ -181,18 +193,22 @@ int InputController::getNumberOfPoints() {
     return number_of_points;
 }
 
+
 double InputController::getLeftBorder() {
     return left_border;
 }
+
 
 double InputController::getRightBorder() {
     return right_border;
 }
 
-Equation* InputController::getXEquation() {
-    return &X;
+
+Equation& InputController::getXEquation() {
+    return X;
 }
 
-Equation* InputController::getYEquation() {
-    return &Y;
+
+Equation& InputController::getYEquation() {
+    return Y;
 }
