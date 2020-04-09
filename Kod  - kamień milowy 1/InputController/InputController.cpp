@@ -36,13 +36,31 @@ Equation::~Equation() {
     }
 }
 
+void Equation::addElementCos(double a, double b, double c) {
+    vector<double> parameters{0, 0, 0};
+    parameters.at(0) = a;
+    parameters.at(1) = b;
+    parameters.at(2) = c;
+    Function* p = new FSin;
+    equation.push_back(p);
+    equation.back()->setParameters(parameters);
+}
+
+void Equation::addElementSin(double a, double b, double c) {
+    vector<double> parameters{0, 0, 0};
+    parameters.at(0) = a;
+    parameters.at(1) = b;
+    parameters.at(2) = c;
+    Function* p = new FSin;
+    equation.push_back(p);
+    equation.back()->setParameters(parameters);
+}
 
 void InputController::addToEquation(Equation* Eq) {
     int n;
     string s;
     double a, b, c;
     bool correct_input;
-    vector<double> parameters{0, 0, 0};
     do {
         cout << "How many element do you want to add to your equation: ";
         cin>>n;
@@ -90,18 +108,11 @@ void InputController::addToEquation(Equation* Eq) {
         #ifdef _DEBUG
             cout << a << " " << b << " " << c << endl << endl;
         #endif // _DEBUG
-        parameters.at(0) = a;
-        parameters.at(1) = b;
-        parameters.at(2) = c;
         if(s == "sin") {
-            Function* p = new FSin;
-            Eq->equation.push_back(p);
-            Eq->equation[i]->setParameters(parameters);
+            Eq->addElementSin(a , b, c);
         }
         else if(s == "cos") {
-            Function* p = new FCos;
-            Eq->equation.push_back(p);
-            Eq->equation[i]->setParameters(parameters);
+            Eq->addElementCos(a, b, c);
         }
         else {
             cout << s << " is not defined" << endl;

@@ -10,11 +10,12 @@ using namespace std;
 
 
 class Equation {
-public:
     vector<Function*> equation;
+public:
     Equation();
     void printEquation();
-    void addComponent();
+    void addElementCos(double a, double b, double c);
+    void addElementSin(double a, double b, double c);
     ~Equation();
 };
 
