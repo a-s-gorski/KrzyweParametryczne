@@ -5,7 +5,7 @@
 - functions witch are used to calculate coordinate x
 - functions witch are used to calculate coordinate y
 - value of t witch we want to formula on
-- and:
+
 ```cpp
 pair<double, double> calculateValue(vector<Function*> x_function, vector<Function*> y_function, double t);
 ```
@@ -17,7 +17,7 @@ pair<double, double> calculateValue(vector<Function*> x_function, vector<Functio
 - left margin of range
 - right margin of range
 - number of points
-- and:
+
 ```cpp
 vector<pair<double, double> > calculateSerie(vector<Function*> x_function, vector<Function*> y_function, double left, double right, double points_number);
 ```
