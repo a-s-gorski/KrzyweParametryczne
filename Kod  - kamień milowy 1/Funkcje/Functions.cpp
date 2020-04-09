@@ -95,9 +95,9 @@ double FCos::calculateValue(double t){
 
 void FCos::showFunction(bool not_first) {
     
-    double a = parameters[0];
-    double b = parameters[1];
-    double c = parameters[1];
+    double& a = parameters[0];
+    double& b = parameters[1];
+    double& c = parameters[2];
 
     if(not_first && a > 0 )
         cout << "+ ";
@@ -198,9 +198,9 @@ double FSin::calculateValue(double t){
 
 void FSin::showFunction(bool not_first) {
 
-    double a = parameters[0];
-    double b = parameters[1];
-    double c = parameters[1];
+    double& a = parameters[0];
+    double& b = parameters[1];
+    double& c = parameters[2];
 
     if(not_first && a > 0 )
         cout << "+ ";

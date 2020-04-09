@@ -30,7 +30,7 @@ Equation::~Equation() {
     #endif // _DEBUG
 }
 
-// void InputController::addComponents(Equation* eq) {
+// void InputController::addComponents(Equation Eq) {
 //     int n;
 //     do {
 //         cout << "How many element do you want to add to your equation: ";
@@ -79,16 +79,19 @@ Equation::~Equation() {
 //             }
 //         } while(!correct_input);
 //         cout << endl;
+//         #ifdef _DEBUG
+//             cout << a << " " << b << " " << c << endl << endl;
+//         #endif // _DEBUG
 //         vector<double> parameters{a, b, c};
 //         if(s == "sin") {
 //             static FSin temp;
-//             eq->equation.push_back(&temp);
-//             eq->equation[i]->setParameters(parameters);
+//             Eq.equation.push_back(&temp);
+//             Eq.equation[i]->setParameters(parameters);
 //         }
 //         else if(s == "cos") {
 //             static FCos temp;
-//             eq->equation.push_back(&temp);
-//             eq->equation[i]->setParameters(parameters);
+//             Eq.equation.push_back(&temp);
+//             Eq.equation[i]->setParameters(parameters);
 //         }
 //         else {
 //             cout << s << " is not defined" << endl;
@@ -129,8 +132,11 @@ void InputController::getInput() {
     
     // X parameter
     cout << "X equation components" << endl;
-    // addComponents(&X);
+    // addComponents(X);
     int n;
+    string s;
+    double a, b, c;
+    vector<double> parameters{0, 0, 0};
     do {
         cout << "How many element do you want to add to your equation: ";
         cin>>n;
@@ -143,8 +149,6 @@ void InputController::getInput() {
             cout << "Number of elements can't be a non-positive number\n" << endl;
     } while(cin.fail() || n <= 0);
     cout << endl;
-    string s;
-    double a, b, c;
     for(int i=0; i<n; ++i) {
         do {
             correct_input = true;
@@ -178,28 +182,31 @@ void InputController::getInput() {
         } while(!correct_input);
         cout << endl;
         #ifdef _DEBUG
-            cout << a << " " << b << " " << c << endl;
+            cout << a << " " << b << " " << c << endl << endl;
         #endif // _DEBUG
-        vector<double> parameters{a, b, c};
+        parameters.at(0) = a;
+        parameters.at(1) = b;
+        parameters.at(2) = c;
         if(s == "sin") {
-            static FSin temp;
-            X.equation.push_back(&temp);
+            Function* p = new FSin;
+            X.equation.push_back(p);
             X.equation[i]->setParameters(parameters);
         }
         else if(s == "cos") {
-            static FCos temp;
-            X.equation.push_back(&temp);
+            Function* p = new FCos;
+            X.equation.push_back(p);
             X.equation[i]->setParameters(parameters);
         }
         else {
             cout << s << " is not defined" << endl;
             --i;
         }
+        
     }
 
     // Y parameter
     cout << "Y equation components" << endl;
-    // addComponents(&Y);
+    // addComponents(Y);
     do {
         cout << "How many element do you want to add to your equation: ";
         cin>>n;
@@ -245,17 +252,19 @@ void InputController::getInput() {
         } while(!correct_input);
         cout << endl;
         #ifdef _DEBUG
-            cout << a << " " << b << " " << c << endl;
+            cout << a << " " << b << " " << c << endl << endl;
         #endif // _DEBUG
-        vector<double> parameters{a, b, c};
+        parameters.at(0) = a;
+        parameters.at(1) = b;
+        parameters.at(2) = c;
         if(s == "sin") {
-            static FSin temp;
-            Y.equation.push_back(&temp);
+            Function* p = new FSin;
+            Y.equation.push_back(p);
             Y.equation[i]->setParameters(parameters);
         }
         else if(s == "cos") {
-            static FCos temp;
-            Y.equation.push_back(&temp);
+            Function* p = new FCos;
+            Y.equation.push_back(p);
             Y.equation[i]->setParameters(parameters);
         }
         else {

@@ -5,6 +5,7 @@
 #include <vector>
 #include "Functions.hpp"
 
+
 using namespace std;
 
 
@@ -23,7 +24,7 @@ class InputController {
     double right_border;
     Equation X;
     Equation Y;
-    void addComponents(Equation* eq);
+    void addComponents(Equation Eq);
 
 public:
     InputController();
