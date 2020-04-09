@@ -164,3 +164,24 @@ void InputController::printEquations() {
     cout << "Y(t) = ";
     Y.printEquation();
 }
+
+
+int InputController::getNumberOfPoints() {
+    return number_of_points;
+}
+
+double InputController::getLeftBorder() {
+    return left_border;
+}
+
+double InputController::getRightBorder() {
+    return right_border;
+}
+
+Equation* InputController::getXEquation() {
+    return &X;
+}
+
+Equation* InputController::getYEquation() {
+    return &Y;
+}

@@ -31,6 +31,11 @@ public:
     InputController();
     void getInput();
     void printEquations();
+    int getNumberOfPoints();
+    double getLeftBorder();
+    double getRightBorder();
+    Equation* getXEquation();
+    Equation* getYEquation();
     ~InputController();
 };
 #endif
