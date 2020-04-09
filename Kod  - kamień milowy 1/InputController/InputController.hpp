@@ -10,11 +10,13 @@ using namespace std;
 
 
 class Equation {
-public:
     vector<Function*> equation;
+public:
     Equation();
-    void printEquation();
-    void addComponent();
+    void printEquation() const;
+    void addElementCos(double a, double b, double c);
+    void addElementSin(double a, double b, double c);
+    const vector<Function*>& getEquation();
     ~Equation();
 };
 
@@ -30,7 +32,12 @@ class InputController {
 public:
     InputController();
     void getInput();
-    void printEquations();
+    void printEquations() const;
+    int getNumberOfPoints();
+    double getLeftBorder();
+    double getRightBorder();
+    Equation& getXEquation();
+    Equation& getYEquation();
     ~InputController();
 };
 #endif
