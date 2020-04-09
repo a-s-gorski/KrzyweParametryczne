@@ -11,7 +11,7 @@ do odpowiedznich równań
    składników dla parametru **X**, która 
    jest liczbą naturalną
    - następnie progra zapyta się czy chcemy, aby nasz składnik był funkcją trygonometryczną sinus czy cosinus, 
-   wpisujemy odpowiedniu **sin** lub **cos**
+   wpisujemy odpowiednio **sin** lub **cos**
    - następnie podajemy 3 liczby dziesiętne 
-   odzielone spacją a, b, c, które będą tworzyć składnik równania np. **asin(b\*t)^c**
+   odzielone spacją **a**, **b**, **c**, które będą tworzyć składnik równania np. **asin(b\*t)^c**
    - po wpisaniu wszystkich składników dla **X**, postępujemy tak samo dla parametru **Y**
