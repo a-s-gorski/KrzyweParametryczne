@@ -5,6 +5,7 @@
 #include <vector>
 #include "../Funkcje/Functions.hpp"
 
+
 using namespace std;
 
 
@@ -13,6 +14,7 @@ public:
     vector<Function*> equation;
     Equation();
     void printEquation();
+    void addComponent();
     ~Equation();
 };
 
@@ -23,7 +25,7 @@ class InputController {
     double right_border;
     Equation X;
     Equation Y;
-    void addComponents(Equation* eq);
+    void addToEquation(Equation* Eq);
 
 public:
     InputController();
