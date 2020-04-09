@@ -93,10 +93,36 @@ double FCos::calculateValue(double t){
 }
 
 
-void FCos::showFunction() {
-    if(parameters[0] > 0)
-        cout << parameters[0] << "cos(" << parameters[1] << "*t)^" << parameters[2] << " ";
+void FCos::showFunction(bool not_first) {
+    
+    double& a = parameters[0];
+    double& b = parameters[1];
+    double& c = parameters[2];
+
+    if(not_first && a > 0 )
+        cout << "+ ";
+    else if(not_first && a < 0)
+        cout << "- ";
+    else if(!not_first && a < 0)
+        cout << "-";
+    if(a == 1) {}
+    else
+        cout << fabs(a);
+    cout << "cos(";
+    if(b == 1) {}
+    else if(b == -1)
+        cout << "-*";
+    else   
+        cout << b << "*";
+    cout << "t)";
+    if(c == 1) {}
+    else if(c < 0)
+        cout << "^(" << c << ")";
+    else
+        cout << "^" << c;
+    cout << " ";
 }
+
 
 FSin::FSin(){
     #ifdef _DEBUG
@@ -170,6 +196,32 @@ double FSin::calculateValue(double t){
     return result;
 }
 
-void FSin::showFunction() {
-    cout << parameters[0] << "sin(" << parameters[1] << "*t)^" << parameters[2] << " ";
+void FSin::showFunction(bool not_first) {
+
+    double& a = parameters[0];
+    double& b = parameters[1];
+    double& c = parameters[2];
+
+    if(not_first && a > 0 )
+        cout << "+ ";
+    else if(not_first && a < 0)
+        cout << "- ";
+    else if(!not_first && a < 0)
+        cout << "-";
+    if(a == 1) {}
+    else
+        cout << fabs(a);
+    cout << "sin(";
+    if(b == 1) {}
+    else if(b == -1)
+        cout << "-*";
+    else   
+        cout << b << "*";
+    cout << "t)";
+    if(c == 1) {}
+    else if(c < 0)
+        cout << "^(" << c << ")";
+    else
+        cout << "^" << c;
+    cout << " ";
 }

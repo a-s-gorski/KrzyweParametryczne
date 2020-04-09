@@ -15,7 +15,7 @@ public:
     virtual bool checkParameters(vector<double> parameters)=0;
     virtual void setParameters(vector<double> parameters);
     virtual double calculateValue(double t)=0;
-    virtual void showFunction()=0;
+    virtual void showFunction(bool not_first)=0;
 };
 
 class FCos: public Function{
@@ -32,7 +32,7 @@ public:
     ~FCos();
     bool checkParameters(vector<double> parameters);
     double calculateValue(double t);
-    void showFunction();
+    void showFunction(bool not_first);
 };
 
 class FSin: public Function{
@@ -49,6 +49,6 @@ public:
     ~FSin();
     bool checkParameters(vector<double> parameters);
     double calculateValue(double t);
-    void showFunction();
+    void showFunction(bool not_first);
 };
 #endif
