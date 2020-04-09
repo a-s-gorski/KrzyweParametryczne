@@ -14,6 +14,7 @@ public:
     vector<Function*> equation;
     Equation();
     void printEquation();
+    void addComponent();
     ~Equation();
 };
 
@@ -24,7 +25,7 @@ class InputController {
     double right_border;
     Equation X;
     Equation Y;
-    void addComponents(Equation Eq);
+    void addToEquation(Equation* Eq);
 
 public:
     InputController();
