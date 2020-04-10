@@ -17,11 +17,8 @@ Equation::~Equation() {
     #ifdef _DEBUG
         cout << "Destroying Equation\n";
     #endif // _DEBUG
-    for(auto v : equation) {
+    for(auto& v : equation) {
         delete v;
-        #ifdef _DEBUG
-            cout << "Destroying trigonometric function\n";
-        #endif // _DEBUG
     }
 }
 

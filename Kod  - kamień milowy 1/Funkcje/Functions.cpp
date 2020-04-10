@@ -5,9 +5,9 @@
 using namespace std;
 
 Function::~Function(){
-    #ifdef _DEBUG
+    // #ifdef _DEBUG
         cout << "Function: Destroying Function\n";
-    #endif // _DEBUG
+    // #endif // _DEBUG
 }
 
 void Function::setParameters(vector<double> new_parameters){
@@ -37,9 +37,9 @@ FCos::FCos(){
 }
 
 FCos::~FCos(){
-    #ifdef _DEBUG
+    // #ifdef _DEBUG
         cout << "FCos: Destroying FCos\n";
-    #endif // _DEBUG
+    // #endif // _DEBUG
 }
 
 bool FCos::checkParameters(vector<double> new_parameters){
@@ -141,9 +141,9 @@ FSin::FSin(){
 }
 
 FSin::~FSin(){
-    #ifdef _DEBUG
+    // #ifdef _DEBUG
         cout << "FSin: Destroying FSin\n";
-    #endif // _DEBUG
+    // #endif // _DEBUG
 }
 
 bool FSin::checkParameters(vector<double> new_parameters){
