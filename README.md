@@ -25,7 +25,7 @@ Kolejne wersje zakładają przede wszystkim tryb graficzny oraz większą dowoln
 Użytkownik podaje kolejno:
 - lewą granice parametru, prawą granicę parametru, liczbe punktów
 - liczbe funkcji dla x, liczbe funkcji dla y
-- liste numerów szkieletu funkcji i parametrów funkcji
+- szereg funkcji i parametrów
 
 Użytkownik może wpisać te rzeczy ręcznie do konsoli lub uruchomić program podając jako argument nazwę pliku zawierającą wejście w formacie .txt.
 Następnie program po obliczeniu serii punktów wyświetli ją na konsolę.
