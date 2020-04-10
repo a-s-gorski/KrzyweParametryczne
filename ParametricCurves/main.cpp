@@ -16,8 +16,11 @@ int main()
 
     console_input.getInput();
 
-    Equation x = console_input.getXEquation();
-    Equation y = console_input.getYEquation();
+    cout << "Your functions: " << endl;
+    console_input.printEquations();
+
+    Equation& x = console_input.getXEquation();
+    Equation& y = console_input.getYEquation();
     vector<Function*> x_func = x.getEquation();
     vector<Function*> y_func = y.getEquation();
 

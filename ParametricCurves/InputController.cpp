@@ -17,11 +17,12 @@ Equation::~Equation() {
 #ifdef _DEBUG
     cout << "Destroying Equation\n";
 #endif // _DEBUG
-    //for (auto v : equation) {
-    //   delete v;
+    for (auto& v : equation) {
+       delete v;
 #ifdef _DEBUG
         cout << "Destroying trigonometric function\n";
 #endif // _DEBUG
+    }
 }
 
 
@@ -30,7 +31,7 @@ void Equation::addElementCos(double a, double b, double c) {
     parameters.at(0) = a;
     parameters.at(1) = b;
     parameters.at(2) = c;
-    Function* p = new FSin;
+    Function* p = new FCos;
     equation.push_back(p);
     equation.back()->setParameters(parameters);
 }
