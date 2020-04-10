@@ -7,7 +7,7 @@ decimal numbers, separated by space, in order
 3. next begins typing of X or Y parametric equations
    - an the begining it is needed to enter number of components for **X** equations, which is a natural number
    - then our program asks if we want our component to be trygonometric function Sine or Cosine, type accordingly **sin** or **cos**
-   - after that give 3 decimal numbers, separated by spece **a**, **b**, **c**, which are linear coefficients of our trygonometric function **asin(b\*t)^c** or **acos(b\*t)^c**, depending on our previous choice
+   - after that give 3 decimal numbers, separated by space **a**, **b**, **c**, which are linear coefficients of our trygonometric function **asin(b\*t)^c** or **acos(b\*t)^c**, depending on our previous choice
    - afterwards do the same for other components of **X** equation 
    - after finishing with our **X** eparametric quation, do the same fot **Y** parametric equation
 
@@ -33,7 +33,6 @@ decimal numbers, separated by space, in order
       double right_border;
       Equation X;
       Equation Y;
-      void addToEquation(Equation* Eq);
 ```
 
 - first function to call is *getInput()* which is responible for getting all user's input
