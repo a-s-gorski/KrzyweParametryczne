@@ -8,20 +8,20 @@ using namespace std;
 
 
 Equation::Equation() {
-#ifdef _DEBUG
-    cout << "Creating Equation\n";
-#endif // _DEBUG
+    #ifdef _DEBUG
+        cout << "Creating Equation\n";
+    #endif // _DEBUG
 }
 
 Equation::~Equation() {
-#ifdef _DEBUG
-    cout << "Destroying Equation\n";
-#endif // _DEBUG
+    #ifdef _DEBUG
+        cout << "Destroying Equation\n";
+    #endif // _DEBUG
     for (auto& v : equation) {
        delete v;
-#ifdef _DEBUG
-        cout << "Destroying trigonometric function\n";
-#endif // _DEBUG
+    #ifdef _DEBUG
+            cout << "Destroying trigonometric function\n";
+    #endif // _DEBUG
     }
 }
 
@@ -34,6 +34,9 @@ void Equation::addElementCos(double a, double b, double c) {
     Function* p = new FCos;
     equation.push_back(p);
     equation.back()->setParameters(parameters);
+    #ifdef _DEBUG
+        cout << "Adding FCos to Equation\n";
+    #endif // _DEBUG
 }
 
 
@@ -45,6 +48,19 @@ void Equation::addElementSin(double a, double b, double c) {
     Function* p = new FSin;
     equation.push_back(p);
     equation.back()->setParameters(parameters);
+    #ifdef _DEBUG
+        cout << "Adding FSin to Equation\n";
+    #endif // _DEBUG
+}
+
+
+void Equation::printEquation() const {
+    bool not_first = false;
+    for (auto v : equation) {
+        v->showFunction(not_first);
+        not_first = true;
+    }
+    cout << endl;
 }
 
 
@@ -168,16 +184,6 @@ void InputController::getInput() {
     // Y parameter
     cout << "Y equation components" << endl;
     addToEquation(&Y);
-}
-
-
-void Equation::printEquation() const {
-    bool not_first = false;
-    for (auto v : equation) {
-        v->showFunction(not_first);
-        not_first = true;
-    }
-    cout << endl;
 }
 
 

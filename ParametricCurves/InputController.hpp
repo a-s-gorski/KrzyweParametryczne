@@ -39,5 +39,6 @@ public:
     Equation& getXEquation();
     Equation& getYEquation();
     ~InputController();
+    friend void testInput(InputController); // friend function used for Unit Tets
 };
 #endif
