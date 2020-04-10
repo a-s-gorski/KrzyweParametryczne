@@ -7,4 +7,3 @@ Uwagi dotyczące części projektu odpowiadającej za kontrolę wyjścia oraz in
 3. Chwiliowo interfejs graficzny jest niezależny od pozostałych części projektu - jednakże planujemy połączyć go razem z kontolą wejścia oraz kalkulatorem.
 
 4. Do tego interfejs zostanie wzbogacony o miejsce na wkład użytkownika.
-
