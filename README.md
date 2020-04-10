@@ -29,3 +29,7 @@ Użytkownik podaje kolejno:
 
 Użytkownik może wpisać te rzeczy ręcznie do konsoli lub uruchomić program podając jako argument nazwę pliku zawierającą wejście w formacie .txt.
 Następnie program po obliczeniu serii punktów wyświetli ją na konsolę.
+
+## 5. Uwagi 
+
+OuputcontrolGUI jest tymczasowo oddzielnym projektem, który powinien być otwarty w programie "QT Creator". 
