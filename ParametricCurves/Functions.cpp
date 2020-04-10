@@ -80,7 +80,7 @@ double FCos::calculateValue(double t) {
 
     double result;
 
-    result = pow(a * cos(b * t), c);
+    result = a * pow(cos(b * t), c);
 
 #ifdef _DEBUG
     cout << "   a: " << a << " b: " << b << " c: " << c << "\n";
@@ -182,7 +182,7 @@ double FSin::calculateValue(double t) {
 
     double result;
 
-    result = pow(a * sin(b * t), c);
+    result = a * pow(sin(b * t), c);
 
 #ifdef _DEBUG
     cout << "   a: " << a << " b: " << b << " c: " << c << "\n";
