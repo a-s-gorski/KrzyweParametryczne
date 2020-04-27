@@ -1,3 +1,5 @@
+//Bondaruk £ukasz
+
 #include<iostream>
 #include<cmath>
 #include<vector>
@@ -24,20 +26,19 @@ pair<double, double> Calculator::calculateValue(vector<Function*> *x_function, v
     cout << "Calculator: Calculate value for: " << t << "\n";
 #endif // _DEBUG
 
-    pair<double, double> point;
-
     double x = 0;
     double y = 0;
 
-    for (int i = 0; i < (*x_function).size(); i++) {
-        x += (*(*x_function)[i]).calculateValue(t);
+    for (auto& i : (*x_function))
+    {
+        x += (*i).calculateValue(t);
     }
 
     for (int i = 0; i < (*y_function).size(); i++) {
         y += (*(*y_function)[i]).calculateValue(t);
     }
 
-    point = make_pair(x, y);
+    pair<double, double> point = make_pair(x, y);
 
     return point;
 }

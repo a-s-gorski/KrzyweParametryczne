@@ -25,6 +25,7 @@ bool testCalculatorCalculateValue() {
     cout << "Calculate value started: \n";
 
     pair<double, double> test = make_pair(cos(1), sin(1));
+   // Co to mia³o byæ *= ?
     assert *= test == cal.calculateValue(&x_function, &y_function, 1);
     cout << "   assert: " << (assert ? "Correct\n" : "Failed\n");
 

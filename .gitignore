@@ -1,3 +1,6 @@
 bin
 .vscode
 ParametricCurves/testing.cpp
+.vs/
+ParametricCurves/x64/
+x64/

@@ -4,18 +4,17 @@
 #include<iostream>
 #include<vector>
 
-using namespace std;
-
 class Function {
 protected:
-    int parameters_number;
-    vector<double> parameters;
+    int parameters_number;  // brak inicjalizacji !!! np. w konstruktorze)
+    std::vector<double> parameters;
 public:
     virtual ~Function();
-    virtual bool checkParameters(vector<double> parameters) = 0;
-    virtual void setParameters(vector<double> parameters);
+    virtual bool checkParameters(std::vector<double> parameters) = 0;
+    virtual void setParameters(std::vector<double> parameters);
     virtual double calculateValue(double t) = 0;
     virtual void showFunction(bool not_first) = 0;
+   // operator() ??
 };
 
 class FCos : public Function {
@@ -30,7 +29,7 @@ class FCos : public Function {
 public:
     FCos();
     ~FCos();
-    bool checkParameters(vector<double> parameters);
+    bool checkParameters(std::vector<double> parameters);
     double calculateValue(double t);
     void showFunction(bool not_first);
 };
@@ -47,7 +46,7 @@ class FSin : public Function {
 public:
     FSin();
     ~FSin();
-    bool checkParameters(vector<double> parameters);
+    bool checkParameters(std::vector<double> parameters);
     double calculateValue(double t);
     void showFunction(bool not_first);
 };

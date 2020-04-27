@@ -1,3 +1,5 @@
+//Autor
+
 #include<iostream>
 #include<cmath>
 #include "Functions.hpp"
@@ -20,7 +22,8 @@ void Function::setParameters(vector<double> new_parameters) {
     parameters = new_parameters;
 }
 
-FCos::FCos() {
+FCos::FCos()
+{
 #ifdef _DEBUG
     cout << "FCos: Creating FCos\n";
 #endif // _DEBUG
@@ -46,8 +49,9 @@ bool FCos::checkParameters(vector<double> new_parameters) {
 
 #ifdef _DEBUG
     cout << "FCos: Checking parameters\n";
-    for (int i = 0; i < new_parameters.size(); i++) {
-        cout << new_parameters[i] << " ";
+    for (double new_parameter : new_parameters)
+    {
+        cout << new_parameter << " ";
     }
     cout << "\n";
 #endif // _DEBUG
@@ -192,7 +196,7 @@ double FSin::calculateValue(double t) {
     return result;
 }
 
-void FSin::showFunction(bool not_first) {
+void FSin::showFunction(const bool not_first) {
 
     double& a = parameters[0];
     double& b = parameters[1];

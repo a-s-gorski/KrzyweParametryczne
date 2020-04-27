@@ -6,15 +6,13 @@
 #include <vector>
 #include "Functions.hpp"
 
-using namespace std;
-
 class Calculator {
 
 public:
     Calculator();
     ~Calculator();
-    pair<double, double> calculateValue(vector<Function*> *x_function, vector<Function*> *y_function, double t);
-    vector<pair<double, double> > calculateSerie(vector<Function*> *x_function, vector<Function*> *y_function, double left, double right, double points_number);
+    std::pair<double, double> calculateValue(std::vector<Function*> *x_function, std::vector<Function*> *y_function, double t);
+    std::vector<std::pair<double, double> > calculateSerie(std::vector<Function*> *x_function, std::vector<Function*> *y_function, double left, double right, double points_number);
 };
 
 
