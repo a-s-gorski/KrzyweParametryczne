@@ -10,3 +10,19 @@ korzystaliśmy z wersji Open Source
 4. Przebudować rozwiązanie (rebuild solution)
 
 5. W przypadku problemów z konsolą trzeba ustawić w ustawieniach projektu zamiast windows zamienić na console (często po instalacji wtyczki może to zostać zmienione).
+
+
+Opis elementów projektu:
+
+1. Klasa DrawingPlot:
+
+    klasa potrzebuje w konstruktorze obiektu QPicture na którym operuje przy pomocy QPainter oraz wektora par double, które będą łączone:
+        get_edge_value - znajduje skrajne wartości dla zbioru punktów
+        rescale - przemieszcza o wektor, skaluje i interpoluje kazdy punkt znajdował się na kanwie - obraz może być powiększony albo pomniejszony, ale zawsze będą zachowane proporcje
+    funkcja drawPlot łączy kolejne punkty i kończy rysowanie na kanwie
+    destruktor usuwa dynamicznie zaalokwaną pamięć, aby uniknąć przecieków pamięci
+    
+2. Klasa OutputController - odziedzicona z QMainWindow - jest to główna baza do aplikacji - obraz jest wykonywany na QPicture -> QPicture jest dodawany do QLabel-> QLabel jest pokazywany
+w aplikacji
+    
+    
