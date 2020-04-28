@@ -13,6 +13,11 @@ DrawingPlot::~DrawingPlot() {
         delete [] DrawingPlot::coordinates[i];
     }
     delete [] DrawingPlot::coordinates;
+    #ifdef _DEBUG
+    cout << "DrawingPlot: destructor\n";
+    cout << "DrawingPlot: deleting dynamic 2d array coordinates\n";
+    #endif // _DEBUG
+
 }
 
 
@@ -30,10 +35,16 @@ void DrawingPlot::drawPlot() {
         painting_canvas.drawLine(x1, y1, x2, y2);
     }
     painting_canvas.end();
+    #ifdef _DEBUG
+    cout << "DrawingPlot : drawing plot lines conecting coordinates \n";
+    #endif // _DEBUG
 
 }
 
 void DrawingPlot::get_edge_values() {
+    #ifdef _DEBUG
+    cout << "DrawingPlot : getting maximum and minimum values from points - x-axis and y-axis \n";
+    #endif // _DEBUG
     DrawingPlot::x_axis_max = DrawingPlot::points[0].first;
     DrawingPlot::x_axis_min = DrawingPlot::points[0].first;
     DrawingPlot::y_axis_max = DrawingPlot::points[0].second;
@@ -50,6 +61,9 @@ void DrawingPlot::get_edge_values() {
 }
 
 void DrawingPlot::rescale_drawing() {
+    #ifdef _DEBUG
+    cout << "DrawingPlot : moving to window, then interpolation and rescaling\n";
+    #endif // _DEBUG
     double X_length = DrawingPlot::x_axis_max - DrawingPlot::x_axis_min;
     double Y_length = DrawingPlot::y_axis_max - DrawingPlot::y_axis_min;
 
