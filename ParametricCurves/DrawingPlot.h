@@ -33,6 +33,9 @@ public:
         DrawingPlot::coordinates = new double* [DrawingPlot::points.size()];
         for (int i = 0; i < DrawingPlot::points.size(); i++) {
             DrawingPlot::coordinates[i] = new double[2];
+                #ifdef _DEBUG
+                cout << "DrawingPlot : creating dynamicly allocated array(2d) by assigning pointes of pointers\n";
+                 #endif // _DEBUG
         }
     DrawingPlot::get_edge_values();
     DrawingPlot::rescale_drawing();
