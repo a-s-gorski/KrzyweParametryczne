@@ -1,4 +1,5 @@
 #pragma once
+// author : Adam Górski
 
 #include <QtWidgets>
 #include <iostream>
