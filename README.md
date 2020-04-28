@@ -22,18 +22,10 @@ Kolejne wersje zakładają przede wszystkim tryb graficzny oraz większą dowoln
 
 ## 4. Sposób użycia
 
-Użytkownik podaje kolejno:
+Użytkownik podaje kolejnow konsoli:
 - liczbe punktów
 - lewą i prawą granicę równania
 - liczbe funkcji dla x
 - rodzaje funkcjii i ich parametry
 - liczbe funkcji dla y
 - rodzaje funkcjii i ich parametry
-
-
-Użytkownik może wpisać te rzeczy ręcznie do konsoli lub uruchomić program podając jako argument nazwę pliku zawierającą wejście w formacie .txt.
-Następnie program po obliczeniu serii punktów wyświetli ją na konsolę.
-
-## 5. Uwagi 
-
-OuputcontrolGUI jest tymczasowo oddzielnym projektem, który powinien być otwarty w programie "QT Creator". 
