@@ -4,10 +4,18 @@
 #include "Functions.hpp"
 #include "Calculator.hpp"
 #include "InputController.hpp"
+#include "OutputController.h"
+#include "DrawingPlot.h"
+#include <QtWidgets/QApplication>
+#include <QtWidgets>
+#include <utility>
+#include <math.h>
+// #define PI 3.14
+
 
 using namespace std;
 
-int main()
+int main(int argc, char* argv[])
 {
     //Make a class from this to menage process
 
@@ -31,7 +39,29 @@ int main()
     //Calculate points
     Calculator cal;
 
-    vector <pair <double, double> > points = cal.calculateSerie(&x_func, &y_func, left_border, right_border, points_number);
+    vector <pair <double, double> > test_points = cal.calculateSerie(&x_func, &y_func, left_border, right_border, points_number);
 
     //Present output
+    QApplication a(argc, argv);
+    QLabel l;
+    QPicture pic1;
+
+   // for (int i = 0; i < 100000; i++) {
+       // pair <double, double> p;
+       // p.first = cos(i * PI / 180) - pow(cos(2 * i * PI / 180), 3);
+       // p.second = sin(2 * i * PI / 180) - pow(sin(i * PI / 180), 3);
+        //p.first = i * (cos(i * PI / 180) - pow(cos(80 * i * PI / 180), 3));
+        //p.second = i * ( sin(i * PI / 180) - pow(sin(80 * i * PI / 180), 3));
+
+
+        //crds.push_back(p);
+    //}
+
+    DrawingPlot g1(pic1, test_points);
+    g1.drawPlot();
+
+
+    l.setPicture(pic1);
+    l.show();
+    return a.exec();
 }

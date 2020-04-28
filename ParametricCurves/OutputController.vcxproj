@@ -61,7 +61,7 @@
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
@@ -74,15 +74,20 @@
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Calculator.cpp" />
     <ClCompile Include="DrawingPlot.cpp" />
+    <ClCompile Include="Functions.cpp" />
+    <ClCompile Include="InputController.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="OutputController.cpp" />
+    <ClCompile Include="TestCalculator.cpp" />
+    <ClCompile Include="TestFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="OutputController.h" />
@@ -94,7 +99,12 @@
     <QtRcc Include="OutputController.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Calculator.hpp" />
     <ClInclude Include="DrawingPlot.h" />
+    <ClInclude Include="Functions.hpp" />
+    <ClInclude Include="InputController.hpp" />
+    <ClInclude Include="TestCalculator.hpp" />
+    <ClInclude Include="TestFunctions.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

@@ -64,7 +64,7 @@ vector<pair<double, double> > Calculator::calculateSerie(vector<Function*> *x_fu
 
 
 
-    sort(points.begin(), points.end());
+    // sort(points.begin(), points.end());
 
     return points;
 

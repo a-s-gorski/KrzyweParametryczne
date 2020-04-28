@@ -10,8 +10,8 @@ using namespace std;
 
 class DrawingPlot {
 private:
-    double screen_height = 800.0;
-    double screen_width = 1200.0;
+    double screen_height = 400.0;
+    double screen_width = 600.0;
     double** coordinates;
     double X_length_new;
     double Y_length_new;
