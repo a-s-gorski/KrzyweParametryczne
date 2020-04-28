@@ -1,1 +1,11 @@
-//For sure nothing
+Jak korzystać z interfejsu graficznego w QT w visual studio:
+
+1. Potrzeba jest dystrybucja QT 5.0+ (korzystaliśmy z 5.9.9, w ramach dystrybucji musi być zainstalowane narzędzie msvc2017_x64, albo nowsze)
+
+2. Potrzebna jest wtyczka Qt visual studio tools (https://marketplace.visualstudio.com/items?itemName=TheQtCompany.QtVisualStudioTools2019)
+
+3. W ustawieniach wtyczki trzeba dodać scieżkę (extensions/qt/qt_options/add i ścieżka powinna prowadzić do msvc
+
+4. Przebudować rozwiązanie (rebuild solution)
+
+5.
