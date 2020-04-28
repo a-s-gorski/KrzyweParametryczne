@@ -50,4 +50,36 @@ public:
     double calculateValue(double t);
     void showFunction(bool not_first);
 };
+
+class FMonomial : public Function {
+    /*
+        Monomial(t) = a*(b+t)^c
+        parameters_number: 3
+        parameters: a,b,c
+            a!=0
+            c!=0
+    */
+public:
+    FMonomial();
+    ~FMonomial();
+    bool checkParameters(std::vector<double> parameters);
+    double calculateValue(double t);
+    void showFunction(bool not_first);
+};
+
+class FConstant : public Function {
+    /*
+        Constant(t) = a
+        parameters_number: 1
+        parameters: a
+            a!=0
+    */
+public:
+    FConstant();
+    ~FConstant();
+    bool checkParameters(std::vector<double> parameters);
+    double calculateValue(double t);
+    void showFunction(bool not_first);
+};
+
 #endif
