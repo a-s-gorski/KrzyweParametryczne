@@ -26,3 +26,7 @@ Opis elementów projektu:
 w aplikacji
     
     
+Dodatkowe uwagi:
+
+Największy problem sprawiło mi połączenie Gui z visual studio - próbowałem różnych rozwiązać wxwidgets, winapi32, graphics.h, aż w końcu QT
+Znacznie łatwiejsze byłoby tworzenie tego projektu w QT Creatorze, ale wtyczka do visuala pozwala zintegrować oba środowiska
