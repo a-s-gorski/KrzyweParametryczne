@@ -1,1 +1,4 @@
-//Nothing
+1. Calculator -> klasa Calculator
+2. Functions  -> klasa Function, Sin, Cos
+3. TestFunctions
+4. TestCalculator
