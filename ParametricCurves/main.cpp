@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
     QApplication a(argc, argv);
     QLabel l;
     QPicture pic1;
-
+    // used to create basic tests for only OutputController without commandline InputController
    // for (int i = 0; i < 100000; i++) {
        // pair <double, double> p;
        // p.first = cos(i * PI / 180) - pow(cos(2 * i * PI / 180), 3);
