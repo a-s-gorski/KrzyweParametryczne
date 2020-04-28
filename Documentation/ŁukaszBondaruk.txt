@@ -1,4 +1,14 @@
-1. Calculator -> klasa Calculator
-2. Functions  -> klasa Function, Sin, Cos
+Pliki .cpp, .hpp
+
+1. Calculator
+    Klasa Calculator. Pośredniczy między kontrolą wejścia i wyjścia generując punkty.
+    
+2. Functions
+    Klasa virtualna Functions. Służy do obliczania punktu, prezentacji parametrów i sprawdzania poprawności wejścia.
+    Przykładowe klasy  - Sin, Cos
+    
 3. TestFunctions
+    Funkcje służące do testowania klasy Functions i dziedziczących.
+    
 4. TestCalculator
+    Funkcje służące do testowania klasy Calculator
