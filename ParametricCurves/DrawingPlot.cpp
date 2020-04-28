@@ -1,3 +1,5 @@
+// Autor :  Adam Górski
+
 #include "DrawingPlot.h"
 #include <QtWidgets/QApplication>
 #include <QtWidgets>
