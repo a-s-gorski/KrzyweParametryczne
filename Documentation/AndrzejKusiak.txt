@@ -1,1 +1,13 @@
-//Also nothing
+Pliki InputController.cpp, InputController.hpp
+
+1. Equation
+	Przechowuje składniki równań X i Y, oraz wykonuje operacje dodawania, wypisywania elementów równań, za pomocą funkcji 
+showFunction zaimplementowanych w pliku Functions.*, również zwraca całe równanie.
+
+2. InputController
+	Jest odpowiedzialne za interakcję z użytkownikiem - przyjmowanie wszystkich wartości i wypisanie otrzymanego wejścia
+InputController zarządza 2 obiektami Equation - dodaje do nich odpowiednie składniki
+
+3. UnitTests.cpp
+	Są to testy jednostkowe stworzone za pomocą framework "catch.hpp". Z powodu wymogów zadania 
+stworzone będą testy jednostkowe za pomocą VS 2019, które zamienią ten plik

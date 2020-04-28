@@ -88,6 +88,7 @@
     <ClCompile Include="OutputController.cpp" />
     <ClCompile Include="TestCalculator.cpp" />
     <ClCompile Include="TestFunctions.cpp" />
+    <ClCompile Include="UnitTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="OutputController.h" />
