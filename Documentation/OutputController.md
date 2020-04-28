@@ -18,3 +18,4 @@
 
 #### Additional
 > in order to be able to compile widget you will need QTCreator 5 or Visual Studio with QT5 widget
+> visual studio QT plugin
