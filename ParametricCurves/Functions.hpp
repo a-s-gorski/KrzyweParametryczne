@@ -7,9 +7,12 @@
 class Function {
 protected:
     int parameters_number;  // brak inicjalizacji !!! np. w konstruktorze)
+    char operation;
     std::vector<double> parameters;
 public:
     virtual ~Function();
+    void setOperation(char new_operation);
+    char gettOperation();
     virtual bool checkParameters(std::vector<double> parameters) = 0;
     virtual void setParameters(std::vector<double> parameters);
     virtual double calculateValue(double t) = 0;

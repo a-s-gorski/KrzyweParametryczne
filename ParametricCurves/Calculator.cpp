@@ -21,22 +21,30 @@ Calculator::~Calculator() {
 #endif // _DEBUG
 }
 
+double Calculator::calculateSingiel(vector<Function*>* function, double t) {
+
+    double *values = new double[(*function).size()];
+    double v = 0;
+
+    int it = 0;
+    for (auto& i : (*function))
+    {
+        v+= (*i).calculateValue(t);
+        values[it++] = (*i).calculateValue(t);
+    }
+
+    delete[] values;
+
+    return v;
+}
+
 pair<double, double> Calculator::calculateValue(vector<Function*> *x_function, vector<Function*> *y_function, double t) {
 #ifdef _DEBUG
     cout << "Calculator: Calculate value for: " << t << "\n";
 #endif // _DEBUG
 
-    double x = 0;
-    double y = 0;
-
-    for (auto& i : (*x_function))
-    {
-        x += (*i).calculateValue(t);
-    }
-
-    for (int i = 0; i < (*y_function).size(); i++) {
-        y += (*(*y_function)[i]).calculateValue(t);
-    }
+    double x = calculateSingiel(x_function, t);
+    double y = calculateSingiel(y_function, t);
 
     pair<double, double> point = make_pair(x, y);
 

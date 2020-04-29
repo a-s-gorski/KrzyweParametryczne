@@ -20,6 +20,16 @@ void Function::setParameters(vector<double> new_parameters) {
     }
 #endif // _DEBUG
     parameters = new_parameters;
+    operation = '+';
+
+}
+
+void Function::setOperation(char new_operation) {
+    operation = new_operation;
+}
+
+char Function::gettOperation() {
+    return operation;
 }
 
 FCos::FCos()
