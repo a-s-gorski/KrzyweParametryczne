@@ -29,9 +29,31 @@ double Calculator::calculateSingiel(vector<Function*>* function, double t) {
     int it = 0;
     for (auto& i : (*function))
     {
-        v+= (*i).calculateValue(t);
         values[it++] = (*i).calculateValue(t);
     }
+
+    it = 0;
+    double cur = 0;
+    for (auto& i : (*function))
+    {
+        char o = (*i).gettOperation();
+
+        if (o == '+' || o == '-') {
+            v += cur;
+            cur = values[it++];
+
+            if (o == '-')
+                cur *= -1;
+        }
+        else if (o == '*') {
+            cur *= values[it++];
+        }
+        else if (o == '/') {
+            cur /= values[it++];
+        }
+    }
+
+    v += cur;
 
     delete[] values;
 
