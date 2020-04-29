@@ -28,7 +28,7 @@ void Function::setOperation(char new_operation) {
     operation = new_operation;
 }
 
-char Function::gettOperation() {
+char Function::getOperation() {
     return operation;
 }
 

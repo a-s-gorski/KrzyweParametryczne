@@ -36,7 +36,7 @@ double Calculator::calculateSingiel(vector<Function*>* function, double t) {
     double cur = 0;
     for (auto& i : (*function))
     {
-        char o = (*i).gettOperation();
+        char o = (*i).getOperation();
 
         if (o == '+' || o == '-') {
             v += cur;

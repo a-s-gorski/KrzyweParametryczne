@@ -12,7 +12,7 @@ protected:
 public:
     virtual ~Function();
     void setOperation(char new_operation);
-    char gettOperation();
+    char getOperation();
     virtual bool checkParameters(std::vector<double> parameters) = 0;
     virtual void setParameters(std::vector<double> parameters);
     virtual double calculateValue(double t) = 0;
