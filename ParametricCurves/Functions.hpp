@@ -6,10 +6,11 @@
 
 class Function {
 protected:
-    int parameters_number;  // brak inicjalizacji !!! np. w konstruktorze)
+    int parameters_number;
     char operation;
     std::vector<double> parameters;
 public:
+    Function();
     virtual ~Function();
     void setOperation(char new_operation);
     char getOperation();
@@ -17,6 +18,7 @@ public:
     virtual void setParameters(std::vector<double> parameters);
     virtual double calculateValue(double t) = 0;
     virtual void showFunction(bool not_first) = 0;
+    double operator()(double t);
    // operator() ??
 };
 

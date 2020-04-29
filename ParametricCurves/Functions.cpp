@@ -6,6 +6,14 @@
 
 using namespace std;
 
+Function::Function() {
+#ifdef _DEBUG
+    cout << "Function: Creating Function\n";
+#endif // _DEBUG
+    parameters_number = 1;
+    operation = '+';
+}
+
 Function::~Function() {
 #ifdef _DEBUG
     cout << "Function: Destroying Function\n";
@@ -30,6 +38,10 @@ void Function::setOperation(char new_operation) {
 
 char Function::getOperation() {
     return operation;
+}
+
+double Function::operator ()(double t) {
+    return calculateValue(t);
 }
 
 FCos::FCos()

@@ -29,7 +29,7 @@ double Calculator::calculateSingiel(vector<Function*>* function, double t) {
     int it = 0;
     for (auto& i : (*function))
     {
-        values[it++] = (*i).calculateValue(t);
+        values[it++] = (*i)(t);
     }
 
     it = 0;
