@@ -2,7 +2,6 @@
 #include <QtWidgets>
 
 
-
 class Frame
 {
 public:
