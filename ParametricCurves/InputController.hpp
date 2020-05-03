@@ -1,3 +1,4 @@
+// Andrzej Kusiak
 #ifndef INPUTCONTROLLER_H
 #define INPUTCONTROLLER_H
 
@@ -6,17 +7,15 @@
 #include "Functions.hpp"
 
 
-using namespace std;
-
 
 class Equation {
-    vector<Function*> equation;
+    std::vector<Function*> equation;
 public:
     Equation();
     void printEquation() const;
-    void addElementCos(double a, double b, double c);
-    void addElementSin(double a, double b, double c);
-    const vector<Function*>& getEquation();
+    void operator += (int func_type);
+    void setOperation(char c);
+    const std::vector<Function*>& getEquation();
     ~Equation();
 };
 
@@ -28,17 +27,16 @@ class InputController {
     Equation X;
     Equation Y;
     void addToEquation(Equation* Eq);
+    void printEquations() const;
 
 public:
     InputController();
     void getInput();
-    void printEquations() const;
     int getNumberOfPoints();
     double getLeftBorder();
     double getRightBorder();
     Equation& getXEquation();
     Equation& getYEquation();
     ~InputController();
-    friend void testInput(InputController); // friend function used for Unit Tets
 };
 #endif

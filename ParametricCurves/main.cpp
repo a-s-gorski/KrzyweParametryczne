@@ -24,9 +24,6 @@ int main(int argc, char* argv[])
 
     console_input.getInput();
 
-    cout << "Your functions: " << endl;
-    console_input.printEquations();
-
     Equation& x = console_input.getXEquation();
     Equation& y = console_input.getYEquation();
     vector<Function*> x_func = x.getEquation();

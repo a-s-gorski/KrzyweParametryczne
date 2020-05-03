@@ -117,25 +117,24 @@ double FCos::calculateValue(double t) {
 }
 
 
-void FCos::showFunction(bool not_first) {
+void FCos::showFunction(const bool not_first) {
 
     double& a = parameters[0];
     double& b = parameters[1];
     double& c = parameters[2];
 
-    if (not_first && a > 0)
-        cout << "+ ";
-    else if (not_first && a < 0)
-        cout << "- ";
-    else if (!not_first && a < 0)
-        cout << "-";
+    if (not_first) {
+        cout << operation << " ";
+    }
     if (a == 1) {}
+    else if (a == -1)
+        cout << '-';
     else
-        cout << fabs(a);
+        cout << a << '*';
     cout << "cos(";
     if (b == 1) {}
     else if (b == -1)
-        cout << "-*";
+        cout << "-";
     else
         cout << b << "*";
     cout << "t)";
@@ -224,19 +223,18 @@ void FSin::showFunction(const bool not_first) {
     double& b = parameters[1];
     double& c = parameters[2];
 
-    if (not_first && a > 0)
-        cout << "+ ";
-    else if (not_first && a < 0)
-        cout << "- ";
-    else if (!not_first && a < 0)
-        cout << "-";
+    if (not_first) {
+        cout << operation << " ";
+    }
     if (a == 1) {}
+    else if (a == -1)
+        cout << '-';
     else
-        cout << fabs(a);
+        cout << a << '*';
     cout << "sin(";
     if (b == 1) {}
     else if (b == -1)
-        cout << "-*";
+        cout << "-";
     else
         cout << b << "*";
     cout << "t)";
@@ -321,22 +319,16 @@ void FMonomial::showFunction(const bool not_first) {
     double& b = parameters[1];
     double& c = parameters[2];
 
-    if (not_first && a > 0)
-        cout << "+ ";
-    else if (not_first && a < 0)
-        cout << "- ";
-    else if (!not_first && a < 0)
-        cout << "-";
+    if (not_first) {
+        cout << operation << " ";
+    }
     if (a == 1) {}
     else
-        cout << fabs(a);
-    cout << "sin(";
-    if (b == 1) {}
-    else if (b == -1)
-        cout << "-*";
+        cout << a << '*';
+    if (b == 0)
+        cout << "(t)";
     else
-        cout << b << "*";
-    cout << "t)";
+        cout << "(" << b << '+' << "t)";
     if (c == 1) {}
     else if (c < 0)
         cout << "^(" << c << ")";
@@ -406,29 +398,9 @@ double FConstant::calculateValue(double t) {
 void FConstant::showFunction(const bool not_first) {
 
     double& a = parameters[0];
-    double& b = parameters[1];
-    double& c = parameters[2];
 
-    if (not_first && a > 0)
-        cout << "+ ";
-    else if (not_first && a < 0)
-        cout << "- ";
-    else if (!not_first && a < 0)
-        cout << "-";
-    if (a == 1) {}
-    else
-        cout << fabs(a);
-    cout << "sin(";
-    if (b == 1) {}
-    else if (b == -1)
-        cout << "-*";
-    else
-        cout << b << "*";
-    cout << "t)";
-    if (c == 1) {}
-    else if (c < 0)
-        cout << "^(" << c << ")";
-    else
-        cout << "^" << c;
-    cout << " ";
+    if (not_first) {
+        cout << operation << " ";
+    }
+    cout << a << " ";
 }
