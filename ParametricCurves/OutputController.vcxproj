@@ -82,6 +82,7 @@
   <ItemGroup>
     <ClCompile Include="Calculator.cpp" />
     <ClCompile Include="DrawingPlot.cpp" />
+    <ClCompile Include="Frame.cpp" />
     <ClCompile Include="Functions.cpp" />
     <ClCompile Include="InputController.cpp" />
     <ClCompile Include="main.cpp" />
@@ -101,6 +102,7 @@
   <ItemGroup>
     <ClInclude Include="Calculator.hpp" />
     <ClInclude Include="DrawingPlot.h" />
+    <ClInclude Include="Frame.h" />
     <ClInclude Include="Functions.hpp" />
     <ClInclude Include="InputController.hpp" />
     <ClInclude Include="TestCalculator.hpp" />

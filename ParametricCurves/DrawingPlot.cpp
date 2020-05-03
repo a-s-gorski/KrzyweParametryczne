@@ -6,8 +6,13 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include "Frame.h"
 
 using namespace std;
+
+DrawingPlot::DrawingPlot() {};
+
+
 
 
 DrawingPlot::~DrawingPlot() {
@@ -22,6 +27,9 @@ DrawingPlot::~DrawingPlot() {
 
 }
 
+void DrawingPlot::setPicture(QPicture picture_base) {
+    DrawingPlot::drawingPanel = picture_base;
+}
 
 
 void DrawingPlot::drawPlot() {
@@ -78,14 +86,23 @@ void DrawingPlot::rescale_drawing() {
     }
 
     for (int i = 0; i < DrawingPlot::points.size(); i++) {
-            #ifdef _DEBUG
-            cout << "old values (before interpolation)" << DrawingPlot::points[i].first << "." << DrawingPlot::points[i].second << endl;
-            #endif // _DEBUG
         DrawingPlot::coordinates[i][0] = DrawingPlot::X_length_new / X_length * (DrawingPlot::points[i].first - DrawingPlot::x_axis_min);
         DrawingPlot::coordinates[i][1] = (-1.0) * DrawingPlot::Y_length_new / Y_length * (DrawingPlot::points[i].second - DrawingPlot::y_axis_min - screen_height);
-            #ifdef _DEBUG
-            cout << "new values (after interpolation)" << DrawingPlot::coordinates[i][0] << "." << DrawingPlot::points[i][1] << endl;
-            #endif // _DEBUG
     }
+
+}
+
+
+void DrawingPlot::setPlot(vector <pair<double, double>> values) {
+    DrawingPlot::points = values;
+    DrawingPlot::coordinates = new double* [DrawingPlot::points.size()];
+    for (int i = 0; i < DrawingPlot::points.size(); i++) {
+        DrawingPlot::coordinates[i] = new double[2];
+#ifdef _DEBUG
+        cout << "DrawingPlot : creating dynamicly allocated array(2d) by assigning pointes of pointers\n";
+#endif // _DEBUG
+    }
+    DrawingPlot::get_edge_values();
+    DrawingPlot::rescale_drawing();
 
 }

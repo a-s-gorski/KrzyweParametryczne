@@ -5,14 +5,15 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include "Frame.h"
 
 using namespace std;
 
 
-class DrawingPlot {
-private:
-    double screen_height = 400.0;
-    double screen_width = 600.0;
+class DrawingPlot : private Frame {
+protected:
+    //double screen_height = 400.0;
+    //double screen_width = 600.0;
     double** coordinates;
     double X_length_new;
     double Y_length_new;
@@ -27,20 +28,10 @@ private:
 
 
 public:
-    DrawingPlot(QPicture picture_base, vector <pair <double, double>> values) {
-        DrawingPlot::drawingPanel = picture_base;
-        DrawingPlot::points = values;
-
-        DrawingPlot::coordinates = new double* [DrawingPlot::points.size()];
-        for (int i = 0; i < DrawingPlot::points.size(); i++) {
-            DrawingPlot::coordinates[i] = new double[2];
-                #ifdef _DEBUG
-                cout << "DrawingPlot : creating dynamicly allocated array(2d) by assigning pointes of pointers\n";
-                 #endif // _DEBUG
-        }
-    DrawingPlot::get_edge_values();
-    DrawingPlot::rescale_drawing();
-    }
+    DrawingPlot();
     ~DrawingPlot();
     virtual void drawPlot();
+    void setPicture(QPicture picture_base);
+    void setPlot(vector <pair<double, double> > values);
+
     };

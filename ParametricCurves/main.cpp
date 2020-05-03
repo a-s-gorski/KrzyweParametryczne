@@ -10,6 +10,7 @@
 #include <QtWidgets>
 #include <utility>
 #include <math.h>
+#include "Frame.h"
 // #define PI 3.14
 
 
@@ -57,7 +58,9 @@ int main(int argc, char* argv[])
         //crds.push_back(p);
     //}
 
-    DrawingPlot g1(pic1, test_points);
+    DrawingPlot g1;
+    g1.setPicture(pic1);
+    g1.setPlot(test_points);
     g1.drawPlot();
 
 
