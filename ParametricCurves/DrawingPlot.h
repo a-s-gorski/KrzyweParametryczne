@@ -9,29 +9,24 @@
 
 using namespace std;
 
-
+template <class X, class Y>
 class DrawingPlot : private Frame {
 protected:
-    //double screen_height = 400.0;
-    //double screen_width = 600.0;
-    double** coordinates;
-    double X_length_new;
-    double Y_length_new;
-
-    vector <pair <double, double>> points;
+    X** coordinates;
+    X X_length_new;
+    Y Y_length_new;
+    vector <pair <X, Y>> points;
     QPicture drawingPanel;
-    double x_axis_max, x_axis_min;
-    double y_axis_max, y_axis_min;
-
-    virtual void get_edge_values();
-    virtual void rescale_drawing();
+    X x_axis_max, x_axis_min;
+    Y y_axis_max, y_axis_min;
 
 
 public:
-    DrawingPlot();
-    ~DrawingPlot();
-    virtual void drawPlot();
-    void setPicture(QPicture picture_base);
-    void setPlot(vector <pair<double, double> > values);
+    void DrawingPlot<X,Y>::drawPlot();
+    void DrawingPlot<X,Y>::setPicture(QPicture picture_base);
+    void DrawingPlot<X,Y>::setPlot(vector <pair<X, Y> > values);
+    void DrawingPlot<X, Y>::get_edge_values();
+    void DrawingPlot<X, Y>::rescale_drawing();
+
 
     };

@@ -1,9 +1,8 @@
 #include "Frame.h"
 
 Frame::Frame() {}
-
-
 Frame::~Frame(){}
+
 
 void Frame::setParam(double h, double w) 
 {
