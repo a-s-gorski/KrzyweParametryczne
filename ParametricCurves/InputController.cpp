@@ -1,3 +1,5 @@
+//Andrzej Kusiak
+
 #include <iostream>
 #include <vector>
 #include "Functions.hpp"
@@ -26,31 +28,95 @@ Equation::~Equation() {
 }
 
 
-void Equation::addElementCos(double a, double b, double c) {
-    vector<double> parameters{ 0, 0, 0 };
-    parameters.at(0) = a;
-    parameters.at(1) = b;
-    parameters.at(2) = c;
-    Function* p = new FCos;
-    equation.push_back(p);
-    equation.back()->setParameters(parameters);
-    #ifdef _DEBUG
+void Equation::operator += (int func_type) {
+    Function* p = NULL;
+    switch (func_type) {
+    case 1:
+        p = new FSin;
+        equation.push_back(p);
+#ifdef _DEBUG
+        cout << "Adding FSin to Equation\n";
+#endif // _DEBUG
+        break;
+
+    case 2:
+        p = new FCos;
+        equation.push_back(p);
+#ifdef _DEBUG
         cout << "Adding FCos to Equation\n";
-    #endif // _DEBUG
+#endif // _DEBUG
+        break;
+
+    case 3:
+        p = new FMonomial;
+        equation.push_back(p);
+#ifdef _DEBUG
+        cout << "Adding FPolynomial to Equation\n";
+#endif // _DEBUG
+        break;
+
+    case 4:
+        p = new FConstant;
+        equation.push_back(p);
+#ifdef _DEBUG
+        cout << "Adding FConstant to Equation\n";
+#endif // _DEBUG
+        break;
+    }
+    double a, b, c;
+    vector<double> parameters;
+    bool correct_input;
+    if (func_type >= 1 && func_type <= 3) {
+        do {
+            parameters = { 0, 0, 0 };
+            correct_input = true;
+            cout << "Parameters of this element: ";
+            cin >> a >> b >> c;
+            if (cin.fail()) {
+                cout << "Invalid parameters\n" << endl;
+                cin.clear();
+                cin.ignore(10000, '\n');
+                correct_input = false;
+            }
+            else {
+                parameters.at(0) = a;
+                parameters.at(1) = b;
+                parameters.at(2) = c;
+                if (!p->checkParameters(parameters)) {
+                    cout << "Parameters can't be 0\n" << endl;
+                    correct_input = false;
+                }
+            }
+        } while (!correct_input);
+    }
+    else if (func_type == 4) {
+        do {
+            parameters = { 0 };
+            correct_input = true;
+            cout << "Value of your constant: ";
+            cin >> a;
+            if (cin.fail()) {
+                cout << "Invalid parameter\n" << endl;
+                cin.clear();
+                cin.ignore(10000, '\n');
+                correct_input = false;
+            }
+            else {
+                parameters.at(0) = a;
+                if (!p->checkParameters(parameters)) {
+                    cout << "Constant can't be equal to 0\n" << endl;
+                    correct_input = false;
+                }
+            } 
+        } while (!correct_input);
+    }
+    equation.back()->setParameters(parameters);
+    cout << endl;
 }
 
 
-void Equation::addElementSin(double a, double b, double c) {
-    vector<double> parameters{ 0, 0, 0 };
-    parameters.at(0) = a;
-    parameters.at(1) = b;
-    parameters.at(2) = c;
-    Function* p = new FSin;
-    equation.push_back(p);
-    equation.back()->setParameters(parameters);
-    #ifdef _DEBUG
-        cout << "Adding FSin to Equation\n";
-    #endif // _DEBUG
+void Equation::setOperation(char c) {
+    equation.back()->setOperation(c);
 }
 
 
@@ -70,6 +136,9 @@ const vector<Function*>& Equation::getEquation() {
 
 
 InputController::InputController() {
+    number_of_points = 1;
+    left_border = -1;
+    right_border = 1;
 #ifdef _DEBUG
     cout << "Creating InputController\n";
 #endif // _DEBUG
@@ -83,10 +152,9 @@ InputController::~InputController() {
 
 
 void InputController::addToEquation(Equation* Eq) {
-    int n;
-    string s;
-    double a, b, c;
+    int n, fun_type;
     bool correct_input;
+    char operation = '+';
     do {
         cout << "How many element do you want to add to your equation: ";
         cin >> n;
@@ -99,51 +167,49 @@ void InputController::addToEquation(Equation* Eq) {
             cout << "Number of elements can't be a non-positive number\n" << endl;
     } while (cin.fail() || n <= 0);
     cout << endl;
+
     for (int i = 0; i < n; ++i) {
+        if (i != 0) {
+            correct_input = true;
+            do {
+                cout << "Which operation do you want to use? ";
+                cin >> operation;
+                if (cin.fail()) {
+                    cout << "Invalid input\nChoose between: \"+\", \"-\", \"*\", \"/\"\n" << endl;
+                    cin.clear();
+                    cin.ignore(10000, '\n');
+                    correct_input = false;
+                }
+                else if (operation != '+' && operation != '-' && operation != '*' && operation != '/') {
+                    cout << "Operations allowed: \"+\", \"-\", \"*\", \"/\"\n" << endl;
+                    cin.clear();
+                    cin.ignore(10000, '\n');
+                    correct_input = false;
+                }
+            } while (!correct_input);
+            cout << endl;
+        }
         do {
             correct_input = true;
-            cout << "Cos or sin function? [sin/cos] ";
-            cin >> s;
+            cout << "Which function do you want to use?\n";
+            cout << "1. a*sin(b*t)*c    2. a*cos(b*t)*c    3. a*(b+t)*c    4. Constant" << endl;
+            cout << "Your choice: ";
+            cin >> fun_type;
             if (cin.fail()) {
-                cout << "Choose between sin or cos function\n" << endl;
+                cout << "Invalid input\n";
+                cout << "Choose between 1, 2, 3 and 4\n" << endl;
                 cin.clear();
                 cin.ignore(10000, '\n');
                 correct_input = false;
             }
-            else if (s != "sin" && s != "cos") {
-                cout << "Choose between sin or cos function\n" << endl;
-                correct_input = false;
-            }
-        } while (!correct_input);
-        do {
-            correct_input = true;
-            cout << "Parameters of this element: ";
-            cin >> a >> b >> c;
-            if (cin.fail()) {
-                cout << "Invalid parameters\n" << endl;
-                cin.clear();
-                cin.ignore(10000, '\n');
-                correct_input = false;
-            }
-            else if (a == 0 || b == 0 || c == 0) {
-                cout << "Parameters can't be 0\n" << endl;
+            else if (fun_type < 1 || fun_type > 4) {
+                cout << "Choose between given funtions\n" << endl;
                 correct_input = false;
             }
         } while (!correct_input);
         cout << endl;
-#ifdef _DEBUG
-        cout << a << " " << b << " " << c << endl << endl;
-#endif // _DEBUG
-        if (s == "sin") {
-            Eq->addElementSin(a, b, c);
-        }
-        else if (s == "cos") {
-            Eq->addElementCos(a, b, c);
-        }
-        else {
-            cout << s << " is not defined" << endl;
-            --i;
-        }
+        *Eq += fun_type;
+        Eq->setOperation(operation);
     }
 }
 
@@ -182,8 +248,11 @@ void InputController::getInput() {
     addToEquation(&X);
 
     // Y parameter
-    cout << "Y equation components" << endl;
+    cout << endl << "Y equation components" << endl;
     addToEquation(&Y);
+
+    cout << endl << "Your equations are: " << endl;
+    printEquations();
 }
 
 
