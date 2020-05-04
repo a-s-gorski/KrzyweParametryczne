@@ -22,18 +22,29 @@ int main(int argc, char* argv[])
     //Make a class from this to menage process
 
     //Prepare input
-    InputController console_input;
+    InputController* console_input = new InputController;
 
-    console_input.getInput();
+    if (argc == 2) {
+        delete console_input;
+        string filename(argv[1]);
+#ifdef _DEBUG
+        cout << filename << endl;
+#endif // _DEBUG
+        CommandLineInput* console_input = new CommandLineInput;
+        console_input->getInput(filename);
+    }
+    else {
+        console_input->getInput();
+    }
 
-    Equation& x = console_input.getXEquation();
-    Equation& y = console_input.getYEquation();
+    Equation& x = console_input->getXEquation();
+    Equation& y = console_input->getYEquation();
     vector<Function*> x_func = x.getEquation();
     vector<Function*> y_func = y.getEquation();
 
-    double left_border = console_input.getLeftBorder();
-    double right_border = console_input.getRightBorder();
-    int points_number = console_input.getNumberOfPoints();
+    double left_border = console_input->getLeftBorder();
+    double right_border = console_input->getRightBorder();
+    int points_number = console_input->getNumberOfPoints();
 
     //Calculate points
     Calculator cal;
@@ -65,4 +76,6 @@ int main(int argc, char* argv[])
     l.setPicture(pic1);
     l.show();
     return a.exec();
+
+    delete console_input;
 }
