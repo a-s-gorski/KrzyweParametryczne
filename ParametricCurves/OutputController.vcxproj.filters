@@ -37,9 +37,6 @@
     <ClCompile Include="Calculator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Functions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="InputController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

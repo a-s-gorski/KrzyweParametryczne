@@ -96,7 +96,7 @@ public:
 template <class V>
 Function<V>::Function() {
 #ifdef _DEBUG
-    cout << "Function: Creating Function\n";
+    std::cout << "Function: Creating Function\n";
 #endif // _DEBUG
     this->parameters_number = 1;
     this->operation = '+';
@@ -105,16 +105,16 @@ Function<V>::Function() {
 template <class V>
 Function<V>::~Function() {
 #ifdef _DEBUG
-    cout << "Function: Destroying Function\n";
+    std::cout << "Function: Destroying Function\n";
 #endif // _DEBUG
 }
 
 template <class V>
 void Function<V>::setParameters(std::vector<V> new_parameters) {
 #ifdef _DEBUG
-    cout << "Function: New parameters\n";
+    std::cout << "Function: New parameters\n";
     for (int i = 0; i < this->parameters_number; i++) {
-        cout << "   " << i << " : " << new_parameters[i] << "\n";
+        std::cout << "   " << i << " : " << new_parameters[i] << "\n";
     }
 #endif // _DEBUG
     this->parameters = new_parameters;
@@ -141,7 +141,7 @@ double Function<V>::operator ()(V t) {
 template <class V>
 FCos<V>::FCos() {
 #ifdef _DEBUG
-    cout << "FCos: Creating FCos\n";
+    std::cout << "FCos: Creating FCos\n";
 #endif // _DEBUG
     this->parameters_number = 3;
     /*
@@ -158,7 +158,7 @@ FCos<V>::FCos() {
 template <class V>
 FCos<V>::~FCos() {
 #ifdef _DEBUG
-    cout << "FCos: Destroying FCos\n";
+    std::cout << "FCos: Destroying FCos\n";
 #endif // _DEBUG
 }
 
@@ -166,12 +166,12 @@ template <class V>
 bool FCos<V>::checkParameters(std::vector<V> new_parameters) {
 
 #ifdef _DEBUG
-    cout << "FCos: Checking parameters\n";
+    std::cout << "FCos: Checking parameters\n";
     for (double new_parameter : new_parameters)
     {
-        cout << new_parameter << " ";
+        std::cout << new_parameter << " ";
     }
-    cout << "\n";
+    std::cout << "\n";
 #endif // _DEBUG
     //Check if parameters are good
 
@@ -193,8 +193,8 @@ bool FCos<V>::checkParameters(std::vector<V> new_parameters) {
 template <class V>
 double FCos<V>::calculateValue(V t) {
 #ifdef _DEBUG
-    cout << "FCos: Count value of t\n";
-    cout << "   Cos(t) = a*cos(b*t)^c\n";
+    std::cout << "FCos: Count value of t\n";
+    std::cout << "   Cos(t) = a*cos(b*t)^c\n";
 #endif // _DEBUG
 
     double& a = this->parameters[0];
@@ -206,8 +206,8 @@ double FCos<V>::calculateValue(V t) {
     result = a * pow(cos(b * t), c);
 
 #ifdef _DEBUG
-    cout << "   a: " << a << " b: " << b << " c: " << c << "\n";
-    cout << "   result: " << result << "\n";
+    std::cout << "   a: " << a << " b: " << b << " c: " << c << "\n";
+    std::cout << "   result: " << result << "\n";
 #endif // _DEBUG
 
     return result;
@@ -221,33 +221,33 @@ void FCos<V>::showFunction(const bool not_first) {
     double& c = this->parameters[2];
 
     if (not_first) {
-        cout << this->operation << " ";
+        std::cout << this->operation << " ";
     }
     if (a == 1) {}
     else if (a == -1)
-        cout << '-';
+        std::cout << '-';
     else
-        cout << a << '*';
-    cout << "cos(";
+        std::cout << a << '*';
+    std::cout << "cos(";
     if (b == 1) {}
     else if (b == -1)
-        cout << "-";
+        std::cout << "-";
     else
-        cout << b << "*";
-    cout << "t)";
+        std::cout << b << "*";
+    std::cout << "t)";
     if (c == 1) {}
     else if (c < 0)
-        cout << "^(" << c << ")";
+        std::cout << "^(" << c << ")";
     else
-        cout << "^" << c;
-    cout << " ";
+        std::cout << "^" << c;
+    std::cout << " ";
 }
 
 
 template <class V>
 FSin<V>::FSin() {
 #ifdef _DEBUG
-    cout << "FSin: Creating FSin\n";
+    std::cout << "FSin: Creating FSin\n";
 #endif // _DEBUG
     this->parameters_number = 3;
     /*
@@ -264,7 +264,7 @@ FSin<V>::FSin() {
 template <class V>
 FSin<V>::~FSin() {
 #ifdef _DEBUG
-    cout << "FSin: Destroying FSin\n";
+    std::cout << "FSin: Destroying FSin\n";
 #endif // _DEBUG
 }
 
@@ -272,11 +272,11 @@ template <class V>
 bool FSin<V>::checkParameters(std::vector<V> new_parameters) {
 
 #ifdef _DEBUG
-    cout << "FSin: Checking parameters\n";
+    std::cout << "FSin: Checking parameters\n";
     for (int i = 0; i < new_parameters.size(); i++) {
-        cout << new_parameters[i] << " ";
+        std::cout << new_parameters[i] << " ";
     }
-    cout << "\n";
+    std::cout << "\n";
 #endif // _DEBUG
     //Check if parameters are good
 
@@ -298,8 +298,8 @@ bool FSin<V>::checkParameters(std::vector<V> new_parameters) {
 template <class V>
 double FSin<V>::calculateValue(V t) {
 #ifdef _DEBUG
-    cout << "FSin: Count value of t\n";
-    cout << "   Sin(t) = a*sin(b*t)^c\n";
+    std::cout << "FSin: Count value of t\n";
+    std::cout << "   Sin(t) = a*sin(b*t)^c\n";
 #endif // _DEBUG
 
     double& a = this->parameters[0];
@@ -311,8 +311,8 @@ double FSin<V>::calculateValue(V t) {
     result = a * pow(sin(b * t), c);
 
 #ifdef _DEBUG
-    cout << "   a: " << a << " b: " << b << " c: " << c << "\n";
-    cout << "   result: " << result << "\n";
+    std::cout << "   a: " << a << " b: " << b << " c: " << c << "\n";
+    std::cout << "   result: " << result << "\n";
 #endif // _DEBUG
 
     return result;
@@ -326,32 +326,32 @@ void FSin<V>::showFunction(const bool not_first) {
     double& c = this->parameters[2];
 
     if (not_first) {
-        cout << this->operation << " ";
+        std::cout << this->operation << " ";
     }
     if (a == 1) {}
     else if (a == -1)
-        cout << '-';
+        std::cout << '-';
     else
-        cout << a << '*';
-    cout << "sin(";
+        std::cout << a << '*';
+    std::cout << "sin(";
     if (b == 1) {}
     else if (b == -1)
-        cout << "-";
+        std::cout << "-";
     else
-        cout << b << "*";
-    cout << "t)";
+        std::cout << b << "*";
+    std::cout << "t)";
     if (c == 1) {}
     else if (c < 0)
-        cout << "^(" << c << ")";
+        std::cout << "^(" << c << ")";
     else
-        cout << "^" << c;
-    cout << " ";
+        std::cout << "^" << c;
+    std::cout << " ";
 }
 
 template <class V>
 FMonomial<V>::FMonomial() {
 #ifdef _DEBUG
-    cout << "FMonomial: Creating FMonomial\n";
+    std::cout << "FMonomial: Creating FMonomial\n";
 #endif // _DEBUG
     this->parameters_number = 3;
     /*
@@ -368,7 +368,7 @@ FMonomial<V>::FMonomial() {
 template <class V>
 FMonomial<V>::~FMonomial() {
 #ifdef _DEBUG
-    cout << "FMonomial: Destroying FMonomial\n";
+    std::cout << "FMonomial: Destroying FMonomial\n";
 #endif // _DEBUG
 }
 
@@ -376,11 +376,11 @@ template <class V>
 bool FMonomial<V>::checkParameters(std::vector<V> new_parameters) {
 
 #ifdef _DEBUG
-    cout << "FMonomial: Checking parameters\n";
+    std::cout << "FMonomial: Checking parameters\n";
     for (int i = 0; i < new_parameters.size(); i++) {
-        cout << new_parameters[i] << " ";
+        std::cout << new_parameters[i] << " ";
     }
-    cout << "\n";
+    std::cout << "\n";
 #endif // _DEBUG
     //Check if parameters are good
 
@@ -399,8 +399,8 @@ bool FMonomial<V>::checkParameters(std::vector<V> new_parameters) {
 template <class V>
 double FMonomial<V>::calculateValue(V t) {
 #ifdef _DEBUG
-    cout << "FMonomial: Count value of t\n";
-    cout << "   Monomial(t) = a*(b+t)^c\n";
+    std::cout << "FMonomial: Count value of t\n";
+    std::cout << "   Monomial(t) = a*(b+t)^c\n";
 #endif // _DEBUG
 
     double& a = this->parameters[0];
@@ -412,8 +412,8 @@ double FMonomial<V>::calculateValue(V t) {
     result = a * pow((b + t), c);
 
 #ifdef _DEBUG
-    cout << "   a: " << a << " b: " << b << " c: " << c << "\n";
-    cout << "   result: " << result << "\n";
+    std::cout << "   a: " << a << " b: " << b << " c: " << c << "\n";
+    std::cout << "   result: " << result << "\n";
 #endif // _DEBUG
 
     return result;
@@ -427,27 +427,27 @@ void FMonomial<V>::showFunction(const bool not_first) {
     double& c = this->parameters[2];
 
     if (not_first) {
-        cout << this->operation << " ";
+        std::cout << this->operation << " ";
     }
     if (a == 1) {}
     else
-        cout << a << '*';
+        std::cout << a << '*';
     if (b == 0)
-        cout << "(t)";
+        std::cout << "(t)";
     else
-        cout << "(" << b << '+' << "t)";
+        std::cout << "(" << b << '+' << "t)";
     if (c == 1) {}
     else if (c < 0)
-        cout << "^(" << c << ")";
+        std::cout << "^(" << c << ")";
     else
-        cout << "^" << c;
-    cout << " ";
+        std::cout << "^" << c;
+    std::cout << " ";
 }
 
 template <class V>
 FConstant<V>::FConstant() {
 #ifdef _DEBUG
-    cout << "FConstant: Creating FConstant\n";
+    std::cout << "FConstant: Creating FConstant\n";
 #endif // _DEBUG
     this->parameters_number = 1;
     /*
@@ -460,7 +460,7 @@ FConstant<V>::FConstant() {
 template <class V>
 FConstant<V>::~FConstant() {
 #ifdef _DEBUG
-    cout << "FConstant: Destroying FConstant\n";
+    std::cout << "FConstant: Destroying FConstant\n";
 #endif // _DEBUG
 }
 
@@ -468,11 +468,11 @@ template <class V>
 bool FConstant<V>::checkParameters(std::vector<V> new_parameters) {
 
 #ifdef _DEBUG
-    cout << "FConstant: Checking parameters\n";
+    std::cout << "FConstant: Checking parameters\n";
     for (int i = 0; i < new_parameters.size(); i++) {
-        cout << new_parameters[i] << " ";
+        std::cout << new_parameters[i] << " ";
     }
-    cout << "\n";
+    std::cout << "\n";
 #endif // _DEBUG
     //Check if parameters are good
 
@@ -488,8 +488,8 @@ bool FConstant<V>::checkParameters(std::vector<V> new_parameters) {
 template <class V>
 double FConstant<V>::calculateValue(V t) {
 #ifdef _DEBUG
-    cout << "FConstant: Count value of t\n";
-    cout << "   Constant(t) = a\n";
+    std::cout << "FConstant: Count value of t\n";
+    std::cout << "   Constant(t) = a\n";
 #endif // _DEBUG
 
     double& a = this->parameters[0];
@@ -499,8 +499,8 @@ double FConstant<V>::calculateValue(V t) {
     result = a;
 
 #ifdef _DEBUG
-    cout << "   a: " << a << "\n";
-    cout << "   result: " << result << "\n";
+    std::cout << "   a: " << a << "\n";
+    std::cout << "   result: " << result << "\n";
 #endif // _DEBUG
 
     return result;
@@ -512,8 +512,8 @@ void FConstant<V>::showFunction(const bool not_first) {
     double& a = this->parameters[0];
 
     if (not_first) {
-        cout << this->operation << " ";
+        std::cout << this->operation << " ";
     }
-    cout << a << " ";
+    std::cout << a << " ";
 }
 #endif

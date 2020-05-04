@@ -11,13 +11,21 @@ namespace TestCalculator
 
 		TEST_METHOD(Adding)
 		{
-			FSin<double> func;
+			double val = 1;
 
-			std::vector<double> parameters{ 1, 2, 3 };
+			FSin<double> *f1 = new FSin<double>;
+			FCos<double> *f2 = new FCos<double>;
 
-			bool expected = true;
+			std::vector<Function<double>*> functions;
 
-			bool actual = func.checkParameters(parameters);
+			functions.push_back(f1);
+			functions.push_back(f2);
+
+			Calculator calc;
+
+			double expected = (*f1)(val) + (*f2)(val);
+
+			double actual = calc.calculateSingiel(&functions, val);
 
 			Assert::AreEqual(expected, actual);
 		}

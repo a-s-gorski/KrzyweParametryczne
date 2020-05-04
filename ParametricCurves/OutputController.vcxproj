@@ -83,7 +83,6 @@
     <ClCompile Include="Calculator.cpp" />
     <ClCompile Include="DrawingPlot.cpp" />
     <ClCompile Include="Frame.cpp" />
-    <ClCompile Include="Functions.cpp" />
     <ClCompile Include="InputController.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="OutputController.cpp" />

@@ -7,6 +7,9 @@
 #ifndef PCH_H
 #define PCH_H
 
-#include "..\ParametricCurves\Functions.cpp"
+#include "..\ParametricCurves\Functions.hpp"
+#include "..\ParametricCurves\Calculator.cpp"
+#include <vector>
+#include <cmath>
 
 #endif //PCH_H

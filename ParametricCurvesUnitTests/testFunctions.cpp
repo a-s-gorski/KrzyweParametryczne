@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include <vector>
-#include <cmath>
+
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
