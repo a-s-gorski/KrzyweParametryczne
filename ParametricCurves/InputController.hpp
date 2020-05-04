@@ -13,20 +13,22 @@ class Equation {
 public:
     Equation();
     void printEquation() const;
-    void operator += (int func_type);
-    void setOperation(char c);
+    void operator += (Function* func);
     const std::vector<Function*>& getEquation();
     ~Equation();
 };
 
 
 class InputController {
+    Function* createFunction(int iterator);
+    void getFieldOfPointsToDraw();
+    void addToEquation(Equation* Eq);
+protected:
     int number_of_points;
     double left_border;
     double right_border;
     Equation X;
     Equation Y;
-    void addToEquation(Equation* Eq);
     void printEquations() const;
 
 public:
@@ -38,5 +40,15 @@ public:
     Equation& getXEquation();
     Equation& getYEquation();
     ~InputController();
+};
+
+
+class CommandLineInput : public InputController {
+    Function* addToEquation(Equation* Eq, char operation, int function, double a, double b, double c);
+    Function* addToEquation(Equation* Eq, char operation, double a);
+public:
+    CommandLineInput();
+    void getInput(std::string filename);
+    ~CommandLineInput();
 };
 #endif

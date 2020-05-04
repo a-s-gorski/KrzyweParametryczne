@@ -2,8 +2,11 @@
 
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <string>
 #include "Functions.hpp"
 #include "InputController.hpp"
+
 
 
 using namespace std;
@@ -28,95 +31,11 @@ Equation::~Equation() {
 }
 
 
-void Equation::operator += (int func_type) {
-    Function* p = NULL;
-    switch (func_type) {
-    case 1:
-        p = new FSin;
-        equation.push_back(p);
+void Equation::operator += (Function* func) {
+    equation.push_back(func);
 #ifdef _DEBUG
-        cout << "Adding FSin to Equation\n";
+    cout << "Adding object to an Equation\n";
 #endif // _DEBUG
-        break;
-
-    case 2:
-        p = new FCos;
-        equation.push_back(p);
-#ifdef _DEBUG
-        cout << "Adding FCos to Equation\n";
-#endif // _DEBUG
-        break;
-
-    case 3:
-        p = new FMonomial;
-        equation.push_back(p);
-#ifdef _DEBUG
-        cout << "Adding FPolynomial to Equation\n";
-#endif // _DEBUG
-        break;
-
-    case 4:
-        p = new FConstant;
-        equation.push_back(p);
-#ifdef _DEBUG
-        cout << "Adding FConstant to Equation\n";
-#endif // _DEBUG
-        break;
-    }
-    double a, b, c;
-    vector<double> parameters;
-    bool correct_input;
-    if (func_type >= 1 && func_type <= 3) {
-        do {
-            parameters = { 0, 0, 0 };
-            correct_input = true;
-            cout << "Parameters of this element: ";
-            cin >> a >> b >> c;
-            if (cin.fail()) {
-                cout << "Invalid parameters\n" << endl;
-                cin.clear();
-                cin.ignore(10000, '\n');
-                correct_input = false;
-            }
-            else {
-                parameters.at(0) = a;
-                parameters.at(1) = b;
-                parameters.at(2) = c;
-                if (!p->checkParameters(parameters)) {
-                    cout << "Parameters can't be 0\n" << endl;
-                    correct_input = false;
-                }
-            }
-        } while (!correct_input);
-    }
-    else if (func_type == 4) {
-        do {
-            parameters = { 0 };
-            correct_input = true;
-            cout << "Value of your constant: ";
-            cin >> a;
-            if (cin.fail()) {
-                cout << "Invalid parameter\n" << endl;
-                cin.clear();
-                cin.ignore(10000, '\n');
-                correct_input = false;
-            }
-            else {
-                parameters.at(0) = a;
-                if (!p->checkParameters(parameters)) {
-                    cout << "Constant can't be equal to 0\n" << endl;
-                    correct_input = false;
-                }
-            } 
-        } while (!correct_input);
-    }
-    equation.back()->setParameters(parameters);
-    cout << endl;
-}
-
-
-void Equation::setOperation(char c) {
-    equation.back()->setOperation(c);
 }
 
 
@@ -151,70 +70,7 @@ InputController::~InputController() {
 }
 
 
-void InputController::addToEquation(Equation* Eq) {
-    int n, fun_type;
-    bool correct_input;
-    char operation = '+';
-    do {
-        cout << "How many element do you want to add to your equation: ";
-        cin >> n;
-        if (cin.fail()) {
-            cout << "Number of elements must be an positive integer\n" << endl;
-            cin.clear();
-            cin.ignore(10000, '\n');
-        }
-        else if (n <= 0)
-            cout << "Number of elements can't be a non-positive number\n" << endl;
-    } while (cin.fail() || n <= 0);
-    cout << endl;
-
-    for (int i = 0; i < n; ++i) {
-        if (i != 0) {
-            correct_input = true;
-            do {
-                cout << "Which operation do you want to use? ";
-                cin >> operation;
-                if (cin.fail()) {
-                    cout << "Invalid input\nChoose between: \"+\", \"-\", \"*\", \"/\"\n" << endl;
-                    cin.clear();
-                    cin.ignore(10000, '\n');
-                    correct_input = false;
-                }
-                else if (operation != '+' && operation != '-' && operation != '*' && operation != '/') {
-                    cout << "Operations allowed: \"+\", \"-\", \"*\", \"/\"\n" << endl;
-                    cin.clear();
-                    cin.ignore(10000, '\n');
-                    correct_input = false;
-                }
-            } while (!correct_input);
-            cout << endl;
-        }
-        do {
-            correct_input = true;
-            cout << "Which function do you want to use?\n";
-            cout << "1. a*sin(b*t)*c    2. a*cos(b*t)*c    3. a*(b+t)*c    4. Constant" << endl;
-            cout << "Your choice: ";
-            cin >> fun_type;
-            if (cin.fail()) {
-                cout << "Invalid input\n";
-                cout << "Choose between 1, 2, 3 and 4\n" << endl;
-                cin.clear();
-                cin.ignore(10000, '\n');
-                correct_input = false;
-            }
-            else if (fun_type < 1 || fun_type > 4) {
-                cout << "Choose between given funtions\n" << endl;
-                correct_input = false;
-            }
-        } while (!correct_input);
-        cout << endl;
-        *Eq += fun_type;
-        Eq->setOperation(operation);
-    }
-}
-
-
-void InputController::getInput() {
+void InputController::getFieldOfPointsToDraw() {
     do {
         cout << "How many points do you want to draw: ";
         cin >> number_of_points;
@@ -242,6 +98,164 @@ void InputController::getInput() {
 
     } while (!correct_input);
     cout << endl;
+}
+
+
+Function* InputController::createFunction (int iterator) {
+    char operation = '+';
+    int fun_type;
+    bool correct_input;
+    Function* p = NULL;
+
+    if (iterator != 0) {
+        do {
+            correct_input = true;
+            cout << "Which operation do you want to use?\nType: \"+\", \"-\", \"*\", \"/\": ";
+            cin >> operation;
+            if (cin.fail()) {
+                cout << "Invalid input\nChoose between: \"+\", \"-\", \"*\", \"/\"\n" << endl;
+                cin.clear();
+                cin.ignore(10000, '\n');
+                correct_input = false;
+            }
+            else if (operation != '+' && operation != '-' && operation != '*' && operation != '/') {
+                cout << "Operations allowed: \"+\", \"-\", \"*\", \"/\"\n" << endl;
+                cin.clear();
+                cin.ignore(10000, '\n');
+                correct_input = false;
+            }
+        } while (!correct_input);
+        cout << endl;
+    }
+    do {
+        correct_input = true;
+        cout << "Which function do you want to use?\n";
+        cout << "1. a*sin(b*t)*c    2. a*cos(b*t)*c    3. a*(b+t)*c    4. Constant" << endl;
+        cout << "Your choice: ";
+        cin >> fun_type;
+        if (cin.fail()) {
+            cout << "Invalid input\n";
+            cout << "Choose between 1, 2, 3 and 4\n" << endl;
+            cin.clear();
+            cin.ignore(10000, '\n');
+            correct_input = false;
+        }
+        else if (fun_type < 1 || fun_type > 4) {
+            cout << "Choose between given funtions\n" << endl;
+            correct_input = false;
+        }
+    } while (!correct_input);
+    cout << endl;
+
+    switch (fun_type) {
+    case 1:
+        p = new FSin;
+#ifdef _DEBUG
+        cout << "Creating FSin\n";
+#endif // _DEBUG
+        break;
+
+    case 2:
+        p = new FCos;
+#ifdef _DEBUG
+        cout << "Creating FCos\n";
+#endif // _DEBUG
+        break;
+
+    case 3:
+        p = new FMonomial;
+#ifdef _DEBUG
+        cout << "Creating FPolynomial\n";
+#endif // _DEBUG
+        break;
+
+    case 4:
+        p = new FConstant;
+#ifdef _DEBUG
+        cout << "Creating FConstant\n";
+#endif // _DEBUG
+        break;
+    }
+
+    double a, b, c;
+    vector<double> parameters;
+    if (fun_type >= 1 && fun_type <= 3) {
+        do {
+            parameters = { 0, 0, 0 };
+            correct_input = true;
+            cout << "Parameters of this element: ";
+            cin >> a >> b >> c;
+            if (cin.fail()) {
+                cout << "Invalid parameters\n" << endl;
+                cin.clear();
+                cin.ignore(10000, '\n');
+                correct_input = false;
+            }
+            else {
+                parameters.at(0) = a;
+                parameters.at(1) = b;
+                parameters.at(2) = c;
+                if (!p->checkParameters(parameters)) {
+                    cout << "Parameters can't be 0\n" << endl;
+                    correct_input = false;
+                }
+            }
+        } while (!correct_input);
+    }
+    else if (fun_type == 4) {
+        do {
+            parameters = { 0 };
+            correct_input = true;
+            cout << "Value of your constant: ";
+            cin >> a;
+            if (cin.fail()) {
+                cout << "Invalid parameter\n" << endl;
+                cin.clear();
+                cin.ignore(10000, '\n');
+                correct_input = false;
+            }
+            else {
+                parameters.at(0) = a;
+                if (!p->checkParameters(parameters)) {
+                    cout << "Constant can't be equal to 0\n" << endl;
+                    correct_input = false;
+                }
+            }
+        } while (!correct_input);
+    }
+    cout << endl;
+    
+    p->setParameters(parameters);
+    p->setOperation(operation);
+    return p;
+
+}
+
+
+void InputController::addToEquation(Equation* Eq) {
+    int n;
+    do {
+        cout << "How many element do you want to add to your equation: ";
+        cin >> n;
+        if (cin.fail()) {
+            cout << "Number of elements must be an positive integer\n" << endl;
+            cin.clear();
+            cin.ignore(10000, '\n');
+        }
+        else if (n <= 0)
+            cout << "Number of elements can't be a non-positive number\n" << endl;
+    } while (cin.fail() || n <= 0);
+    cout << endl;
+
+    for (int i = 0; i < n; ++i) {
+        Function* newFunction = createFunction(i);
+        *Eq += newFunction;
+    }
+}
+
+
+void InputController::getInput() {
+    getFieldOfPointsToDraw();
 
     // X parameter
     cout << "X equation components" << endl;
@@ -286,4 +300,117 @@ Equation& InputController::getXEquation() {
 
 Equation& InputController::getYEquation() {
     return Y;
+}
+
+
+CommandLineInput::CommandLineInput() {
+#ifdef _DEBUG
+    cout << "Creating CommandLineInput\n";
+#endif // _DEBUG
+}
+
+
+CommandLineInput::~CommandLineInput() {
+#ifdef _DEBUG
+    cout << "Destroying CommandLineInput\n";
+#endif // _DEBUG
+}
+
+
+Function* CommandLineInput::addToEquation(Equation* Eq, char operation, double a) {
+    Function* p = new FConstant;
+#ifdef _DEBUG
+    cout << "Creating FConstant\n";
+#endif // _DEBUG
+    vector<double> parameter{ a };
+    p->setParameters(parameter);
+    p->setOperation(operation);
+
+    return p;
+}
+
+
+Function* CommandLineInput::addToEquation(Equation* Eq, char operation, int function, double a, double b, double c) {
+    Function* p;
+    switch (function) {
+    case 1:
+        p = new FSin;
+#ifdef _DEBUG
+        cout << "Creating FSin\n";
+#endif // _DEBUG
+        break;
+
+    case 2:
+        p = new FCos;
+#ifdef _DEBUG
+        cout << "Creating FCos\n";
+#endif // _DEBUG
+        break;
+
+    case 3:
+        p = new FMonomial;
+#ifdef _DEBUG
+        cout << "Creating FPolynomial\n";
+#endif // _DEBUG
+        break;
+    }
+
+    vector<double> parameters{ a, b, c };
+    p->setParameters(parameters);
+    p->setOperation(operation);
+
+    return p;
+}
+
+
+void CommandLineInput::getInput(string filename) {
+    ifstream f(filename);
+
+    if (!f.is_open()) {
+        cout << "Couldn't open a file" << endl;
+        exit(1);
+    }
+
+    f >> number_of_points;
+    f >> left_border;
+    f >> right_border;
+
+    int nelements;
+
+    char operation = '+';
+    double a, b, c;
+    int func;
+    Function* ptr = NULL;
+    for (int j = 0; j < 2; j++) {
+        f >> nelements;
+        for (int i = 0; i < nelements; i++) {
+            if (i != 0)
+                f >> operation;
+            f >> func;
+            if (func >= 1 && func <= 3) {
+                f >> a >> b >> c;
+                if (j == 0)
+                    ptr = addToEquation(&X, operation, func, a, b, c);
+                else if (j == 1)
+                    ptr = addToEquation(&Y, operation, func, a, b, c);
+            }
+            else if (func == 4) {
+                f >> a;
+                if (j == 0)
+                    ptr = addToEquation(&X, operation, a);
+                else if (j == 1)
+                    ptr = addToEquation(&Y, operation, a);
+            }
+            if (j == 0) {
+                X += ptr;
+            }
+            else if (j == 1) {
+                Y += ptr;
+            }
+        }
+    }
+
+    f.close();
+
+    printEquations();
 }
