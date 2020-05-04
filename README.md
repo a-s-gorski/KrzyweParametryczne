@@ -15,7 +15,7 @@ Kolejne wersje zakładają przede wszystkim tryb graficzny oraz większą dowoln
 
 - Kontrola wejścia - A.K
 - Kontrola wyjścia - A.G
-- Kalkulator punktów - Ł.B
+- Funkjce, Kalkulator punktów - Ł.B
 
 - Złączenie programu w całość
 - Rozmowa z użytkownikiem
