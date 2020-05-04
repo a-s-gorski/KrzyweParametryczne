@@ -65,6 +65,8 @@ namespace TestFunctions
 
 			Assert::AreEqual(expected, actual);
 		}
+
+
 	};
 
 
@@ -126,7 +128,7 @@ namespace TestFunctions
 
 			double expected = pow(cos(val*2), 2);
 
-			double actual = func.calculateValue(1);
+			double actual = func.calculateValue(val);
 
 			Assert::AreEqual(expected, actual);
 		}
@@ -144,7 +146,7 @@ namespace TestFunctions
 
 			double expected = -2*pow(cos(val), 2);
 
-			double actual = func.calculateValue(1);
+			double actual = func.calculateValue(val);
 
 			Assert::AreEqual(expected, actual);
 		}
@@ -162,7 +164,7 @@ namespace TestFunctions
 
 			double expected = -2*pow(cos(-2*val), -2);
 
-			double actual = func.calculateValue(1);
+			double actual = func.calculateValue(val);
 
 			Assert::AreEqual(expected, actual);
 		}
@@ -204,6 +206,132 @@ namespace TestFunctions
 			double val = 3.14;
 
 			double expected = sin(val);
+
+			double actual = func.calculateValue(val);
+
+			Assert::AreEqual(expected, actual);
+		}
+
+
+		TEST_METHOD(FSin0_Params_n3_1_2)
+		{
+			FSin func;
+
+			double val = 0;
+
+			std::vector<double> parameters{ -3, 1, 2 };
+
+			func.setParameters(parameters);
+
+			double expected = -3*pow(sin(val), 2);
+
+			double actual = func.calculateValue(val);
+
+			Assert::AreEqual(expected, actual);
+		}
+
+
+		TEST_METHOD(FSin0_Params_3_3_3)
+		{
+			FSin func;
+
+			double val = 0;
+
+			std::vector<double> parameters{ 3, 3, 3 };
+
+			func.setParameters(parameters);
+
+			double expected = 3 * pow(sin(3*val), 3);
+
+			double actual = func.calculateValue(val);
+
+			Assert::AreEqual(expected, actual);
+		}
+
+
+		TEST_METHOD(FMonomial1_Params_1_1_2)
+		{
+			FMonomial func;
+
+			std::vector<double> parameters{ 1, 1, 2 };
+
+			func.setParameters(parameters);
+
+			double val = 1;
+
+			double expected = pow((1+val), 2);
+
+			double actual = func.calculateValue(val);
+
+			Assert::AreEqual(expected, actual);
+		}
+
+
+		TEST_METHOD(FMonomial0_Params_2_n1_n2)
+		{
+			FMonomial func;
+
+			std::vector<double> parameters{ 2, -1, -2 };
+
+			func.setParameters(parameters);
+
+			double val = 1;
+
+			double expected = 2*pow((-1 + val), -2);
+
+			double actual = func.calculateValue(val);
+
+			Assert::AreEqual(expected, actual);
+		}
+
+
+		TEST_METHOD(FConstant1_Params_1)
+		{
+			FConstant func;
+
+			std::vector<double> parameters{ 1 };
+
+			func.setParameters(parameters);
+
+			double val = 1;
+
+			double expected = 1;
+
+			double actual = func.calculateValue(val);
+
+			Assert::AreEqual(expected, actual);
+		}
+
+
+		TEST_METHOD(FConstant1_Params_2)
+		{
+			FConstant func;
+
+			std::vector<double> parameters{ 2 };
+
+			func.setParameters(parameters);
+
+			double val = 1;
+
+			double expected = 2;
+
+			double actual = func.calculateValue(val);
+
+			Assert::AreEqual(expected, actual);
+		}
+
+
+		TEST_METHOD(FConstant2_Params_2)
+		{
+			FConstant func;
+
+			std::vector<double> parameters{ 2 };
+
+			func.setParameters(parameters);
+
+			double val = 2;
+
+			double expected = 2;
 
 			double actual = func.calculateValue(val);
 
