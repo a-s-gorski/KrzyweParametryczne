@@ -1,9 +1,5 @@
-#include <iostream>
-#include <vector>
-#include <cmath>
-#include "TestOutput.h"
-#include "DrawingPlot.h"
+#include "pch.h"
+#include "CppUnitTest.h"
 
 
-
-
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
