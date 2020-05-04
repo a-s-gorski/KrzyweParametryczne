@@ -88,7 +88,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="OutputController.cpp" />
     <ClCompile Include="TestCalculator.cpp" />
-    <ClCompile Include="TestFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="OutputController.h" />
@@ -106,7 +105,6 @@
     <ClInclude Include="Functions.hpp" />
     <ClInclude Include="InputController.hpp" />
     <ClInclude Include="TestCalculator.hpp" />
-    <ClInclude Include="TestFunctions.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

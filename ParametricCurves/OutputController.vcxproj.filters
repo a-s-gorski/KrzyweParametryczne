@@ -46,9 +46,6 @@
     <ClCompile Include="TestCalculator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestFunctions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -82,9 +79,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TestCalculator.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestFunctions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Frame.h">
