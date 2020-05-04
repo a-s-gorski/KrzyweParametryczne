@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "..\ParametricCurves\Functions.cpp"
 #include <vector>
 #include <cmath>
 
