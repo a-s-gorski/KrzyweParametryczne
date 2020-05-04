@@ -5,42 +5,28 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include "Frame.h"
 
 using namespace std;
 
-
-class DrawingPlot {
-private:
-    double screen_height = 400.0;
-    double screen_width = 600.0;
-    double** coordinates;
-    double X_length_new;
-    double Y_length_new;
-
-    vector <pair <double, double>> points;
+template <class X, class Y>
+class DrawingPlot : private Frame {
+protected:
+    X** coordinates;
+    X X_length_new;
+    Y Y_length_new;
+    vector <pair <X, Y>> points;
     QPicture drawingPanel;
-    double x_axis_max, x_axis_min;
-    double y_axis_max, y_axis_min;
-
-    virtual void get_edge_values();
-    virtual void rescale_drawing();
+    X x_axis_max, x_axis_min;
+    Y y_axis_max, y_axis_min;
 
 
 public:
-    DrawingPlot(QPicture picture_base, vector <pair <double, double>> values) {
-        DrawingPlot::drawingPanel = picture_base;
-        DrawingPlot::points = values;
+    void DrawingPlot<X,Y>::drawPlot();
+    void DrawingPlot<X,Y>::setPicture(QPicture picture_base);
+    void DrawingPlot<X,Y>::setPlot(vector <pair<X, Y> > values);
+    void DrawingPlot<X, Y>::get_edge_values();
+    void DrawingPlot<X, Y>::rescale_drawing();
 
-        DrawingPlot::coordinates = new double* [DrawingPlot::points.size()];
-        for (int i = 0; i < DrawingPlot::points.size(); i++) {
-            DrawingPlot::coordinates[i] = new double[2];
-                #ifdef _DEBUG
-                cout << "DrawingPlot : creating dynamicly allocated array(2d) by assigning pointes of pointers\n";
-                 #endif // _DEBUG
-        }
-    DrawingPlot::get_edge_values();
-    DrawingPlot::rescale_drawing();
-    }
-    ~DrawingPlot();
-    virtual void drawPlot();
+
     };
