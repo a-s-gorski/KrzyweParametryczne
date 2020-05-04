@@ -7,6 +7,6 @@
 #ifndef PCH_H
 #define PCH_H
 
-// w tym miejscu dodaj nagłówki, które mają być wstępnie kompilowane
+#include "..\ParametricCurves\Functions.cpp"
 
 #endif //PCH_H
