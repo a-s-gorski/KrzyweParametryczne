@@ -35,7 +35,7 @@ void Equation::operator += (int func_type) {
         p = new FSin;
         equation.push_back(p);
 #ifdef _DEBUG
-        cout << "Adding FCos to Equation\n";
+        cout << "Adding FSin to Equation\n";
 #endif // _DEBUG
         break;
 
@@ -43,7 +43,7 @@ void Equation::operator += (int func_type) {
         p = new FCos;
         equation.push_back(p);
 #ifdef _DEBUG
-        cout << "Adding FSin to Equation\n";
+        cout << "Adding FCos to Equation\n";
 #endif // _DEBUG
         break;
 

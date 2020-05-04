@@ -49,7 +49,12 @@ double Calculator::calculateSingiel(vector<Function*>* function, double t) {
             cur *= values[it++];
         }
         else if (o == '/') {
-            cur /= values[it++];
+            if (values[it] == 0) {
+                it++;
+            }
+            else {
+                cur /= values[it++];
+            }
         }
     }
 

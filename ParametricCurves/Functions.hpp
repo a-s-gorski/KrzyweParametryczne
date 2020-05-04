@@ -19,7 +19,6 @@ public:
     virtual double calculateValue(double t) = 0;
     virtual void showFunction(bool not_first) = 0;
     double operator()(double t);
-   // operator() ??
 };
 
 class FCos : public Function {
