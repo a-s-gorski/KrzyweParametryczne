@@ -10,6 +10,7 @@
 
 using namespace std;
 
+
 template <class X, class Y>
 void DrawingPlot<X, Y>::setPicture(QPicture picture_base) {
 	DrawingPlot::drawingPanel = picture_base;

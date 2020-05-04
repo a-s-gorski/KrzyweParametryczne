@@ -9,6 +9,7 @@
 
 using namespace std;
 
+
 template <class X, class Y>
 class DrawingPlot : private Frame {
 protected:
@@ -27,6 +28,5 @@ public:
     void DrawingPlot<X,Y>::setPlot(vector <pair<X, Y> > values);
     void DrawingPlot<X, Y>::get_edge_values();
     void DrawingPlot<X, Y>::rescale_drawing();
-
 
     };
