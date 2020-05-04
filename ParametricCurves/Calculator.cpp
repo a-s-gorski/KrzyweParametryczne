@@ -21,7 +21,7 @@ Calculator::~Calculator() {
 #endif // _DEBUG
 }
 
-double Calculator::calculateSingiel(vector<Function*>* function, double t) {
+double Calculator::calculateSingiel(vector<Function<double>*>* function, double t) {
 
     double *values = new double[(*function).size()];
     double v = 0;
@@ -65,7 +65,7 @@ double Calculator::calculateSingiel(vector<Function*>* function, double t) {
     return v;
 }
 
-pair<double, double> Calculator::calculateValue(vector<Function*> *x_function, vector<Function*> *y_function, double t) {
+pair<double, double> Calculator::calculateValue(vector<Function<double>*> *x_function, vector<Function<double>*> *y_function, double t) {
 #ifdef _DEBUG
     cout << "Calculator: Calculate value for: " << t << "\n";
 #endif // _DEBUG
@@ -78,7 +78,7 @@ pair<double, double> Calculator::calculateValue(vector<Function*> *x_function, v
     return point;
 }
 
-vector<pair<double, double> > Calculator::calculateSerie(vector<Function*> *x_function, vector<Function*> *y_function, double left, double right, double points_number) {
+vector<pair<double, double> > Calculator::calculateSerie(vector<Function<double>*> *x_function, vector<Function<double>*> *y_function, double left, double right, double points_number) {
 #ifdef _DEBUG
     cout << "Calculator: Calculate " << points_number << " points, from: " << left << " to: " << right << "\n";
 #endif // _DEBUG

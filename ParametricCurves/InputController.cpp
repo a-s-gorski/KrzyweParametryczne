@@ -31,7 +31,7 @@ Equation::~Equation() {
 }
 
 
-void Equation::operator += (Function* func) {
+void Equation::operator += (Function<double>* func) {
     equation.push_back(func);
 #ifdef _DEBUG
     cout << "Adding object to an Equation\n";
@@ -49,7 +49,7 @@ void Equation::printEquation() const {
 }
 
 
-const vector<Function*>& Equation::getEquation() {
+const vector<Function<double>*>& Equation::getEquation() {
     return equation;
 }
 
@@ -101,11 +101,11 @@ void InputController::getFieldOfPointsToDraw() {
 }
 
 
-Function* InputController::createFunction (int iterator) {
+Function<double>* InputController::createFunction (int iterator) {
     char operation = '+';
     int fun_type;
     bool correct_input;
-    Function* p = NULL;
+    Function<double>* p = NULL;
 
     if (iterator != 0) {
         do {
@@ -149,28 +149,28 @@ Function* InputController::createFunction (int iterator) {
 
     switch (fun_type) {
     case 1:
-        p = new FSin;
+        p = new FSin<double>;
 #ifdef _DEBUG
         cout << "Creating FSin\n";
 #endif // _DEBUG
         break;
 
     case 2:
-        p = new FCos;
+        p = new FCos<double>;
 #ifdef _DEBUG
         cout << "Creating FCos\n";
 #endif // _DEBUG
         break;
 
     case 3:
-        p = new FMonomial;
+        p = new FMonomial<double>;
 #ifdef _DEBUG
         cout << "Creating FPolynomial\n";
 #endif // _DEBUG
         break;
 
     case 4:
-        p = new FConstant;
+        p = new FConstant<double>;
 #ifdef _DEBUG
         cout << "Creating FConstant\n";
 #endif // _DEBUG
@@ -248,7 +248,7 @@ void InputController::addToEquation(Equation* Eq) {
     cout << endl;
 
     for (int i = 0; i < n; ++i) {
-        Function* newFunction = createFunction(i);
+        Function<double>* newFunction = createFunction(i);
         *Eq += newFunction;
     }
 }
@@ -317,8 +317,8 @@ CommandLineInput::~CommandLineInput() {
 }
 
 
-Function* CommandLineInput::addToEquation(Equation* Eq, char operation, double a) {
-    Function* p = new FConstant;
+Function<double>* CommandLineInput::addToEquation(Equation* Eq, char operation, double a) {
+    Function<double>* p = new FConstant<double>;
 #ifdef _DEBUG
     cout << "Creating FConstant\n";
 #endif // _DEBUG
@@ -330,25 +330,25 @@ Function* CommandLineInput::addToEquation(Equation* Eq, char operation, double a
 }
 
 
-Function* CommandLineInput::addToEquation(Equation* Eq, char operation, int function, double a, double b, double c) {
-    Function* p;
+Function<double>* CommandLineInput::addToEquation(Equation* Eq, char operation, int function, double a, double b, double c) {
+    Function<double>* p;
     switch (function) {
     case 1:
-        p = new FSin;
+        p = new FSin<double>;
 #ifdef _DEBUG
         cout << "Creating FSin\n";
 #endif // _DEBUG
         break;
 
     case 2:
-        p = new FCos;
+        p = new FCos<double>;
 #ifdef _DEBUG
         cout << "Creating FCos\n";
 #endif // _DEBUG
         break;
 
     case 3:
-        p = new FMonomial;
+        p = new FMonomial<double>;
 #ifdef _DEBUG
         cout << "Creating FPolynomial\n";
 #endif // _DEBUG
@@ -380,7 +380,7 @@ void CommandLineInput::getInput(string filename) {
     char operation = '+';
     double a, b, c;
     int func;
-    Function* ptr = NULL;
+    Function<double>* ptr = NULL;
     for (int j = 0; j < 2; j++) {
         f >> nelements;
         for (int i = 0; i < nelements; i++) {

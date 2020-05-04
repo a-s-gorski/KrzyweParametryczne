@@ -11,9 +11,9 @@ class Calculator {
 public:
     Calculator();
     ~Calculator();
-    double calculateSingiel (std::vector<Function*>* function, double t);
-    std::pair<double, double> calculateValue(std::vector<Function*> *x_function, std::vector<Function*> *y_function, double t);
-    std::vector<std::pair<double, double> > calculateSerie(std::vector<Function*> *x_function, std::vector<Function*> *y_function, double left, double right, double points_number);
+    double calculateSingiel (std::vector<Function<double>*>* function, double t);
+    std::pair<double, double> calculateValue(std::vector<Function<double>*> *x_function, std::vector<Function<double>*> *y_function, double t);
+    std::vector<std::pair<double, double> > calculateSerie(std::vector<Function<double>*> *x_function, std::vector<Function<double>*> *y_function, double left, double right, double points_number);
 };
 
 

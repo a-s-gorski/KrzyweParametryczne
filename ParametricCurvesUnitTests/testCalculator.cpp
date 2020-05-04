@@ -11,7 +11,7 @@ namespace TestCalculator
 
 		TEST_METHOD(Adding)
 		{
-			FSin func;
+			FSin<double> func;
 
 			std::vector<double> parameters{ 1, 2, 3 };
 

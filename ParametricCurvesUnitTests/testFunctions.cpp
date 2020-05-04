@@ -13,7 +13,8 @@ namespace TestFunctions
 		
 		TEST_METHOD(Correct_Parameters)
 		{
-			FSin func;
+
+			FSin<double> func;
 
 			std::vector<double> parameters{ 1, 2, 3 };
 
@@ -26,7 +27,7 @@ namespace TestFunctions
 
 		TEST_METHOD(Wrong_Zero_Parameter)
 		{
-			FSin func;
+			FSin<double> func;
 
 			std::vector<double> parameters{ 1, 0, 1 };
 
@@ -40,7 +41,7 @@ namespace TestFunctions
 
 		TEST_METHOD(Too_Less_Parameters)
 		{
-			FSin func;
+			FSin<double> func;
 
 			std::vector<double> parameters{ 1, 2 };
 
@@ -54,7 +55,7 @@ namespace TestFunctions
 
 		TEST_METHOD(Too_Much_Parameters)
 		{
-			FSin func;
+			FSin<double> func;
 
 			std::vector<double> parameters{ 1, 2, 3, 4 };
 
@@ -75,7 +76,7 @@ namespace TestFunctions
 
 		TEST_METHOD(FCos1)
 		{
-			FCos func;
+			FCos<double> func;
 
 			double val = 1;
 
@@ -89,7 +90,7 @@ namespace TestFunctions
 
 		TEST_METHOD(FCos0)
 		{
-			FCos func;
+			FCos<double> func;
 
 			double val = 0;
 
@@ -103,7 +104,7 @@ namespace TestFunctions
 
 		TEST_METHOD(FCosPi)
 		{
-			FCos func;
+			FCos<double> func;
 
 			double val = 3.14;
 
@@ -117,7 +118,7 @@ namespace TestFunctions
 
 		TEST_METHOD(FCos1_Params_1_2_2)
 		{
-			FCos func;
+			FCos<double> func;
 
 			double val = 1;
 
@@ -135,7 +136,7 @@ namespace TestFunctions
 
 		TEST_METHOD(FCos1_Params_n2_1_2)
 		{
-			FCos func;
+			FCos<double> func;
 
 			double val = 1;
 
@@ -153,7 +154,7 @@ namespace TestFunctions
 
 		TEST_METHOD(FCos1_Params_n2_n2_n2)
 		{
-			FCos func;
+			FCos<double> func;
 
 			double val = 1;
 
@@ -172,7 +173,7 @@ namespace TestFunctions
 
 		TEST_METHOD(FSin1)
 		{
-			FSin func;
+			FSin<double> func;
 
 			double val = 1;
 
@@ -186,7 +187,7 @@ namespace TestFunctions
 
 		TEST_METHOD(FSin0)
 		{
-			FSin func;
+			FSin<double> func;
 
 			double val = 0;
 
@@ -200,7 +201,7 @@ namespace TestFunctions
 
 		TEST_METHOD(FSinPi)
 		{
-			FSin func;
+			FSin<double> func;
 
 			double val = 3.14;
 
@@ -214,7 +215,7 @@ namespace TestFunctions
 
 		TEST_METHOD(FSin0_Params_n3_1_2)
 		{
-			FSin func;
+			FSin<double> func;
 
 			double val = 0;
 
@@ -232,7 +233,7 @@ namespace TestFunctions
 
 		TEST_METHOD(FSin0_Params_3_3_3)
 		{
-			FSin func;
+			FSin<double> func;
 
 			double val = 0;
 
@@ -250,7 +251,7 @@ namespace TestFunctions
 
 		TEST_METHOD(FMonomial1_Params_1_1_2)
 		{
-			FMonomial func;
+			FMonomial<double> func;
 
 			std::vector<double> parameters{ 1, 1, 2 };
 
@@ -268,7 +269,7 @@ namespace TestFunctions
 
 		TEST_METHOD(FMonomial0_Params_2_n1_n2)
 		{
-			FMonomial func;
+			FMonomial<double> func;
 
 			std::vector<double> parameters{ 2, -1, -2 };
 
@@ -286,7 +287,7 @@ namespace TestFunctions
 
 		TEST_METHOD(FConstant1_Params_1)
 		{
-			FConstant func;
+			FConstant<double> func;
 
 			std::vector<double> parameters{ 1 };
 
@@ -304,7 +305,7 @@ namespace TestFunctions
 
 		TEST_METHOD(FConstant1_Params_2)
 		{
-			FConstant func;
+			FConstant<double> func;
 
 			std::vector<double> parameters{ 2 };
 
@@ -322,7 +323,7 @@ namespace TestFunctions
 
 		TEST_METHOD(FConstant2_Params_2)
 		{
-			FConstant func;
+			FConstant<double> func;
 
 			std::vector<double> parameters{ 2 };
 

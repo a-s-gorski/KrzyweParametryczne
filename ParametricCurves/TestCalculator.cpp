@@ -11,11 +11,11 @@ bool testCalculatorCalculateValue() {
 
     Calculator cal;
 
-    vector<Function*> x_function;
-    vector<Function*> y_function;
+    vector<Function<double>*> x_function;
+    vector<Function<double>*> y_function;
 
-    FCos* cos_1 = new FCos;
-    FSin* sin_1 = new FSin;
+    FCos<double>* cos_1 = new FCos<double>;
+    FSin<double>* sin_1 = new FSin<double>;
 
     x_function.push_back(cos_1);
     y_function.push_back(sin_1);
@@ -47,11 +47,11 @@ bool testCalculatorCalculateValue() {
 bool testCalculatorCalculateSerie() {
     Calculator cal;
 
-    vector<Function*> x_function;
-    vector<Function*> y_function;
+    vector<Function<double>*> x_function;
+    vector<Function<double>*> y_function;
 
-    FCos* cos_1 = new FCos;
-    FSin* sin_1 = new FSin;
+    FCos<double>* cos_1 = new FCos<double>;
+    FSin<double>* sin_1 = new FSin<double>;
 
     x_function.push_back(cos_1);
     y_function.push_back(sin_1);

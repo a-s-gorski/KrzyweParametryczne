@@ -39,8 +39,8 @@ int main(int argc, char* argv[])
 
     Equation& x = console_input->getXEquation();
     Equation& y = console_input->getYEquation();
-    vector<Function*> x_func = x.getEquation();
-    vector<Function*> y_func = y.getEquation();
+    vector<Function<double>*> x_func = x.getEquation();
+    vector<Function<double>*> y_func = y.getEquation();
 
     double left_border = console_input->getLeftBorder();
     double right_border = console_input->getRightBorder();

@@ -9,18 +9,18 @@
 
 
 class Equation {
-    std::vector<Function*> equation;
+    std::vector<Function<double>*> equation;
 public:
     Equation();
     void printEquation() const;
-    void operator += (Function* func);
-    const std::vector<Function*>& getEquation();
+    void operator += (Function<double>* func);
+    const std::vector<Function<double>*>& getEquation();
     ~Equation();
 };
 
 
 class InputController {
-    Function* createFunction(int iterator);
+    Function<double>* createFunction(int iterator);
     void getFieldOfPointsToDraw();
     void addToEquation(Equation* Eq);
 protected:
@@ -44,8 +44,8 @@ public:
 
 
 class CommandLineInput : public InputController {
-    Function* addToEquation(Equation* Eq, char operation, int function, double a, double b, double c);
-    Function* addToEquation(Equation* Eq, char operation, double a);
+    Function<double>* addToEquation(Equation* Eq, char operation, int function, double a, double b, double c);
+    Function<double>* addToEquation(Equation* Eq, char operation, double a);
 public:
     CommandLineInput();
     void getInput(std::string filename);
