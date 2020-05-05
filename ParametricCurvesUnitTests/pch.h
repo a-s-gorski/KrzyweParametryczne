@@ -9,6 +9,8 @@
 
 #include "..\ParametricCurves\Functions.hpp"
 #include "..\ParametricCurves\Calculator.cpp"
+#include "..\ParametricCurves\DrawingPlot.h"
+#include "..\ParametricCurves\Frame.h"
 #include <vector>
 #include <cmath>
 

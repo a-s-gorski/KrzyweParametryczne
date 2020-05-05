@@ -167,7 +167,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\ParametricCurves\TestOutput.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>

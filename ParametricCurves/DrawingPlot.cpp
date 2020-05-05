@@ -10,40 +10,6 @@
 
 using namespace std;
 
-
-template <class X, class Y>
-void DrawingPlot<X, Y>::setPicture(QPicture picture_base) {
-	DrawingPlot::drawingPanel = picture_base;
-}
-
-template<class X, class Y>
-void DrawingPlot<X, Y>::drawPlot() {
-	QPicture drawingCanvas = DrawingPlot::drawingPanel;
-	QPainter painting_canvas(&drawingCanvas);
-	painting_canvas.setRenderHint(QPainter::Antialiasing);
-	for (int i = 1; i < DrawingPlot::points.size(); i++) {
-		X x1 = DrawingPlot::coordinates[i - 1][0];
-		Y y1 = DrawingPlot::coordinates[i - 1][1];
-		X x2 = DrawingPlot::coordinates[i][0];
-		Y y2 = DrawingPlot::coordinates[i][1];
-
-		painting_canvas.drawLine(x1, y1, x2, y2);
-	}
-	painting_canvas.end();
-#ifdef _DEBUG
-	cout << "DrawingPlot : drawing plot lines conecting coordinates \n";
-#endif // _DEBUG
-
-	for (int i = 0; i < DrawingPlot::points.size(); i++) {
-		delete[] DrawingPlot::coordinates[i];
-	}
-	delete[] DrawingPlot::coordinates;
-#ifdef _DEBUG
-	cout << "DrawingPlot: destructor\n";
-	cout << "DrawingPlot: deleting dynamic 2d array coordinates\n";
-#endif // _DEBUG
-
-}
 template <class X, class Y>
 void DrawingPlot<X, Y>::get_edge_values() {
 #ifdef _DEBUG
@@ -99,5 +65,19 @@ void DrawingPlot<X, Y>::setPlot(vector <pair<X, Y>> values) {
 	}
 	DrawingPlot::get_edge_values();
 	DrawingPlot::rescale_drawing();
+
+}
+
+
+template <class X, class Y>
+vector <X[2]> DrawingPlot<X, Y>::getCanvasCoordinates() {
+	vector <X[2]> coordinates_pair;
+	for (int i = 0; i < DrawingPlot::coordinates.size(); i++) {
+		X array[2];
+		arr_c[] = DrawingPlot::coordinates[0];
+		arr_c[1] = DrawingPlot::coordinates[1];
+		coordinates_pair.push_back(arr_c);
+	}
+	return coordinates_pair;
 
 }

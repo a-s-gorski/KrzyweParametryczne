@@ -7,6 +7,8 @@
 #include "OutputController.h"
 #include "DrawingPlot.h"
 #include "DrawingPlot.cpp"
+#include "DrawingPlotGui.h"
+#include "DrawingPlotGui.cpp"
 #include <QtWidgets/QApplication>
 #include <QtWidgets>
 #include <utility>
@@ -67,7 +69,7 @@ int main(int argc, char* argv[])
         //crds.push_back(p);
     //}
 
-    DrawingPlot<double, double> g1;
+    DrawingPlotGui<double, double> g1;
     g1.setPicture(pic1);
     g1.setPlot(test_points);
     g1.drawPlot();
