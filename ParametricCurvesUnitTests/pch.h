@@ -11,6 +11,7 @@
 #include "..\ParametricCurves\Calculator.cpp"
 #include "..\ParametricCurves\DrawingPlot.h"
 #include "..\ParametricCurves\Frame.h"
+#include "..\ParametricCurves\InputController.hpp"
 #include <vector>
 #include <cmath>
 
