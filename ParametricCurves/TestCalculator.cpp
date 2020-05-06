@@ -1,3 +1,5 @@
+//≈Åukasz Bondaruk
+
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -25,7 +27,7 @@ bool testCalculatorCalculateValue() {
     cout << "Calculate value started: \n";
 
     pair<double, double> test = make_pair(cos(1), sin(1));
-   // Co to mia≥o byÊ *= ?
+   // Co to miao by *= ?
     assert *= test == cal.calculateValue(&x_function, &y_function, 1);
     cout << "   assert: " << (assert ? "Correct\n" : "Failed\n");
 
