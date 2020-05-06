@@ -1,3 +1,6 @@
+
+//Łukasz Bondaruk
+
 #pragma once
 #ifndef CALCULATOR_H
 #define CALCULATOR_H
