@@ -8,6 +8,16 @@ showFunction zaimplementowanych w pliku Functions.*, również zwraca całe rów
 	Jest odpowiedzialne za interakcję z użytkownikiem - przyjmowanie wszystkich wartości i wypisanie otrzymanego wejścia
 InputController zarządza 2 obiektami Equation - dodaje do nich odpowiednie składniki
 
+3. CommandLineController
+    To klasa która dziedziczy od InputController, jest odpowiedzialna za ewentualne wprowadzenie wejścia z pliku
+jeżeli plik nie istnieje, to wyświetli się komunikat i program się zakończy. Aby wprowadzić wejście z pliku należy:
+kliknąć prawym przyciskiem myszy na projekt > właściwości > Debuggowanie > w Argumenty polecenia dodać nazwę pliku z którego chcemy pobrać wejście
+Plik wejściowy powinien być tak samo zapełniony jakbyśmy wczytywali dane z wiersza poleceń. Stworzyłem 
+już 2 przykładowe pliki circle,txt i asteroid.txt.
+
 3. UnitTests.cpp
 	Są to testy jednostkowe stworzone za pomocą framework "catch.hpp". Z powodu wymogów zadania 
 stworzone będą testy jednostkowe za pomocą VS 2019, które zamienią ten plik
+
+4. testInputController
+    Testy jednostkowe do funkcji publicznych klas
