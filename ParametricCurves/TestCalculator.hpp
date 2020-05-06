@@ -1,3 +1,5 @@
+//Łukasz Bondaruk
+
 #ifndef TESTCALCULATOR_H
 #define TESTCALCULATOR_H
 
