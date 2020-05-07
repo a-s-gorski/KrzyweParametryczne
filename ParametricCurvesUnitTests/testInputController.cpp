@@ -59,4 +59,133 @@ namespace TestInputController
 			Assert::AreEqual(expected, actual);
 		}
 	};
+
+
+	TEST_CLASS(CheckInputController)
+	{
+
+		TEST_METHOD(AddingXEquation)
+		{
+			InputController c;
+			FSin<double> s;
+			FMonomial<double> m;
+			Equation eq;
+
+			vector<double> parameters{ 1, 1, 1 };
+			s.setParameters(parameters);
+			m.setParameters(parameters);
+			s.setOperation('+');
+			m.setOperation('+');
+
+			eq += &s;
+			eq += &m;
+
+			c.getXEquation() = eq;
+
+			Equation x;
+			vector<Function<double>*> xf;
+
+			x = c.getXEquation();
+			xf = x.getEquation();
+
+			double expected = m.calculateValue(1);
+			double actual = xf[1]->calculateValue(1);
+
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(AddYEquation)
+		{
+			InputController c;
+			FSin<double> s;
+			FMonomial<double> m;
+			Equation eq;
+
+			vector<double> parameters{ 1, 1, 1 };
+			s.setParameters(parameters);
+			m.setParameters(parameters);
+			s.setOperation('+');
+			m.setOperation('+');
+
+			eq += &s;
+			eq += &m;
+
+			c.getYEquation() = eq;
+
+			Equation x;
+			vector<Function<double>*> xf;
+
+			x = c.getYEquation();
+			xf = x.getEquation();
+
+			double expected = m.calculateValue(1);
+			double actual = xf[1]->calculateValue(1);
+
+			Assert::AreEqual(expected, actual);
+		}
+	};
+
+
+	TEST_CLASS(TestCommandLineInput)
+	{
+		TEST_METHOD(AddingXEquation)
+		{
+			CommandLineInput c;
+			FSin<double> s;
+			FMonomial<double> m;
+			Equation eq;
+
+			vector<double> parameters{ 1, 1, 1 };
+			s.setParameters(parameters);
+			m.setParameters(parameters);
+			s.setOperation('+');
+			m.setOperation('+');
+
+			eq += &s;
+			eq += &m;
+
+			c.getXEquation() = eq;
+
+			Equation x;
+			vector<Function<double>*> xf;
+
+			x = c.getXEquation();
+			xf = x.getEquation();
+
+			double expected = m.calculateValue(1);
+			double actual = xf[1]->calculateValue(1);
+
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(AddingYEquation)
+		{
+			CommandLineInput c;
+			FSin<double> s;
+			FMonomial<double> m;
+			Equation eq;
+
+			vector<double> parameters{ 1, 1, 1 };
+			s.setParameters(parameters);
+			m.setParameters(parameters);
+			s.setOperation('+');
+			m.setOperation('+');
+
+			eq += &s;
+			eq += &m;
+
+			c.getYEquation() = eq;
+
+			Equation x;
+			vector<Function<double>*> xf;
+
+			x = c.getYEquation();
+			xf = x.getEquation();
+
+			double expected = m.calculateValue(1);
+			double actual = xf[1]->calculateValue(1);
+
+			Assert::AreEqual(expected, actual);
+		}
+	};
 }
