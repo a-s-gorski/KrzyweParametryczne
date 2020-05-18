@@ -44,3 +44,6 @@ korzystaliśmy z wersji Open Source
 4. Przebudować rozwiązanie (rebuild solution)
 
 5. W przypadku problemów z konsolą trzeba ustawić w ustawieniach projektu zamiast windows zamienić na console (często po instalacji wtyczki może to zostać zmienione).
+
+## 6. Hierarchia klas
+![Obrazek hierarchii](hierarchy.png)
