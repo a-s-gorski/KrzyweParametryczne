@@ -56,7 +56,7 @@ int main(int argc, char* argv[])
     vector <pair <double, double> > test_points = cal.calculateSerie(&x_func, &y_func, left_border, right_border, points_number);
 
     //Present output
-    QApplication a(argc, argv);
+    // QApplication a(argc, argv);
     //QLabel l;
     //QPicture pic1;
     // used to create basic tests for only OutputController without commandline InputController
