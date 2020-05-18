@@ -85,8 +85,8 @@ int main(int argc, char* argv[])
     //l.show();
     //return a.exec();
 
-    return 0;
-
     delete console_input;
+
+    return 0;
 }
 #endif
