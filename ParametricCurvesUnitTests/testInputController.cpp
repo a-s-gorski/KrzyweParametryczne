@@ -12,7 +12,7 @@ namespace TestInputController
 
 		TEST_METHOD(AddingToEquation)
 		{
-			Equation eq;
+			Equation<Function<double>> eq;
 			FSin<double> s;
 
 			vector<double> parameters{ 1, 1, 1 };
@@ -33,7 +33,7 @@ namespace TestInputController
 
 		TEST_METHOD(AddingMoreToEquation)
 		{
-			Equation eq;
+			Equation<Function<double>> eq;
 			FSin<double> s;
 			FMonomial<double> c;
 
@@ -69,7 +69,7 @@ namespace TestInputController
 			InputController c;
 			FSin<double> s;
 			FMonomial<double> m;
-			Equation eq;
+			Equation<Function<double>> eq;
 
 			vector<double> parameters{ 1, 1, 1 };
 			s.setParameters(parameters);
@@ -82,7 +82,7 @@ namespace TestInputController
 
 			c.getXEquation() = eq;
 
-			Equation x;
+			Equation<Function<double>> x;
 			vector<Function<double>*> xf;
 
 			x = c.getXEquation();
@@ -99,7 +99,7 @@ namespace TestInputController
 			InputController c;
 			FSin<double> s;
 			FMonomial<double> m;
-			Equation eq;
+			Equation<Function<double>> eq;
 
 			vector<double> parameters{ 1, 1, 1 };
 			s.setParameters(parameters);
@@ -112,7 +112,7 @@ namespace TestInputController
 
 			c.getYEquation() = eq;
 
-			Equation x;
+			Equation<Function<double>> x;
 			vector<Function<double>*> xf;
 
 			x = c.getYEquation();
@@ -133,7 +133,7 @@ namespace TestInputController
 			CommandLineInput c;
 			FSin<double> s;
 			FMonomial<double> m;
-			Equation eq;
+			Equation<Function<double>> eq;
 
 			vector<double> parameters{ 1, 1, 1 };
 			s.setParameters(parameters);
@@ -146,7 +146,7 @@ namespace TestInputController
 
 			c.getXEquation() = eq;
 
-			Equation x;
+			Equation<Function<double>> x;
 			vector<Function<double>*> xf;
 
 			x = c.getXEquation();
@@ -163,7 +163,7 @@ namespace TestInputController
 			CommandLineInput c;
 			FSin<double> s;
 			FMonomial<double> m;
-			Equation eq;
+			Equation<Function<double>> eq;
 
 			vector<double> parameters{ 1, 1, 1 };
 			s.setParameters(parameters);
@@ -176,7 +176,7 @@ namespace TestInputController
 
 			c.getYEquation() = eq;
 
-			Equation x;
+			Equation<Function<double>> x;
 			vector<Function<double>*> xf;
 
 			x = c.getYEquation();
