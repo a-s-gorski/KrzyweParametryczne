@@ -12,48 +12,6 @@
 using namespace std;
 
 
-Equation::Equation() {
-    #ifdef _DEBUG
-        cout << "Creating Equation\n";
-    #endif // _DEBUG
-}
-
-Equation::~Equation() {
-    #ifdef _DEBUG
-        cout << "Destroying Equation\n";
-    #endif // _DEBUG
-    for (auto& v : equation) {
-       delete v;
-    #ifdef _DEBUG
-            cout << "Destroying trigonometric function\n";
-    #endif // _DEBUG
-    }
-}
-
-
-void Equation::operator += (Function<double>* func) {
-    equation.push_back(func);
-#ifdef _DEBUG
-    cout << "Adding object to an Equation\n";
-#endif // _DEBUG
-}
-
-
-void Equation::printEquation() const {
-    bool not_first = false;
-    for (auto v : equation) {
-        v->showFunction(not_first);
-        not_first = true;
-    }
-    cout << endl;
-}
-
-
-const vector<Function<double>*>& Equation::getEquation() {
-    return equation;
-}
-
-
 InputController::InputController() {
     number_of_points = 1;
     left_border = -1;
@@ -232,7 +190,7 @@ Function<double>* InputController::createFunction (int iterator) {
 }
 
 
-void InputController::addToEquation(Equation* Eq) {
+void InputController::addToEquation(Equation<Function<double>>* Eq) {
     int n;
     do {
         cout << "How many element do you want to add to your equation: ";
@@ -293,12 +251,12 @@ double InputController::getRightBorder() {
 }
 
 
-Equation& InputController::getXEquation() {
+Equation<Function<double>>& InputController::getXEquation() {
     return X;
 }
 
 
-Equation& InputController::getYEquation() {
+Equation<Function<double>>& InputController::getYEquation() {
     return Y;
 }
 
@@ -317,7 +275,7 @@ CommandLineInput::~CommandLineInput() {
 }
 
 
-Function<double>* CommandLineInput::addToEquation(Equation* Eq, char operation, double a) {
+Function<double>* CommandLineInput::addToEquation(Equation<Function<double>>* Eq, char operation, double a) {
     Function<double>* p = new FConstant<double>;
 #ifdef _DEBUG
     cout << "Creating FConstant\n";
@@ -330,7 +288,7 @@ Function<double>* CommandLineInput::addToEquation(Equation* Eq, char operation, 
 }
 
 
-Function<double>* CommandLineInput::addToEquation(Equation* Eq, char operation, int function, double a, double b, double c) {
+Function<double>* CommandLineInput::addToEquation(Equation<Function<double>>* Eq, char operation, int function, double a, double b, double c) {
     Function<double>* p;
     switch (function) {
     case 1:
