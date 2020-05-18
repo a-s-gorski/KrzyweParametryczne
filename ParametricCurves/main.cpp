@@ -8,9 +8,9 @@
 #include "DrawingPlot.h"
 #include "DrawingPlot.cpp"
 #include "DrawingPlotGui.h"
-#include "DrawingPlotGui.cpp"
-#include <QtWidgets/QApplication>
-#include <QtWidgets>
+//#include "DrawingPlotGui.cpp"
+//#include <QtWidgets/QApplication>
+//#include <QtWidgets>
 #include <utility>
 #include <math.h>
 #include "Frame.h"
@@ -69,15 +69,21 @@ int main(int argc, char* argv[])
         //crds.push_back(p);
     //}
 
-    DrawingPlotGui<double, double> g1;
-    g1.setPicture(pic1);
+    //DrawingPlotGui<double, double> g1;
+    //g1.setPicture(pic1);
+    //g1.setPlot(test_points);
+    //g1.drawPlot();
+
+    DrawingPlot<double, double> g1;
+    //g1.setPicture(pic1);
     g1.setPlot(test_points);
-    g1.drawPlot();
 
 
-    l.setPicture(pic1);
-    l.show();
-    return a.exec();
+    //l.setPicture(pic1);
+    //l.show();
+    //return a.exec();
+
+    return 0;
 
     delete console_input;
 }
