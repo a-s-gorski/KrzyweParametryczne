@@ -1,4 +1,6 @@
 ﻿#include <iostream>
+#ifndef QT_H
+#define QT_H
 #include <cmath>
 #include <vector>
 #include "Functions.hpp"
@@ -7,7 +9,7 @@
 #include "OutputController.h"
 #include "DrawingPlot.h"
 #include "DrawingPlot.cpp"
-#include "DrawingPlotGui.h"
+//#include "DrawingPlotGui.h"
 //#include "DrawingPlotGui.cpp"
 //#include <QtWidgets/QApplication>
 //#include <QtWidgets>
@@ -55,8 +57,8 @@ int main(int argc, char* argv[])
 
     //Present output
     QApplication a(argc, argv);
-    QLabel l;
-    QPicture pic1;
+    //QLabel l;
+    //QPicture pic1;
     // used to create basic tests for only OutputController without commandline InputController
    // for (int i = 0; i < 100000; i++) {
        // pair <double, double> p;
@@ -87,3 +89,4 @@ int main(int argc, char* argv[])
 
     delete console_input;
 }
+#endif
