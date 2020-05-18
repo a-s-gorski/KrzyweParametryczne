@@ -4,17 +4,23 @@
 // Jednak WSZYSTKIE wymienione tutaj pliki będą ponownie kompilowane, jeśli którykolwiek z nich zostanie zaktualizowany między kompilacjami.
 // Nie dodawaj tutaj plików, które będziesz często aktualizować (obniża to korzystny wpływ na wydajność).
 
-#ifndef PCH_H
-#define PCH_H
+//#ifndef PCH_H
+//#define PCH_H
 
 #include "..\ParametricCurves\Functions.hpp"
 #include "..\ParametricCurves\Calculator.cpp"
+
+
 #include "..\ParametricCurves\DrawingPlot.h"
 #include "..\ParametricCurves\DrawingPlot.cpp"
 
 #include "..\ParametricCurves\Frame.h"
+
+
+
+
 #include "..\ParametricCurves\InputController.hpp"
 #include <vector>
 #include <cmath>
 
-#endif //PCH_H
+/*#endif*/ //PCH_H

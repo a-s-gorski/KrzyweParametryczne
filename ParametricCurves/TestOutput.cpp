@@ -3,6 +3,8 @@
 #include <vector>
 #include <utility>
 #include "..\ParametricCurves\DrawingPlot.h"
+#include "..\ParametricCurves\Frame.h"
+#include "..\ParametricCurves\Frame.cpp"
 
 
 
