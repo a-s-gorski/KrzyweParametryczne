@@ -24,6 +24,8 @@ public:
     void DrawingPlot<X,Y>::setPlot(vector <pair<X, Y> > values);
     void DrawingPlot<X, Y>::get_edge_values();
     void DrawingPlot<X, Y>::rescale_drawing();
-    vector <X [2]> DrawingPlot<X, Y>::getCanvasCoordinates();
+    vector<X> getCanvasCoordinates();
+    int getPointsNumber();
+    X getCurrentCoordinates(int row, int col);
     };
 

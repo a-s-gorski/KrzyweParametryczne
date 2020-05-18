@@ -1,8 +1,8 @@
 // Autor :  Adam Górski
 
 #include "DrawingPlot.h"
-#include <QtWidgets/QApplication>
-#include <QtWidgets>
+//#include <QtWidgets/QApplication>
+//#include <QtWidgets>
 #include <iostream>
 #include <vector>
 #include <utility>
@@ -69,15 +69,49 @@ void DrawingPlot<X, Y>::setPlot(vector <pair<X, Y>> values) {
 }
 
 
+/*
+There is no error in the following piece of code:
+
+float arr[4];
+arr[0] = 6.28;
+arr[1] = 2.50;
+arr[2] = 9.73;
+arr[3] = 4.364;
+std::vector<float*> vec = std::vector<float*>();
+vec.push_back(arr);
+float* ptr = vec.front();
+\
+*/
+
+
 template <class X, class Y>
-vector <X[2]> DrawingPlot<X, Y>::getCanvasCoordinates() {
-	vector <X[2]> coordinates_pair;
-	for (int i = 0; i < DrawingPlot::coordinates.size(); i++) {
-		X array[2];
-		arr_c[] = DrawingPlot::coordinates[0];
-		arr_c[1] = DrawingPlot::coordinates[1];
-		coordinates_pair.push_back(arr_c);
+vector <X> DrawingPlot<X, Y>::getCanvasCoordinates() {
+	// vector <X[2]> coordinates_pair;
+	X array[DrawingPlot::points.size][2];
+
+	for(int i = 0; i < DrawingPlot::points.size; i++) {
+		array[i][0] = *DrawingPlot::coordinates[0];
+		array[i][1] = *DrawingPlot::coordinates[1];
 	}
+	vector<X*> coordinates_pair = vector<X*>;
+	for(int i = 0; i < DrawingPlot::points.size; i++) {
+		coordinates_pair.push_back(array[i])
+	}
+	X* ptr = coordinates_pair.front();
+
 	return coordinates_pair;
 
+}
+
+template <class X, class Y>
+int DrawingPlot<X, Y>::getPointsNumber() {
+	int size = (int)DrawingPlot::points.size();
+	return size;
+}
+
+template <class X, class Y>
+
+X DrawingPlot<X, Y>::getCurrentCoordinates(int row, int col) {
+	X value = coordinates[row][col];
+	return value;
 }

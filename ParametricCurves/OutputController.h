@@ -1,5 +1,8 @@
 #pragma once
 
+//	Author : Adam Górski 
+
+
 #include <QtWidgets/QMainWindow>
 #include "ui_OutputController.h"
 

@@ -1,5 +1,8 @@
 #pragma once
 
+//	Author : Adam Górski 
+
+
 class Frame
 {
 public:

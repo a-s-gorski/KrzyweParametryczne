@@ -1,5 +1,7 @@
 #include "DrawingPlotGui.h"
 
+//	Author : Adam Górski 
+
 
 
 template <class X, class Y>

@@ -10,6 +10,8 @@
 #include "..\ParametricCurves\Functions.hpp"
 #include "..\ParametricCurves\Calculator.cpp"
 #include "..\ParametricCurves\DrawingPlot.h"
+#include "..\ParametricCurves\DrawingPlot.cpp"
+
 #include "..\ParametricCurves\Frame.h"
 #include "..\ParametricCurves\InputController.hpp"
 #include <vector>

@@ -2,6 +2,8 @@
 #include "CppUnitTest.h"
 #include <vector>
 #include <utility>
+#include "..\ParametricCurves\DrawingPlot.h"
+
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -18,7 +20,7 @@ public:
 		double test_width = 700.0;
 
 
-		DrawingPlot<double, double> test_plot;
+		DrawingPlot <double, double> test_plot;
 		pair <double, double> test_pair;
 		vector <pair <double, double>> test_vector;
 
@@ -29,16 +31,11 @@ public:
 		}
 		test_plot.setPlot(test_vector);
 
-		vector<double [2]> test_coordinates = test_plot.getCanvasCoordinates();
-		//double result_coordinates[100][2];
-		//for (int i = 0; i < 100; i++) {
-		//	result_coordinates[100][0] = test_coordinates[100][0];
-		//	result_coordinates[100][1] = test_coordinates[100][1];
-		//}
+	
 		bool expected = true;
 		bool actual = true;
-		for (int i = 0; i < test_coordinates.size(); i++) {
-			if (test_coordinates[i][0] > test_width || test_coordinates[i][1] > test_height) {
+		for (int i = 0; i < 1000; i++) {
+			if (test_plot.getCurrentCoordinates(i, 0) > test_width || test_plot.getCurrentCoordinates(i, 1) > test_height) {
 				actual = false;
 			}
 

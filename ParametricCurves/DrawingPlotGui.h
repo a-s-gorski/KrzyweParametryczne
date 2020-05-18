@@ -1,4 +1,8 @@
 #pragma once
+
+//	Author : Adam Górski 
+
+
 #include <QtWidgets>
 #include "DrawingPlot.h"
 

@@ -1,5 +1,8 @@
 #include "Frame.h"
 
+//	Author : Adam Górski 
+
+
 Frame::Frame() {}
 
 Frame::~Frame(){}
