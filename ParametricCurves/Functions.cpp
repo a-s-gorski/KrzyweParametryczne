@@ -11,8 +11,14 @@ Function<V>::Function(char operation){
     std::cout << "Function: Creating Function\n";
 #endif // _DEBUG
     this->parameters_number = 1;
-    this->operation = operation;
-    this->parameters.push_back(1);
+
+    if (checkOperation(operation)) {
+        this->operation = operation;
+    }else {
+        this->operation = '+';
+    }
+
+    this->parameters = { 1 };
 }
 
 template <class V>
@@ -51,6 +57,22 @@ void Function<V>::setOperation(char new_operation) {
 }
 
 template <class V>
+bool Function<V>::checkOperation(char operation) {
+    switch (operation) {
+        case '+':
+            return true;
+        case '-':
+            return true;
+        case '*':
+            return true;
+        case '/':
+            return true;
+        default:
+            return false;
+    }
+}
+
+template <class V>
 char Function<V>::getOperation() {
     return this->operation;
 }
@@ -61,21 +83,28 @@ double Function<V>::operator ()(V t) {
 }
 
 template <class V>
-FCos<V>::FCos(char operation){
+FCos<V>::FCos(char operation, std::vector<double> parameters){
 #ifdef _DEBUG
     std::cout << "FCos: Creating FCos\n";
 #endif // _DEBUG
     this->parameters_number = 3;
-    this->operation = operation;
     /*
         In default:
             a = 1
             b = 1
             c = 1
     */
-    this->parameters.push_back(1);
-    this->parameters.push_back(1);
-    this->parameters.push_back(1);
+    if (checkOperation(operation)) {
+        this->operation = operation;
+    }else {
+        this->operation = '+';
+    }
+
+    if (checkParameters(parameters)) {
+        this->parameters = parameters;
+    }else {
+        this->parameters = { 1, 1, 1 };
+    }
 }
 
 template <class V>
@@ -174,11 +203,10 @@ void FCos<V>::showFunction(const bool not_first) {
 
 
 template <class V>
-FSin<V>::FSin(char operation) {
+FSin<V>::FSin(char operation, std::vector<double> parameters) {
 #ifdef _DEBUG
     std::cout << "FSin: Creating FSin\n";
 #endif // _DEBUG
-    this->operation = operation;
     this->parameters_number = 3;
     /*
         In default:
@@ -186,9 +214,17 @@ FSin<V>::FSin(char operation) {
             b = 1
             c = 1
     */
-    this->parameters.push_back(1);
-    this->parameters.push_back(1);
-    this->parameters.push_back(1);
+    if (checkOperation(operation)) {
+        this->operation = operation;
+    } else {
+        this->operation = '+';
+    }
+
+    if (checkParameters(parameters)) {
+        this->parameters = parameters;
+    } else {
+        this->parameters = { 1, 1, 1 };
+    }
 }
 
 template <class V>
@@ -285,11 +321,10 @@ void FSin<V>::showFunction(const bool not_first) {
 }
 
 template <class V>
-FMonomial<V>::FMonomial(char operation) {
+FMonomial<V>::FMonomial(char operation, std::vector<double> parameters) {
 #ifdef _DEBUG
     std::cout << "FMonomial: Creating FMonomial\n";
 #endif // _DEBUG
-    this->operation = operation;
     this->parameters_number = 3;
     /*
         In default:
@@ -297,9 +332,17 @@ FMonomial<V>::FMonomial(char operation) {
             b = 1
             c = 1
     */
-    this->parameters.push_back(1);
-    this->parameters.push_back(1);
-    this->parameters.push_back(1);
+    if (checkOperation(operation)) {
+        this->operation = operation;
+    } else {
+        this->operation = '+';
+    }
+
+    if (checkParameters(parameters)) {
+        this->parameters = parameters;
+    } else {
+        this->parameters = { 1, 1, 1 };
+    }
 }
 
 template <class V>
@@ -388,9 +431,8 @@ void FMonomial<V>::showFunction(const bool not_first) {
 }
 
 template <class V>
-FConstant<V>::FConstant(char operation) {
+FConstant<V>::FConstant(char operation, std::vector<double> parameters) {
 #ifdef _DEBUG
-    this->operation = operation;
     std::cout << "FConstant: Creating FConstant\n";
 #endif // _DEBUG
     this->parameters_number = 1;
@@ -398,7 +440,19 @@ FConstant<V>::FConstant(char operation) {
         In default:
             a = 1
     */
-    this->parameters.push_back(1);
+    if (checkOperation(operation)) {
+        this->operation = operation;
+    }
+    else {
+        this->operation = '+';
+    }
+
+    if (checkParameters(parameters)) {
+        this->parameters = parameters;
+    }
+    else {
+        this->parameters = { 1 };
+    }
 }
 
 template <class V>

@@ -19,6 +19,7 @@ public:
     Function(const Function& func);
     virtual ~Function();
     void setOperation(char new_operation);
+    bool checkOperation(char operation);
     char getOperation();
     virtual bool checkParameters(std::vector<V> parameters) = 0;
     virtual void setParameters(std::vector<V> parameters);
@@ -38,7 +39,7 @@ class FCos : public Function <V> {
             c!=0
     */
 public:
-    FCos(char operation = '+');
+    FCos(char operation = '+', std::vector<double> parameters = std::vector<double>{ 1, 1, 1 });
     ~FCos();
     bool checkParameters(std::vector<V> parameters);
     double calculateValue(V t);
@@ -56,7 +57,7 @@ class FSin : public Function <V> {
             c!=0
     */
 public:
-    FSin(char operation = '+');
+    FSin(char operation = '+', std::vector<double> parameters = std::vector<double>{ 1, 1, 1 });
     ~FSin();
     bool checkParameters(std::vector<V> parameters);
     double calculateValue(V t);
@@ -73,7 +74,7 @@ class FMonomial : public Function <V> {
             c!=0
     */
 public:
-    FMonomial(char operation = '+');
+    FMonomial(char operation = '+', std::vector<double> parameters = std::vector<double>{ 1, 1, 1 });
     ~FMonomial();
     bool checkParameters(std::vector<V> parameters);
     double calculateValue(V t);
@@ -89,7 +90,7 @@ class FConstant : public Function <V> {
             a!=0
     */
 public:
-    FConstant(char operation = '+');
+    FConstant(char operation = '+', std::vector<double> parameters = std::vector<double>{ 1 });
     ~FConstant();
     bool checkParameters(std::vector<V> parameters);
     double calculateValue(V t);

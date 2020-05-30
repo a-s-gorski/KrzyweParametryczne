@@ -5,8 +5,9 @@
 #include <fstream>
 #include <string>
 #include "Functions.hpp"
-#include "InputController.hpp"
 #include "Functions.cpp"
+#include "InputController.hpp"
+
 
 
 using namespace std;
