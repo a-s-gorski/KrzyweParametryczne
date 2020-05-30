@@ -6,7 +6,6 @@
 #include <vector>
 #include "Functions.hpp"
 
-
 template <typename T>
 class Equation {
     std::vector<T*> equation;

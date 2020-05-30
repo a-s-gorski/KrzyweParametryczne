@@ -7,9 +7,6 @@
 #include <cmath>
 #include <vector>
 
-#include "Functions.hpp"
-#include "Calculator.hpp"
-
 bool testCalculatorCalculateValue();
 bool testCalculatorCalculateSerie();
 

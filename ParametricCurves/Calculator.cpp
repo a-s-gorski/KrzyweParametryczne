@@ -5,6 +5,7 @@
 #include<vector>
 #include<algorithm>
 #include "Functions.hpp"
+#include "Functions.cpp"
 #include "Calculator.hpp"
 
 using namespace std;

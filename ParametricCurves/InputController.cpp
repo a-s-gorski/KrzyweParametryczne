@@ -6,7 +6,7 @@
 #include <string>
 #include "Functions.hpp"
 #include "InputController.hpp"
-
+#include "Functions.cpp"
 
 
 using namespace std;
