@@ -6,12 +6,23 @@
 #include "Functions.hpp"
 
 template <class V>
-Function<V>::Function(){
+Function<V>::Function(char operation){
 #ifdef _DEBUG
     std::cout << "Function: Creating Function\n";
 #endif // _DEBUG
     this->parameters_number = 1;
-    this->operation = '+';
+    this->operation = operation;
+    this->parameters.push_back(1);
+}
+
+template <class V>
+Function<V>::Function(const Function& func) {
+#ifdef _DEBUG
+    std::cout << "Function: Copying Function\n";
+#endif // _DEBUG
+    this->parameters_number = func.parameters_number;
+    this->operation = func.operation;
+    this->parameters = func.parameters;
 }
 
 template <class V>
@@ -49,13 +60,13 @@ double Function<V>::operator ()(V t) {
     return this->calculateValue(t);
 }
 
-
 template <class V>
-FCos<V>::FCos() {
+FCos<V>::FCos(char operation){
 #ifdef _DEBUG
     std::cout << "FCos: Creating FCos\n";
 #endif // _DEBUG
     this->parameters_number = 3;
+    this->operation = operation;
     /*
         In default:
             a = 1
@@ -115,7 +126,13 @@ double FCos<V>::calculateValue(V t) {
 
     double result;
 
-    result = a * pow(cos(b * t), c);
+    try {
+        result = a * pow(cos(b * t), c);
+    }
+    catch (...) {
+        std::cout << "Illegal mathematical operation";
+        result = 0;
+    }
 
 #ifdef _DEBUG
     std::cout << "   a: " << a << " b: " << b << " c: " << c << "\n";
@@ -157,10 +174,11 @@ void FCos<V>::showFunction(const bool not_first) {
 
 
 template <class V>
-FSin<V>::FSin() {
+FSin<V>::FSin(char operation) {
 #ifdef _DEBUG
     std::cout << "FSin: Creating FSin\n";
 #endif // _DEBUG
+    this->operation = operation;
     this->parameters_number = 3;
     /*
         In default:
@@ -220,7 +238,13 @@ double FSin<V>::calculateValue(V t) {
 
     double result;
 
-    result = a * pow(sin(b * t), c);
+    try {
+        result = a * pow(sin(b * t), c);
+    }
+    catch (...) {
+        std::cout << "Illegal mathematical operation";
+        result = 0;
+    }
 
 #ifdef _DEBUG
     std::cout << "   a: " << a << " b: " << b << " c: " << c << "\n";
@@ -261,10 +285,11 @@ void FSin<V>::showFunction(const bool not_first) {
 }
 
 template <class V>
-FMonomial<V>::FMonomial() {
+FMonomial<V>::FMonomial(char operation) {
 #ifdef _DEBUG
     std::cout << "FMonomial: Creating FMonomial\n";
 #endif // _DEBUG
+    this->operation = operation;
     this->parameters_number = 3;
     /*
         In default:
@@ -321,7 +346,13 @@ double FMonomial<V>::calculateValue(V t) {
 
     double result;
 
-    result = a * pow((b + t), c);
+    try {
+        result = a * pow((b + t), c);
+    }
+    catch (...) {
+        std::cout << "Illegal mathematical operation";
+        result = 0;
+    }
 
 #ifdef _DEBUG
     std::cout << "   a: " << a << " b: " << b << " c: " << c << "\n";
@@ -357,8 +388,9 @@ void FMonomial<V>::showFunction(const bool not_first) {
 }
 
 template <class V>
-FConstant<V>::FConstant() {
+FConstant<V>::FConstant(char operation) {
 #ifdef _DEBUG
+    this->operation = operation;
     std::cout << "FConstant: Creating FConstant\n";
 #endif // _DEBUG
     this->parameters_number = 1;
@@ -408,7 +440,13 @@ double FConstant<V>::calculateValue(V t) {
 
     double result;
 
-    result = a;
+    try {
+        result = a;
+    }
+    catch (...) {
+        std::cout << "Illegal mathematical operation";
+        result = 0;
+    }
 
 #ifdef _DEBUG
     std::cout << "   a: " << a << "\n";

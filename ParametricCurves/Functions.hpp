@@ -15,7 +15,8 @@ protected:
     char operation;
     std::vector<V> parameters;
 public:
-    Function();
+    Function(char operation = '+');
+    Function(const Function& func);
     virtual ~Function();
     void setOperation(char new_operation);
     char getOperation();
@@ -37,7 +38,7 @@ class FCos : public Function <V> {
             c!=0
     */
 public:
-    FCos();
+    FCos(char operation = '+');
     ~FCos();
     bool checkParameters(std::vector<V> parameters);
     double calculateValue(V t);
@@ -55,7 +56,7 @@ class FSin : public Function <V> {
             c!=0
     */
 public:
-    FSin();
+    FSin(char operation = '+');
     ~FSin();
     bool checkParameters(std::vector<V> parameters);
     double calculateValue(V t);
@@ -72,7 +73,7 @@ class FMonomial : public Function <V> {
             c!=0
     */
 public:
-    FMonomial();
+    FMonomial(char operation = '+');
     ~FMonomial();
     bool checkParameters(std::vector<V> parameters);
     double calculateValue(V t);
@@ -88,7 +89,7 @@ class FConstant : public Function <V> {
             a!=0
     */
 public:
-    FConstant();
+    FConstant(char operation = '+');
     ~FConstant();
     bool checkParameters(std::vector<V> parameters);
     double calculateValue(V t);
