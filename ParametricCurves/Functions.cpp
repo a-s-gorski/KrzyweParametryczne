@@ -228,7 +228,6 @@ void FCos<V>::showFunction(const bool not_first) {
     std::cout << " ";
 }
 
-
 template <class V>
 FSin<V>::FSin(char operation, std::vector<double> parameters) {
 #ifdef _DEBUG
@@ -626,3 +625,5 @@ void FConstant<V>::showFunction(const bool not_first) {
     }
     std::cout << a << " ";
 }
+
+

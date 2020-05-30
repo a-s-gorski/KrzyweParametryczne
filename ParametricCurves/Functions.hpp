@@ -26,6 +26,14 @@ public:
     virtual double calculateValue(V t) = 0;
     virtual void showFunction(bool not_first) = 0;
     double operator()(V t);
+    friend std::ostream& operator<<(std::ostream& os, const Function<V>& func) {
+        os << func.operation << " ";
+        os << "Function" << " ";
+        for (int i = 0; i < func.parameters_number; i++) {
+            os << func.parameters[i] << " ";
+        }
+        return os;
+    };
 };
 
 template <class V = double>
@@ -45,6 +53,14 @@ public:
     bool checkParameters(std::vector<V> parameters);
     double calculateValue(V t);
     void showFunction(bool not_first);
+    friend std::ostream& operator<<(std::ostream& os, const FCos<V>& func) {
+        os << func.operation << " ";
+        os << "FCos" << " ";
+        for (int i=0; i < func.parameters_number; i++) {
+            os << func.parameters[i] << " ";
+        }
+        return os;
+    };
 };
 
 template <class V = double>
@@ -64,6 +80,14 @@ public:
     bool checkParameters(std::vector<V> parameters);
     double calculateValue(V t);
     void showFunction(bool not_first);
+    friend std::ostream& operator<<(std::ostream& os, const FSin<V>& func) {
+        os << func.operation << " ";
+        os << "FSin" << " ";
+        for (int i = 0; i < func.parameters_number; i++) {
+            os << func.parameters[i] << " ";
+        }
+        return os;
+    };
 };
 
 template <class V = double>
@@ -82,6 +106,14 @@ public:
     bool checkParameters(std::vector<V> parameters);
     double calculateValue(V t);
     void showFunction(bool not_first);
+    friend std::ostream& operator<<(std::ostream& os, const FMonomial<V>& func) {
+        os << func.operation << " ";
+        os << "FMonomial" << " ";
+        for (int i = 0; i < func.parameters_number; i++) {
+            os << func.parameters[i] << " ";
+        }
+        return os;
+    };
 };
 
 template <class V = double>
@@ -99,6 +131,14 @@ public:
     bool checkParameters(std::vector<V> parameters);
     double calculateValue(V t);
     void showFunction(bool not_first);
+    friend std::ostream& operator<<(std::ostream& os, const FConstant<V>& func) {
+        os << func.operation << " ";
+        os << "FConstant" << " ";
+        for (int i = 0; i < func.parameters_number; i++) {
+            os << func.parameters[i] << " ";
+        }
+        return os;
+    };
 };
 
 #endif
