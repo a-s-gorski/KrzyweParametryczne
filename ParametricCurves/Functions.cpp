@@ -108,6 +108,33 @@ FCos<V>::FCos(char operation, std::vector<double> parameters){
 }
 
 template <class V>
+FCos<V>::FCos(std::vector<double> parameters, char operation) {
+#ifdef _DEBUG
+    std::cout << "FCos: Creating FCos\n";
+#endif // _DEBUG
+    this->parameters_number = 3;
+    /*
+        In default:
+            a = 1
+            b = 1
+            c = 1
+    */
+    if (checkOperation(operation)) {
+        this->operation = operation;
+    }
+    else {
+        this->operation = '+';
+    }
+
+    if (checkParameters(parameters)) {
+        this->parameters = parameters;
+    }
+    else {
+        this->parameters = { 1, 1, 1 };
+    }
+}
+
+template <class V>
 FCos<V>::~FCos() {
 #ifdef _DEBUG
     std::cout << "FCos: Destroying FCos\n";
@@ -223,6 +250,33 @@ FSin<V>::FSin(char operation, std::vector<double> parameters) {
     if (checkParameters(parameters)) {
         this->parameters = parameters;
     } else {
+        this->parameters = { 1, 1, 1 };
+    }
+}
+
+template <class V>
+FSin<V>::FSin(std::vector<double> parameters, char operation) {
+#ifdef _DEBUG
+    std::cout << "FSin: Creating FSin\n";
+#endif // _DEBUG
+    this->parameters_number = 3;
+    /*
+        In default:
+            a = 1
+            b = 1
+            c = 1
+    */
+    if (checkOperation(operation)) {
+        this->operation = operation;
+    }
+    else {
+        this->operation = '+';
+    }
+
+    if (checkParameters(parameters)) {
+        this->parameters = parameters;
+    }
+    else {
         this->parameters = { 1, 1, 1 };
     }
 }
@@ -346,6 +400,33 @@ FMonomial<V>::FMonomial(char operation, std::vector<double> parameters) {
 }
 
 template <class V>
+FMonomial<V>::FMonomial(std::vector<double> parameters, char operation) {
+#ifdef _DEBUG
+    std::cout << "FMonomial: Creating FMonomial\n";
+#endif // _DEBUG
+    this->parameters_number = 3;
+    /*
+        In default:
+            a = 1
+            b = 1
+            c = 1
+    */
+    if (checkOperation(operation)) {
+        this->operation = operation;
+    }
+    else {
+        this->operation = '+';
+    }
+
+    if (checkParameters(parameters)) {
+        this->parameters = parameters;
+    }
+    else {
+        this->parameters = { 1, 1, 1 };
+    }
+}
+
+template <class V>
 FMonomial<V>::~FMonomial() {
 #ifdef _DEBUG
     std::cout << "FMonomial: Destroying FMonomial\n";
@@ -432,6 +513,31 @@ void FMonomial<V>::showFunction(const bool not_first) {
 
 template <class V>
 FConstant<V>::FConstant(char operation, std::vector<double> parameters) {
+#ifdef _DEBUG
+    std::cout << "FConstant: Creating FConstant\n";
+#endif // _DEBUG
+    this->parameters_number = 1;
+    /*
+        In default:
+            a = 1
+    */
+    if (checkOperation(operation)) {
+        this->operation = operation;
+    }
+    else {
+        this->operation = '+';
+    }
+
+    if (checkParameters(parameters)) {
+        this->parameters = parameters;
+    }
+    else {
+        this->parameters = { 1 };
+    }
+}
+
+template <class V>
+FConstant<V>::FConstant(std::vector<double> parameters, char operation) {
 #ifdef _DEBUG
     std::cout << "FConstant: Creating FConstant\n";
 #endif // _DEBUG
