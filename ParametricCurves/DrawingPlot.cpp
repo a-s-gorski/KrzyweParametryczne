@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include <cmath>
 #include "Frame.h"
 
 using namespace std;

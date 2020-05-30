@@ -156,7 +156,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\ParametricCurves\TestOutput.cpp" />
     <ClCompile Include="testCalculator.cpp" />
     <ClCompile Include="testFunctions.cpp" />
     <ClCompile Include="pch.cpp">
@@ -166,6 +165,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="testInputController.cpp" />
+    <ClCompile Include="TestOutput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
