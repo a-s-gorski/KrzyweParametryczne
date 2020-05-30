@@ -1,5 +1,7 @@
+
 #include "pch.h"
 #include "CppUnitTest.h"
+#include <cmath>
 #include <vector>
 #include <utility>
 #include "..\ParametricCurves\DrawingPlot.h"
