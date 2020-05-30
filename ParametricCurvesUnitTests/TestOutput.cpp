@@ -12,7 +12,7 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace TestOutput
+/*namespace TestOutput
 {
 	TEST_CLASS(CheckDrawingPlot) {
 public:
@@ -50,4 +50,4 @@ public:
 	}
 	};
 
-}
+}*/

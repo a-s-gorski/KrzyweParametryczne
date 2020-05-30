@@ -8,8 +8,8 @@
 //#define PCH_H
 
 #include "..\ParametricCurves\Functions.hpp"
-#include "..\ParametricCurves\Calculator.hpp"
 
+#include "..\ParametricCurves\Calculator.hpp"
 
 #include "..\ParametricCurves\DrawingPlot.h"
 #include "..\ParametricCurves\DrawingPlot.cpp"
