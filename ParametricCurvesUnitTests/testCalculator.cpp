@@ -14,8 +14,8 @@ namespace TestCalculator
 		{
 			double val = 1;
 
-			FSin<double> *f1 = new FSin<double>;
-			FCos<double> *f2 = new FCos<double>;
+			FSin<> *f1 = new FSin<double>;
+			FCos<> *f2 = new FCos<double>;
 
 			std::vector<Function<double>*> functions;
 

@@ -8,7 +8,7 @@
 #include<vector>
 #include<cmath>
 
-template <class V>
+template <class V = double>
 class Function {
 protected:
     int parameters_number;
@@ -26,7 +26,7 @@ public:
     double operator()(V t);
 };
 
-template <class V>
+template <class V = double>
 class FCos : public Function <V> {
     /*
         Cos(t) = a*cos(b*t)^c
@@ -44,7 +44,7 @@ public:
     void showFunction(bool not_first);
 };
 
-template <class V>
+template <class V = double>
 class FSin : public Function <V> {
     /*
         Sin(t) = a*sin(b*t)^c
@@ -62,7 +62,7 @@ public:
     void showFunction(bool not_first);
 };
 
-template <class V>
+template <class V = double>
 class FMonomial : public Function <V> {
     /*
         Monomial(t) = a*(b+t)^c
@@ -79,7 +79,7 @@ public:
     void showFunction(bool not_first);
 };
 
-template <class V>
+template <class V = double>
 class FConstant : public Function <V> {
     /*
         Constant(t) = a

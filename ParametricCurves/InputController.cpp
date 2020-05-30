@@ -107,28 +107,28 @@ Function<double>* InputController::createFunction (int iterator) {
 
     switch (fun_type) {
     case 1:
-        p = new FSin<double>;
+        p = new FSin<>;
 #ifdef _DEBUG
         cout << "Creating FSin\n";
 #endif // _DEBUG
         break;
 
     case 2:
-        p = new FCos<double>;
+        p = new FCos<>;
 #ifdef _DEBUG
         cout << "Creating FCos\n";
 #endif // _DEBUG
         break;
 
     case 3:
-        p = new FMonomial<double>;
+        p = new FMonomial<>;
 #ifdef _DEBUG
         cout << "Creating FPolynomial\n";
 #endif // _DEBUG
         break;
 
     case 4:
-        p = new FConstant<double>;
+        p = new FConstant<>;
 #ifdef _DEBUG
         cout << "Creating FConstant\n";
 #endif // _DEBUG
@@ -206,7 +206,7 @@ void InputController::addToEquation(Equation<Function<double>>* Eq) {
     cout << endl;
 
     for (int i = 0; i < n; ++i) {
-        Function<double>* newFunction = createFunction(i);
+        Function<>* newFunction = createFunction(i);
         *Eq += newFunction;
     }
 }
@@ -276,7 +276,7 @@ CommandLineInput::~CommandLineInput() {
 
 
 Function<double>* CommandLineInput::addToEquation(Equation<Function<double>>* Eq, char operation, double a) {
-    Function<double>* p = new FConstant<double>;
+    Function<>* p = new FConstant<>;
 #ifdef _DEBUG
     cout << "Creating FConstant\n";
 #endif // _DEBUG
@@ -292,21 +292,21 @@ Function<double>* CommandLineInput::addToEquation(Equation<Function<double>>* Eq
     Function<double>* p;
     switch (function) {
     case 1:
-        p = new FSin<double>;
+        p = new FSin<>;
 #ifdef _DEBUG
         cout << "Creating FSin\n";
 #endif // _DEBUG
         break;
 
     case 2:
-        p = new FCos<double>;
+        p = new FCos<>;
 #ifdef _DEBUG
         cout << "Creating FCos\n";
 #endif // _DEBUG
         break;
 
     case 3:
-        p = new FMonomial<double>;
+        p = new FMonomial<>;
 #ifdef _DEBUG
         cout << "Creating FPolynomial\n";
 #endif // _DEBUG
