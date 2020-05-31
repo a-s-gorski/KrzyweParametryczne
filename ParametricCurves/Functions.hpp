@@ -6,7 +6,7 @@
 
 #include<iostream>
 #include<vector>
-#include<cmath>
+#include <math.h>
 
 template <class V = double>
 class Function {
@@ -58,7 +58,6 @@ class FCos : public Function <V> {
             c!=0
     */
 public:
-    FCos(char operation, std::vector<double> parameters = std::vector<double>{ 1, 1, 1 });
     FCos(std::vector<double> parameters = std::vector<double>{ 1, 1, 1 }, char operation = '+');
     ~FCos();
     bool checkParameters(std::vector<V> parameters);
@@ -85,7 +84,6 @@ class FSin : public Function <V> {
             c!=0
     */
 public:
-    FSin(char operation, std::vector<double> parameters = std::vector<double>{ 1, 1, 1 });
     FSin(std::vector<double> parameters = std::vector<double>{ 1, 1, 1 }, char operation = '+');
     ~FSin();
     bool checkParameters(std::vector<V> parameters);
@@ -111,7 +109,6 @@ class FMonomial : public Function <V> {
             c!=0
     */
 public:
-    FMonomial(char operation, std::vector<double> parameters = std::vector<double>{ 1, 1, 1 });
     FMonomial(std::vector<double> parameters = std::vector<double>{ 1, 1, 1 }, char operation = '+');
     ~FMonomial();
     bool checkParameters(std::vector<V> parameters);
@@ -136,7 +133,6 @@ class FConstant : public Function <V> {
             a!=0
     */
 public:
-    FConstant(char operation, std::vector<double> parameters = std::vector<double>{ 1 });
     FConstant(std::vector<double> parameters = std::vector<double>{ 1 }, char operation = '+');
     ~FConstant();
     bool checkParameters(std::vector<V> parameters);
@@ -162,7 +158,6 @@ class FExp : public Function <V> {
             b!=0 b!=1
     */
 public:
-    FExp(char operation, std::vector<double> parameters = std::vector<double>{ 1, 2.7183 });
     FExp(std::vector<double> parameters = std::vector<double>{ 1, 2.7183 }, char operation = '+');
     ~FExp();
     bool checkParameters(std::vector<V> parameters);
@@ -187,7 +182,6 @@ class FLog : public Function <V> {
             a!=1 a>0
     */
 public:
-    FLog(char operation, std::vector<double> parameters = std::vector<double>{ 2.7183 });
     FLog(std::vector<double> parameters = std::vector<double>{ 2.7183 }, char operation = '+');
     ~FLog();
     bool checkParameters(std::vector<V> parameters);

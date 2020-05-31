@@ -36,7 +36,7 @@ namespace TestCalculator
 			double val = 1;
 
 			FSin<>* f1 = new FSin<double>;
-			FCos<>* f2 = new FCos<double>('-');
+			FCos<>* f2 = new FCos<double>({ 1,1,1 }, '-');
 
 			std::vector<Function<double>*> functions;
 
@@ -57,7 +57,7 @@ namespace TestCalculator
 			double val = 1;
 
 			FSin<>* f1 = new FSin<double>;
-			FCos<>* f2 = new FCos<double>('*');
+			FCos<>* f2 = new FCos<double>({ 1,1,1 }, '*');
 
 			std::vector<Function<double>*> functions;
 
@@ -78,7 +78,7 @@ namespace TestCalculator
 			double val = 1;
 
 			FSin<>* f1 = new FSin<double>;
-			FCos<>* f2 = new FCos<double>('/');
+			FCos<>* f2 = new FCos<double>({ 1,1,1 }, '/');
 
 			std::vector<Function<double>*> functions;
 
@@ -99,9 +99,9 @@ namespace TestCalculator
 		{
 			double val = 1;
 
-			FSin<>* f1 = new FSin<double>('+');
-			FCos<>* f2 = new FCos<double>('+');
-			FCos<>* f3 = new FCos<double>('*');
+			FSin<>* f1 = new FSin<double>({ 1,1,1 }, '+');
+			FCos<>* f2 = new FCos<double>({ 1,1,1 }, '+');
+			FCos<>* f3 = new FCos<double>({ 1,1,1 }, '*');
 
 			std::vector<Function<double>*> functions;
 
@@ -122,9 +122,9 @@ namespace TestCalculator
 		{
 			double val = 1;
 
-			FSin<>* f1 = new FSin<double>('+');
-			FCos<>* f2 = new FCos<double>('*');
-			FCos<>* f3 = new FCos<double>('+');
+			FSin<>* f1 = new FSin<double>({ 1,1,1 }, '+');
+			FCos<>* f2 = new FCos<double>({ 1,1,1 }, '*');
+			FCos<>* f3 = new FCos<double>({ 1,1,1 }, '+');
 
 			std::vector<Function<double>*> functions;
 
