@@ -717,7 +717,7 @@ double FExp<V>::calculateValue(V t) {
 #endif // _DEBUG
 
     double& a = this->parameters[0];
-    double& b = this->parameters[0];
+    double& b = this->parameters[1];
 
     double result;
 

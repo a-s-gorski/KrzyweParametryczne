@@ -450,5 +450,44 @@ namespace TestFunctions
 
 			Assert::AreEqual(expected, actual);
 		}
+
+		TEST_METHOD(FExpDefault)
+		{
+			FExp<> func;
+
+			double val = 1;
+
+			double expected = 2.7183;
+
+			double actual = func.calculateValue(val);
+
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(FExpDefault2)
+		{
+			FExp<> func;
+
+			double val = 2;
+
+			double expected = 7.38915489;
+
+			double actual = func.calculateValue(val);
+
+			Assert::AreEqual(expected, actual, 0.0001);
+		}
+
+		TEST_METHOD(FExp_Params_2_2)
+		{
+			FExp<> func({ 2, 2 });
+
+			double val = 2;
+
+			double expected = 8;
+
+			double actual = func.calculateValue(val);
+
+			Assert::AreEqual(expected, actual, 0.0001);
+		}
 	};
 }
