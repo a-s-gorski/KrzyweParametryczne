@@ -152,4 +152,29 @@ public:
     };
 };
 
+template <class V = double>
+class FExp : public Function <V> {
+    /*
+        Exp(t) = a*(b)^t
+        parameters_number: 2
+        parameters: a, b
+            a!=0
+            b!=0 b!=1
+    */
+public:
+    FExp(char operation, std::vector<double> parameters = std::vector<double>{ 1, 2.7183 });
+    FExp(std::vector<double> parameters = std::vector<double>{ 1, 2.7183 }, char operation = '+');
+    ~FExp();
+    bool checkParameters(std::vector<V> parameters);
+    double calculateValue(V t);
+    void showFunction(bool not_first);
+    friend std::ostream& operator<<(std::ostream& os, const FExp<V>& func) {
+        os << func.operation << " ";
+        os << "FExp" << " ";
+        for (int i = 0; i < func.parameters_number; i++) {
+            os << func.parameters[i] << " ";
+        }
+        return os;
+    };
+};
 #endif

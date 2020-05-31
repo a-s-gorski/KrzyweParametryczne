@@ -626,4 +626,138 @@ void FConstant<V>::showFunction(const bool not_first) {
     std::cout << a << " ";
 }
 
+template <class V>
+FExp<V>::FExp(char operation, std::vector<double> parameters) {
+#ifdef _DEBUG
+    std::cout << "FExp: Creating FExp\n";
+#endif // _DEBUG
+    this->parameters_number = 2;
+    /*
+        In default:
+            a = 1
+            b = e
+    */
+    if (checkOperation(operation)) {
+        this->operation = operation;
+    }
+    else {
+        this->operation = '+';
+    }
+
+    if (checkParameters(parameters)) {
+        this->parameters = parameters;
+    }
+    else {
+        this->parameters = { 1, 2.7183 };
+    }
+}
+
+template <class V>
+FExp<V>::FExp(std::vector<double> parameters, char operation) {
+#ifdef _DEBUG
+    std::cout << "FExp: Creating FExp\n";
+#endif // _DEBUG
+    this->parameters_number = 2;
+    /*
+        In default:
+            a = 1
+            b = e
+    */
+    if (checkOperation(operation)) {
+        this->operation = operation;
+    }
+    else {
+        this->operation = '+';
+    }
+
+    if (checkParameters(parameters)) {
+        this->parameters = parameters;
+    }
+    else {
+        this->parameters = { 1, 2.7183 };
+    }
+}
+
+template <class V>
+FExp<V>::~FExp() {
+#ifdef _DEBUG
+    std::cout << "FExp: Destroying FExp\n";
+#endif // _DEBUG
+}
+
+template <class V>
+bool FExp<V>::checkParameters(std::vector<V> new_parameters) {
+
+#ifdef _DEBUG
+    std::cout << "FExp: Checking parameters\n";
+    for (int i = 0; i < new_parameters.size(); i++) {
+        std::cout << new_parameters[i] << " ";
+    }
+    std::cout << "\n";
+#endif // _DEBUG
+    //Check if parameters are good
+
+    if (new_parameters.size() != this->parameters_number)
+        return false;
+
+    if (new_parameters[0] == 0)
+        return false;
+
+    if (new_parameters[1] == 0 || new_parameters[1] == 1)
+        return false;
+
+    return true;
+}
+
+template <class V>
+double FExp<V>::calculateValue(V t) {
+#ifdef _DEBUG
+    std::cout << "FExp: Count value of t\n";
+    std::cout << "   FExp(t) = a*(b)^t\n";
+#endif // _DEBUG
+
+    double& a = this->parameters[0];
+    double& b = this->parameters[0];
+
+    double result;
+
+    try {
+        result = a*pow(b, t);
+    }
+    catch (...) {
+        std::cout << "Illegal mathematical operation";
+        result = 0;
+    }
+
+#ifdef _DEBUG
+    std::cout << "   a: " << a << " b: " << b << "\n";
+    std::cout << "   result: " << result << "\n";
+#endif // _DEBUG
+
+    return result;
+}
+
+template <class V>
+void FExp<V>::showFunction(const bool not_first) {
+
+    double& a = this->parameters[0];
+    double& b = this->parameters[1];
+
+    if (not_first) {
+        std::cout << this->operation << " ";
+    }
+    if (a == 1) {}
+    else
+        std::cout << a << '*';
+    cout << "(";
+    if (abs(b - 2.7183 <= 0.001)) {
+        std::cout << "e";
+    }
+    else {
+        std::cout << b;
+    }
+    std::cout << ")^(t) ";
+}
+
+
 
