@@ -177,4 +177,29 @@ public:
         return os;
     };
 };
+
+template <class V = double>
+class FLog : public Function <V> {
+    /*
+        Log(t) = log_a(t)
+        parameters_number: 1
+        parameters: a
+            a!=1 a>0
+    */
+public:
+    FLog(char operation, std::vector<double> parameters = std::vector<double>{ 2.7183 });
+    FLog(std::vector<double> parameters = std::vector<double>{ 2.7183 }, char operation = '+');
+    ~FLog();
+    bool checkParameters(std::vector<V> parameters);
+    double calculateValue(V t);
+    void showFunction(bool not_first);
+    friend std::ostream& operator<<(std::ostream& os, const FLog<V>& func) {
+        os << func.operation << " ";
+        os << "FLog" << " ";
+        for (int i = 0; i < func.parameters_number; i++) {
+            os << func.parameters[i] << " ";
+        }
+        return os;
+    };
+};
 #endif
