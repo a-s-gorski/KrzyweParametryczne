@@ -872,7 +872,11 @@ void FLog<V>::showFunction(const bool not_first) {
 
     double& a = this->parameters[0];
 
-    std::cout << "log_" << a << "(t)" << " ";
+    std::cout << "log_";
+    if (abs(a - 2.7183 <= 0.001)) {
+        std::cout << "e";
+    }
+    std::cout << "(t)" << " ";
 }
 
 
