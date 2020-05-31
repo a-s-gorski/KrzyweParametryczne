@@ -70,6 +70,118 @@ namespace TestFunctions
 
 	};
 
+	TEST_CLASS(Constructors)
+	{
+	public:
+		TEST_METHOD(Default)
+		{
+			FCos<> f1;
+			FCos<double> f2;
+
+			bool actual = (f1 == f2);
+
+			bool expected = true;
+
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(Operation)
+		{
+			FCos<> f1('+');
+			FCos<double> f2;
+
+			bool actual = (f1 == f2);
+
+			bool expected = true;
+
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(OperationParameters)
+		{
+			FCos<> f1('+', { 1, 1, 1 });
+			FCos<double> f2;
+
+			bool actual = (f1 == f2);
+
+			bool expected = true;
+
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(ParametersOperation)
+		{
+			FCos<> f1({ 1, 1, 1 }, '+');
+			FCos<double> f2;
+
+			bool actual = (f1 == f2);
+
+			bool expected = true;
+
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(Parameters)
+		{
+			FCos<> f1({ 1, 1, 1 });
+			FCos<double> f2;
+
+			bool actual = (f1 == f2);
+
+			bool expected = true;
+
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(DifferentOperation)
+		{
+			FCos<> f1('-');
+			FCos<double> f2;
+
+			bool actual = (f1 == f2);
+
+			bool expected = false;
+
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(DifferentParameters)
+		{
+			FCos<> f1({ 1, 2, 1 });
+			FCos<double> f2;
+
+			bool actual = (f1 == f2);
+
+			bool expected = false;
+
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(CosSin)
+		{
+			FCos<double> f1;
+			FSin<double> f2;
+
+			bool actual = (f1 == f2);
+
+			bool expected = false;
+
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(SinCos)
+		{
+			FSin<double> f1;
+			FCos<double> f2;
+
+			bool actual = (f1 == f2);
+
+			bool expected = false;
+
+			Assert::AreEqual(expected, actual);
+		}
+	};
+
 
 	TEST_CLASS(CalculateValue)
 	{

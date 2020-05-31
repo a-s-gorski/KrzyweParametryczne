@@ -26,7 +26,18 @@ public:
     virtual double calculateValue(V t) = 0;
     virtual void showFunction(bool not_first) = 0;
     double operator()(V t);
-    friend std::ostream& operator<<(std::ostream& os, const Function<V>& func) {
+    friend bool operator==(Function<V>& lhs, Function<V>& rhs) {
+        const type_info& tl = typeid(lhs);
+        const type_info& tr = typeid(rhs);
+        if (tl != tr)
+            return false;
+        if(lhs.operation != rhs.operation)
+            return false;
+        if (lhs.parameters != rhs.parameters)
+            return false;
+        return true;
+    };
+    friend std::ostream& operator<<(std::ostream& os, const Function& func) {
         os << func.operation << " ";
         os << "Function" << " ";
         for (int i = 0; i < func.parameters_number; i++) {

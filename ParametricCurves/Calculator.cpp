@@ -28,16 +28,16 @@ double Calculator::calculateSingiel(vector<Function<double>*>* function, double 
     double v = 0;
 
     int it = 0;
-    for (auto& i : (*function))
+    for (auto& func : (*function))
     {
-        values[it++] = (*i)(t);
+        values[it++] = (*func)(t);
     }
 
     it = 0;
     double cur = 0;
-    for (auto& i : (*function))
+    for (auto& func : (*function))
     {
-        char o = (*i).getOperation();
+        char o = (*func).getOperation();
 
         if (o == '+' || o == '-') {
             v += cur;
