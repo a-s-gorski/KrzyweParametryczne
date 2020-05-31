@@ -10,6 +10,8 @@
 
 using namespace std;
 
+int Calculator::operations = 0;
+
 Calculator::Calculator() {
 #ifdef _DEBUG
     cout << "Calculator: Creating Calculator\n";
@@ -20,6 +22,18 @@ Calculator::~Calculator() {
 #ifdef _DEBUG
     cout << "Calculator: Destroying Calculator\n";
 #endif // _DEBUG
+}
+
+void Calculator::performOperation() {
+    Calculator::operations++;
+}
+
+int Calculator::getOperations() {
+    return Calculator::operations;
+}
+
+void Calculator::clearOperations() {
+    Calculator::operations = 0;
 }
 
 double Calculator::calculateSingiel(vector<Function<double>*>* function, double t) {
@@ -57,6 +71,8 @@ double Calculator::calculateSingiel(vector<Function<double>*>* function, double 
                 cur /= values[it++];
             }
         }
+
+        Calculator::performOperation();
     }
 
     v += cur;
