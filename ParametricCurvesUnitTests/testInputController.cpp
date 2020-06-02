@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "..\ParametricCurves\Functions.cpp"
+/*#include "..\ParametricCurves\Functions.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -189,4 +189,4 @@ namespace TestInputController
 			Assert::AreEqual(expected, actual);
 		}
 	};
-}
+}*/
