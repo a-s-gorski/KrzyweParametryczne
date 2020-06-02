@@ -38,6 +38,7 @@ void DrawingPlot<X, Y>::rescale_drawing() {
 	X X_length = DrawingPlot::x_axis_max - DrawingPlot::x_axis_min;
 	Y Y_length = DrawingPlot::y_axis_max - DrawingPlot::y_axis_min;
 
+
 	if ((Y_length / X_length) >= ((Y)DrawingPlot::screen_height / (X)DrawingPlot::screen_width)) {
 		DrawingPlot::X_length_new = (X)DrawingPlot::screen_width;
 		DrawingPlot::Y_length_new = Y_length * ((X)screen_width / X_length);
@@ -70,19 +71,6 @@ void DrawingPlot<X, Y>::setPlot(vector <pair<X, Y>> values) {
 }
 
 
-/*
-There is no error in the following piece of code:
-
-float arr[4];
-arr[0] = 6.28;
-arr[1] = 2.50;
-arr[2] = 9.73;
-arr[3] = 4.364;
-std::vector<float*> vec = std::vector<float*>();
-vec.push_back(arr);
-float* ptr = vec.front();
-\
-*/
 
 
 template <class X, class Y>
