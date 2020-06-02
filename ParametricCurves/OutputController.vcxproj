@@ -81,6 +81,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Calculator.cpp" />
+    <ClCompile Include="ComplexNumber.cpp" />
     <ClCompile Include="DrawingPlot.cpp" />
     <ClCompile Include="DrawingPlotGui.cpp" />
     <ClCompile Include="Frame.cpp" />
@@ -101,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Calculator.hpp" />
+    <ClInclude Include="ComplexNumber.hpp" />
     <ClInclude Include="DrawingPlot.h" />
     <ClInclude Include="DrawingPlotGui.h" />
     <ClInclude Include="Frame.h" />
