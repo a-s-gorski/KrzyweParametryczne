@@ -1,24 +1,21 @@
 ﻿#include <iostream>
-////#ifndef QT_H
-////#define QT_H
+#ifndef QT_H
+#define QT_H
 #include <cmath>
 #include <vector>
 #include "Functions.hpp"
-#include "Functions.cpp"
 #include "Calculator.hpp"
 #include "InputController.hpp"
 #include "OutputController.h"
 #include "DrawingPlot.h"
 #include "DrawingPlot.cpp"
-#include "DrawingPlotGui.h"
-#include "DrawingPlotGui.cpp"
-#include <QtWidgets/QApplication>
-#include <QtWidgets>
+//#include "DrawingPlotGui.h"
+//#include "DrawingPlotGui.cpp"
+//#include <QtWidgets/QApplication>
+//#include <QtWidgets>
 #include <utility>
 #include <math.h>
 #include "Frame.h"
-
-#include "ComplexNumber.hpp"
 // #define PI 3.14
 
 
@@ -26,14 +23,12 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    Complex c(2, 3);
-    cout <<  c.show(Complex::CANONICAL);
     //Make a class from this to menage process
-    //Prepare input
 
+    //Prepare input
     InputController* console_input = new InputController;
 
-    /*if (argc == 2) {
+    if (argc == 2) {
         delete console_input;
         string filename(argv[1]);
 #ifdef _DEBUG
@@ -42,9 +37,9 @@ int main(int argc, char* argv[])
         CommandLineInput* console_input = new CommandLineInput;
         console_input->getInput(filename);
     }
-    else {*/
+    else {
         console_input->getInput();
-    //}
+    }
 
     Equation<Function<double>>& x = console_input->getXEquation();
     Equation<Function<double>>& y = console_input->getYEquation();
@@ -61,9 +56,9 @@ int main(int argc, char* argv[])
     vector <pair <double, double> > test_points = cal.calculateSerie(&x_func, &y_func, left_border, right_border, points_number);
 
     //Present output
-    QApplication a(argc, argv);
-    QLabel l;
-    QPicture pic1;
+    // QApplication a(argc, argv);
+    //QLabel l;
+    //QPicture pic1;
     // used to create basic tests for only OutputController without commandline InputController
    // for (int i = 0; i < 100000; i++) {
        // pair <double, double> p;
@@ -76,23 +71,22 @@ int main(int argc, char* argv[])
         //crds.push_back(p);
     //}
 
-    DrawingPlotGui<double, double> g1;
-    g1.setPicture(pic1);
-    g1.setPlot(test_points);
-    g1.drawPlot();
-
-    ////DrawingPlot<double, double> g1;
+    //DrawingPlotGui<double, double> g1;
     //g1.setPicture(pic1);
-    ////g1.setPlot(test_points);
+    //g1.setPlot(test_points);
+    //g1.drawPlot();
+
+    DrawingPlot<double, double> g1;
+    //g1.setPicture(pic1);
+    g1.setPlot(test_points);
+
+
+    //l.setPicture(pic1);
+    //l.show();
+    //return a.exec();
 
     delete console_input;
 
-    l.setPicture(pic1);
-    l.show();
-    return a.exec();
-
-  
-
-    ////return 0;
+    return 0;
 }
-////#endif
+#endif
