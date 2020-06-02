@@ -87,30 +87,6 @@ namespace TestFunctions
 
 		TEST_METHOD(Operation)
 		{
-			FCos<> f1('+');
-			FCos<double> f2;
-
-			bool actual = (f1 == f2);
-
-			bool expected = true;
-
-			Assert::AreEqual(expected, actual);
-		}
-
-		TEST_METHOD(OperationParameters)
-		{
-			FCos<> f1('+', { 1, 1, 1 });
-			FCos<double> f2;
-
-			bool actual = (f1 == f2);
-
-			bool expected = true;
-
-			Assert::AreEqual(expected, actual);
-		}
-
-		TEST_METHOD(ParametersOperation)
-		{
 			FCos<> f1({ 1, 1, 1 }, '+');
 			FCos<double> f2;
 
@@ -135,7 +111,7 @@ namespace TestFunctions
 
 		TEST_METHOD(DifferentOperation)
 		{
-			FCos<> f1('-');
+			FCos<> f1({ 1, 1, 1 }, '-');
 			FCos<double> f2;
 
 			bool actual = (f1 == f2);
@@ -445,6 +421,84 @@ namespace TestFunctions
 			double val = 2;
 
 			double expected = 2;
+
+			double actual = func.calculateValue(val);
+
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(FExpDefault)
+		{
+			FExp<> func;
+
+			double val = 1;
+
+			double expected = 2.7183;
+
+			double actual = func.calculateValue(val);
+
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(FExpDefault2)
+		{
+			FExp<> func;
+
+			double val = 2;
+
+			double expected = 7.38915489;
+
+			double actual = func.calculateValue(val);
+
+			Assert::AreEqual(expected, actual, 0.0001);
+		}
+
+		TEST_METHOD(FExp_Params_2_2)
+		{
+			FExp<> func({ 2, 2 });
+
+			double val = 2;
+
+			double expected = 8;
+
+			double actual = func.calculateValue(val);
+
+			Assert::AreEqual(expected, actual, 0.0001);
+		}
+
+		TEST_METHOD(FLogDefault)
+		{
+			FLog<> func;
+
+			double val = 2;
+
+			double expected = log(2)/log(2.7183);
+
+			double actual = func.calculateValue(val);
+
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(FLog_Params_2)
+		{
+			FLog<> func({ 2 });
+
+			double val = 2;
+
+			double expected = log(2) / log(2);
+
+			double actual = func.calculateValue(val);
+
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(FLog_Params_10)
+		{
+			FLog<> func({ 10 });
+
+			double val = 2;
+
+			double expected = log(2) / log(10);
 
 			double actual = func.calculateValue(val);
 

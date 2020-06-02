@@ -2,7 +2,7 @@
 
 #include<iostream>
 #include<vector>
-#include<cmath>
+#include <math.h>
 #include "Functions.hpp"
 
 template <class V>
@@ -82,30 +82,6 @@ double Function<V>::operator ()(V t) {
     return this->calculateValue(t);
 }
 
-template <class V>
-FCos<V>::FCos(char operation, std::vector<double> parameters){
-#ifdef _DEBUG
-    std::cout << "FCos: Creating FCos\n";
-#endif // _DEBUG
-    this->parameters_number = 3;
-    /*
-        In default:
-            a = 1
-            b = 1
-            c = 1
-    */
-    if (checkOperation(operation)) {
-        this->operation = operation;
-    }else {
-        this->operation = '+';
-    }
-
-    if (checkParameters(parameters)) {
-        this->parameters = parameters;
-    }else {
-        this->parameters = { 1, 1, 1 };
-    }
-}
 
 template <class V>
 FCos<V>::FCos(std::vector<double> parameters, char operation) {
@@ -228,30 +204,6 @@ void FCos<V>::showFunction(const bool not_first) {
     std::cout << " ";
 }
 
-template <class V>
-FSin<V>::FSin(char operation, std::vector<double> parameters) {
-#ifdef _DEBUG
-    std::cout << "FSin: Creating FSin\n";
-#endif // _DEBUG
-    this->parameters_number = 3;
-    /*
-        In default:
-            a = 1
-            b = 1
-            c = 1
-    */
-    if (checkOperation(operation)) {
-        this->operation = operation;
-    } else {
-        this->operation = '+';
-    }
-
-    if (checkParameters(parameters)) {
-        this->parameters = parameters;
-    } else {
-        this->parameters = { 1, 1, 1 };
-    }
-}
 
 template <class V>
 FSin<V>::FSin(std::vector<double> parameters, char operation) {
@@ -373,30 +325,6 @@ void FSin<V>::showFunction(const bool not_first) {
     std::cout << " ";
 }
 
-template <class V>
-FMonomial<V>::FMonomial(char operation, std::vector<double> parameters) {
-#ifdef _DEBUG
-    std::cout << "FMonomial: Creating FMonomial\n";
-#endif // _DEBUG
-    this->parameters_number = 3;
-    /*
-        In default:
-            a = 1
-            b = 1
-            c = 1
-    */
-    if (checkOperation(operation)) {
-        this->operation = operation;
-    } else {
-        this->operation = '+';
-    }
-
-    if (checkParameters(parameters)) {
-        this->parameters = parameters;
-    } else {
-        this->parameters = { 1, 1, 1 };
-    }
-}
 
 template <class V>
 FMonomial<V>::FMonomial(std::vector<double> parameters, char operation) {
@@ -510,30 +438,6 @@ void FMonomial<V>::showFunction(const bool not_first) {
     std::cout << " ";
 }
 
-template <class V>
-FConstant<V>::FConstant(char operation, std::vector<double> parameters) {
-#ifdef _DEBUG
-    std::cout << "FConstant: Creating FConstant\n";
-#endif // _DEBUG
-    this->parameters_number = 1;
-    /*
-        In default:
-            a = 1
-    */
-    if (checkOperation(operation)) {
-        this->operation = operation;
-    }
-    else {
-        this->operation = '+';
-    }
-
-    if (checkParameters(parameters)) {
-        this->parameters = parameters;
-    }
-    else {
-        this->parameters = { 1 };
-    }
-}
 
 template <class V>
 FConstant<V>::FConstant(std::vector<double> parameters, char operation) {
@@ -624,6 +528,210 @@ void FConstant<V>::showFunction(const bool not_first) {
         std::cout << this->operation << " ";
     }
     std::cout << a << " ";
+}
+
+
+template <class V>
+FExp<V>::FExp(std::vector<double> parameters, char operation) {
+#ifdef _DEBUG
+    std::cout << "FExp: Creating FExp\n";
+#endif // _DEBUG
+    this->parameters_number = 2;
+    /*
+        In default:
+            a = 1
+            b = e
+    */
+    if (checkOperation(operation)) {
+        this->operation = operation;
+    }
+    else {
+        this->operation = '+';
+    }
+
+    if (checkParameters(parameters)) {
+        this->parameters = parameters;
+    }
+    else {
+        this->parameters = { 1, 2.7183 };
+    }
+}
+
+template <class V>
+FExp<V>::~FExp() {
+#ifdef _DEBUG
+    std::cout << "FExp: Destroying FExp\n";
+#endif // _DEBUG
+}
+
+template <class V>
+bool FExp<V>::checkParameters(std::vector<V> new_parameters) {
+
+#ifdef _DEBUG
+    std::cout << "FExp: Checking parameters\n";
+    for (int i = 0; i < new_parameters.size(); i++) {
+        std::cout << new_parameters[i] << " ";
+    }
+    std::cout << "\n";
+#endif // _DEBUG
+    //Check if parameters are good
+
+    if (new_parameters.size() != this->parameters_number)
+        return false;
+
+    if (new_parameters[0] == 0)
+        return false;
+
+    if (new_parameters[1] == 0 || new_parameters[1] == 1)
+        return false;
+
+    return true;
+}
+
+template <class V>
+double FExp<V>::calculateValue(V t) {
+#ifdef _DEBUG
+    std::cout << "FExp: Count value of t\n";
+    std::cout << "   FExp(t) = a*(b)^t\n";
+#endif // _DEBUG
+
+    double& a = this->parameters[0];
+    double& b = this->parameters[1];
+
+    double result;
+
+    try {
+        result = a*pow(b, t);
+    }
+    catch (...) {
+        std::cout << "Illegal mathematical operation";
+        result = 0;
+    }
+
+#ifdef _DEBUG
+    std::cout << "   a: " << a << " b: " << b << "\n";
+    std::cout << "   result: " << result << "\n";
+#endif // _DEBUG
+
+    return result;
+}
+
+template <class V>
+void FExp<V>::showFunction(const bool not_first) {
+
+    double& a = this->parameters[0];
+    double& b = this->parameters[1];
+
+    if (not_first) {
+        std::cout << this->operation << " ";
+    }
+    if (a == 1) {}
+    else
+        std::cout << a << '*';
+    cout << "(";
+    if (abs(b - 2.7183 <= 0.001)) {
+        std::cout << "e";
+    }
+    else {
+        std::cout << b;
+    }
+    std::cout << ")^(t) ";
+}
+
+
+template <class V>
+FLog<V>::FLog(std::vector<double> parameters, char operation) {
+#ifdef _DEBUG
+    std::cout << "FLog: Creating FLog\n";
+#endif // _DEBUG
+    this->parameters_number = 1;
+    /*
+        In default:
+            a = e
+    */
+    if (checkOperation(operation)) {
+        this->operation = operation;
+    }
+    else {
+        this->operation = '+';
+    }
+
+    if (checkParameters(parameters)) {
+        this->parameters = parameters;
+    }
+    else {
+        this->parameters = { 2.7183 };
+    }
+}
+
+template <class V>
+FLog<V>::~FLog() {
+#ifdef _DEBUG
+    std::cout << "FLog: Destroying FLog\n";
+#endif // _DEBUG
+}
+
+template <class V>
+bool FLog<V>::checkParameters(std::vector<V> new_parameters) {
+
+#ifdef _DEBUG
+    std::cout << "FLog: Checking parameters\n";
+    for (int i = 0; i < new_parameters.size(); i++) {
+        std::cout << new_parameters[i] << " ";
+    }
+    std::cout << "\n";
+#endif // _DEBUG
+    //Check if parameters are good
+
+    if (new_parameters.size() != this->parameters_number)
+        return false;
+
+    if (new_parameters[0] == 1)
+        return false;
+
+    if (new_parameters[0] <= 0)
+        return false;
+
+    return true;
+}
+
+template <class V>
+double FLog<V>::calculateValue(V t) {
+#ifdef _DEBUG
+    std::cout << "FLog: Count value of t\n";
+    std::cout << "   FLog(t) = log_a(t)\n";
+#endif // _DEBUG
+
+    double& a = this->parameters[0];
+
+    double result;
+
+    try {
+        result = (log(t) / log(a));
+    }
+    catch (...) {
+        std::cout << "Illegal mathematical operation";
+        result = 0;
+    }
+
+#ifdef _DEBUG
+    std::cout << "   a: " << a << "\n";
+    std::cout << "   result: " << result << "\n";
+#endif // _DEBUG
+
+    return result;
+}
+
+template <class V>
+void FLog<V>::showFunction(const bool not_first) {
+
+    double& a = this->parameters[0];
+
+    std::cout << "log_";
+    if (abs(a - 2.7183 <= 0.001)) {
+        std::cout << "e";
+    }
+    std::cout << "(t)" << " ";
 }
 
 

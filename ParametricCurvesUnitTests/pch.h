@@ -18,6 +18,6 @@
 
 #include "..\ParametricCurves\InputController.hpp"
 #include <vector>
-#include <cmath>
+#include <math.h>
 
 /*#endif*/ //PCH_H
