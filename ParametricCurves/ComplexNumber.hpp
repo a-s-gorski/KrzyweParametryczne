@@ -111,3 +111,7 @@ public:
 		return *this;
 	}
 };
+
+class ComplexNumber
+{
+};

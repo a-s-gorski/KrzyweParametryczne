@@ -80,8 +80,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Axis.cpp" />
     <ClCompile Include="Calculator.cpp" />
     <ClCompile Include="ComplexNumber.cpp" />
+    <ClCompile Include="DrawingAxis.cpp" />
+    <ClCompile Include="DrawingAxisGui.cpp" />
     <ClCompile Include="DrawingPlot.cpp" />
     <ClCompile Include="DrawingPlotGui.cpp" />
     <ClCompile Include="Frame.cpp" />
@@ -101,8 +104,11 @@
     <QtRcc Include="OutputController.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Axis.h" />
     <ClInclude Include="Calculator.hpp" />
     <ClInclude Include="ComplexNumber.hpp" />
+    <ClInclude Include="DrawingAxis.h" />
+    <ClInclude Include="DrawingAxisGui.h" />
     <ClInclude Include="DrawingPlot.h" />
     <ClInclude Include="DrawingPlotGui.h" />
     <ClInclude Include="Frame.h" />
