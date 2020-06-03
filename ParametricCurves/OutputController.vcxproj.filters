@@ -128,5 +128,7 @@
         </ClCompile>
     <ClCompile Include="ComplexNumber.cpp">
     </ClInclude>
+    <ClCompile Include="ComplexNumber.hpp">
+    </ClInclude>
   </ItemGroup>
 </Project>
