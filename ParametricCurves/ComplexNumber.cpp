@@ -72,3 +72,115 @@ string Complex::show(FORM ver) {
 	}
 	return c;
 }
+
+Complex Complex::reflect() {
+	double RE = re;
+	double IM = -im;
+	Complex res(RE, IM);
+	return res;
+}
+
+Complex Complex::operator + (Complex const& c) {
+	double RE = re + c.re;
+	double IM = im + c.im;
+	Complex res(RE, IM);
+	return res;
+}
+
+Complex Complex::operator + (double re) {
+	double RE = this->re + re;
+	double IM = im;
+	Complex res(RE, IM);
+	return res;
+}
+
+Complex Complex::operator - (Complex const& c) {
+	double RE = re - c.re;
+	double IM = im - c.im;
+	Complex res(RE, IM);
+	return res;
+}
+
+Complex Complex::operator - (double re) {
+	double RE = this->re + re;
+	double IM = im;
+	Complex res(RE, IM);
+	return res;
+}
+
+Complex Complex::operator * (Complex const& c) {
+	double RE = re * c.re - im * c.im;
+	double IM = re * c.im + im * c.re;
+	Complex res(RE, IM);
+	return res;
+}
+
+Complex Complex::operator * (double re) {
+	double RE = this->re * re;
+	double IM = this->im * re;
+	Complex res(RE, IM);
+	return res;
+}
+
+Complex Complex::operator / (Complex const& c) {
+	double RE = (re * c.re + im * c.im) / (re * re + im * im);
+	double IM = (re * c.im - im * c.re) / (re * re + im * im);
+	Complex res(RE, IM);
+	return res;
+}
+
+Complex Complex::operator / (double re) {
+	double RE = this->re / re;
+	double IM = this->im / re;
+	Complex res(RE, IM);
+	return res;
+}
+
+void Complex::operator = (const Complex& c) {
+	re = c.re;
+	im = c.im;
+	phi = c.phi;
+	r = c.r;
+}
+
+Complex& Complex::operator+=(const Complex& c) {
+
+	re += c.re;
+	im += c.im;
+	calculatePhi();
+	calculateR();
+	return *this;
+}
+
+Complex& Complex::operator-=(const Complex& c) {
+
+	re -= c.re;
+	im -= c.im;
+	calculatePhi();
+	calculateR();
+	return *this;
+}
+
+Complex& Complex::operator*=(const Complex& c) {
+
+	double temp_re = re;
+
+	re = re * c.re - im * c.im;
+	im = temp_re * c.im + im * c.re;
+
+	calculatePhi();
+	calculateR();
+	return *this;
+}
+
+Complex& Complex::operator/=(const Complex& c) {
+
+	double temp_re = re;
+
+	re = (re * c.re + im * c.im) / (re * re + im * im);
+	im = (re * c.im - im * c.re) / (re * re + im * im);
+
+	calculatePhi();
+	calculateR();
+	return *this;
+}
