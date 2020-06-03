@@ -7,10 +7,10 @@ class DrawingAxis :
 protected:
 	int x_min = -100, x_max = 100, y_min = -100, y_max = 100;
 	int points_number;
-	int** grid_coordinates;
-	void defineGrid();
+	//void defineGrid();
 
 public:
+	DrawingAxis();
 	DrawingAxis(int max_value);
 	DrawingAxis(int x, int y);
 	DrawingAxis(int x, int y, int num);

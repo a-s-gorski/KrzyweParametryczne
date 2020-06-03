@@ -1,6 +1,10 @@
 #include "DrawingAxis.h"
 #include <stdlib.h> 
 
+DrawingAxis::DrawingAxis()
+{
+
+}
 
 
 DrawingAxis::DrawingAxis(int max_value)

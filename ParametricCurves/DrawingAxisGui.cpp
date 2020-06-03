@@ -1,6 +1,4 @@
 #include "DrawingAxisGui.h"
-#include "DrawingPlotGui.cpp"
-#include "DrawingPlotGui.h"
 
 
 

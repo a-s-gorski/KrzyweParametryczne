@@ -1,17 +1,19 @@
 #pragma once
-#include "DrawingGrid.h"
 #include "DrawingAxisGui.h"
+#include "DrawingGrid.h"
+#include "DrawingAxis.h"
 #include <QtWidgets>
+#include "Axis.h"
 
-class DrawingGridGui :
-	public DrawingGrid
+
+class DrawingGridGui : public DrawingGrid
 {
-public:
-	DrawingGridGui(DrawingAxisGui createAxis);
-	void drawOnAxis();
-
 private:
 	QPicture grid_base;
-	
+public:
+	void setPicture(QPicture pic);
+	QPicture getPicture();
+	void drawGrid();
+	void setGrid();
 };
 
