@@ -1,4 +1,6 @@
 #pragma once
+// Author : Adam Górski
+
 #include "Grid.h"
 #include <iostream>
 class DrawingGrid :

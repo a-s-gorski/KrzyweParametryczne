@@ -1,5 +1,7 @@
 #pragma once
 #include "Axis.h"
+// Author : Adam Górski
+
 class Grid :
 	public Axis
 {

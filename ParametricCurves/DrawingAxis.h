@@ -1,4 +1,6 @@
 #pragma once
+// Author : Adam Górski
+
 #include "Axis.h"
 #include <stdlib.h> 
 class DrawingAxis :

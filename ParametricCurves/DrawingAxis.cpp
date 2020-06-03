@@ -1,5 +1,7 @@
 #include "DrawingAxis.h"
 #include <stdlib.h> 
+// Author : Adam Górski
+
 
 DrawingAxis::DrawingAxis()
 {

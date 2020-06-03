@@ -24,15 +24,15 @@ void DrawingPlotGui<X, Y>::drawPlot() {
 		Y y_test = DrawingPlotGui::coordinates[i][1];
 
 		if (typeid(x1).name() != typeid(y1).name) {
-			throw std::runtime_error("not an int");
+			throw std::runtime_error("not the same type");
 		}
 
-		if (x_test == NullPtr) 
+		if (x_test == NullPtr)
 		{
-				throw std::bad_alloc;
+			throw std::bad_alloc("assigned NullPtr-> throw exception");
 		}
-		
 
+	}
 
 		for (int i = 1; i < DrawingPlot::points.size(); i++) {
 			X x1 = DrawingPlotGui::coordinates[i - 1][0];
@@ -57,4 +57,4 @@ void DrawingPlotGui<X, Y>::drawPlot() {
 #endif // _DEBUG
 
 		}
-		}
+	

@@ -1,5 +1,7 @@
 #include "DrawingGrid.h"
 
+// Author : Adam Górski
+
 DrawingGrid::DrawingGrid(int grid_id, int x1, int x2, int y1, int y2, int num)
 {
 	DrawingGrid::ID = grid_id;

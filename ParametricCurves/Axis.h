@@ -1,4 +1,6 @@
 #pragma once
+// Author : Adam Górski
+
 class Axis
 {
 protected:

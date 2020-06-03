@@ -4,6 +4,8 @@
 #include "DrawingAxis.h"
 #include <QtWidgets>
 #include "Axis.h"
+// Author : Adam Górski
+
 
 
 class DrawingGridGui : public DrawingGrid

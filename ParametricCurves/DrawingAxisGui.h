@@ -1,4 +1,6 @@
 #pragma once
+// Author : Adam Górski
+
 #include "DrawingAxis.h"
 #include <Utility>
 #include <QtWidgets>

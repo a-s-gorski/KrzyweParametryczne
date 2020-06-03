@@ -1,4 +1,6 @@
 #include "DrawingAxisGui.h"
+// Author : Adam Górski
+
 
 
 

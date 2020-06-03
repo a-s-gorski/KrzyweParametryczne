@@ -1,5 +1,6 @@
 #include "DrawingGridGui.h"
 #include "Axis.h"
+// Author : Adam Górski
 
 
 void DrawingGridGui::setPicture(QPicture pic)
