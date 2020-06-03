@@ -7,7 +7,6 @@
 #include "DrawingPlot.h"
 
 
-
 template <class X, class Y>
 class DrawingPlotGui :
 	public DrawingPlot<X,Y>

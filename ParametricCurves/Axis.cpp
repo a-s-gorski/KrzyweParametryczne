@@ -8,7 +8,7 @@
 //Axis(int x1, int x2, int y1, int y2, int num);
 
 
-Axis::Axis()
+Axis::~Axis()
 {
 }
 

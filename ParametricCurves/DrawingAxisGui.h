@@ -3,18 +3,20 @@
 #include <Utility>
 #include <QtWidgets>
 #include <vector>
+#include "DrawingGridGui.h"
 
 class DrawingAxisGui :
 	public DrawingAxis
 {
-private:
+protected:
 	QPicture canvas;
-	QPainter painter;
 	int** grid_coordinates;
+	friend class DrawingGridGui;
 public:
 	void setPicture(QPicture pic);
-	void setPainter(QPainter paint);
+	QPicture getPicture();
 	void paintDrawingAxisGui();
-
+	void setPointsNumber(int num = 100);
+	//void addToPlot(DrawingPlotGui<double, double> PlotGui); // change to Grid
 };
 

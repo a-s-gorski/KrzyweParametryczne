@@ -84,9 +84,12 @@
     <ClCompile Include="Calculator.cpp" />
     <ClCompile Include="DrawingAxis.cpp" />
     <ClCompile Include="DrawingAxisGui.cpp" />
+    <ClCompile Include="DrawingGrid.cpp" />
+    <ClCompile Include="DrawingGridGui.cpp" />
     <ClCompile Include="DrawingPlot.cpp" />
     <ClCompile Include="DrawingPlotGui.cpp" />
     <ClCompile Include="Frame.cpp" />
+    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="InputController.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="OutputController.cpp" />
@@ -107,10 +110,13 @@
     <ClInclude Include="Calculator.hpp" />
     <ClInclude Include="DrawingAxis.h" />
     <ClInclude Include="DrawingAxisGui.h" />
+    <ClInclude Include="DrawingGrid.h" />
+    <ClInclude Include="DrawingGridGui.h" />
     <ClInclude Include="DrawingPlot.h" />
     <ClInclude Include="DrawingPlotGui.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="Functions.hpp" />
+    <ClInclude Include="Grid.h" />
     <ClInclude Include="InputController.hpp" />
     <ClInclude Include="TestCalculator.hpp" />
   </ItemGroup>

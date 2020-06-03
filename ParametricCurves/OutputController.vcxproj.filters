@@ -61,6 +61,15 @@
     <ClCompile Include="DrawingAxisGui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawingGrid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawingGridGui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="OutputController.h">
@@ -106,6 +115,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DrawingAxisGui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawingGrid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawingGridGui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

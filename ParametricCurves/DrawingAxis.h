@@ -16,6 +16,7 @@ public:
 	DrawingAxis(int x, int y, int num);
 	DrawingAxis(int x_minimum, int x_maximum, int y_minimum, int y_maximum);
 	DrawingAxis(int x_minimum, int x_maximum, int y_minimum, int y_maximum, int num);
+	DrawingAxis(const DrawingAxis& copiedAxis);
 	void setPointsNumber(int num = 100);
 
 };

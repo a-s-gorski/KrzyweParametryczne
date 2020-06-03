@@ -1,14 +1,15 @@
 #include "DrawingAxisGui.h"
+#include "DrawingPlotGui.cpp"
+#include "DrawingPlotGui.h"
+
+
 
 void DrawingAxisGui::setPicture(QPicture pic)
 {
 	DrawingAxisGui::canvas = pic;
 }
 
-void DrawingAxisGui::setPainter(QPainter paint)
-{
-	DrawingAxisGui::painter = paint;
-}
+
 
 void DrawingAxisGui::paintDrawingAxisGui()
 {
@@ -20,3 +21,18 @@ void DrawingAxisGui::paintDrawingAxisGui()
 
 	painting_canvas.end();
 }
+
+QPicture DrawingAxisGui::getPicture()
+{
+	return DrawingAxisGui::canvas;
+}
+
+void DrawingAxisGui::setPointsNumber(int num)
+{
+	DrawingAxisGui::points_number = num;
+}
+
+//void DrawingAxisGui::addToPlot(DrawingPlotGui<double, double> PlotGui)
+//{
+//
+//}

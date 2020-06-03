@@ -46,7 +46,18 @@ DrawingAxis::DrawingAxis(int x_minimum, int x_maximum, int y_minimum, int y_maxi
 }
 
 
-void DrawingAxis::setPointsNumber(int num = 100)
+
+DrawingAxis::DrawingAxis(const DrawingAxis &copiedAxis)
+{
+	DrawingAxis::x_max = copiedAxis.x_max;
+	DrawingAxis::x_min = copiedAxis.x_min;
+	DrawingAxis::y_max = copiedAxis.y_max;
+	DrawingAxis::y_min = copiedAxis.y_min;
+	DrawingAxis::points_number = copiedAxis.points_number;
+}
+
+
+void DrawingAxis::setPointsNumber(int num)
 {
 	if (num > 1) {
 		DrawingAxis::points_number = num;

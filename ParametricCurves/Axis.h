@@ -6,7 +6,7 @@ protected:
 	int width = 640;
 
 public:
-	Axis();	//template 0-100_
+	~Axis();
 	void setScreenParameters(int parameter);
 	void setScreenParameters(int h, int w);
 	int getScreenHeight();
