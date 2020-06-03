@@ -1,3 +1,6 @@
+#ifndef COMPLEXNUMBER_H
+#define COMPLEXNUMBER_H
+
 #include <iostream>
 
 class Complex {
@@ -56,12 +59,19 @@ public:
 	Complex operator / (double re);
 
 	void operator = (const Complex& c);
+	void operator = (const double& c);
 
 	Complex& operator+=(const Complex& c);
+	Complex& operator+=(const double& c);
 
 	Complex& operator-=(const Complex& c);
+	Complex& operator-=(const double& c);
 
 	Complex& operator*=(const Complex& c);
+	Complex& operator*=(const double& c);
 
 	Complex& operator/=(const Complex& c);
+	Complex& operator/=(const double& c);
 };
+
+#endif
