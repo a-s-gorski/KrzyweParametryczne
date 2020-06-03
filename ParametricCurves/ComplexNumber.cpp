@@ -1,3 +1,6 @@
+
+//£ukasz Bondaruk
+
 #include <iostream>
 #include <string>
 #include <cmath>

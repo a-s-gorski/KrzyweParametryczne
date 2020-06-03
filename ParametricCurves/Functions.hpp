@@ -11,20 +11,31 @@
 template <class V = double>
 class Function {
 protected:
+    // How many vars is needed to perform function
     int parameters_number;
+    // How function react with other functions
     char operation;
+    // Vars is needed to perform function
     std::vector<V> parameters;
 public:
     Function(char operation = '+');
     Function(const Function& func);
     virtual ~Function();
+
+    //Setters and Getters
     void setOperation(char new_operation);
     bool checkOperation(char operation);
     char getOperation();
+
+    // Check if user try to set correct parameters
     virtual bool checkParameters(std::vector<V> parameters) = 0;
+    // Set new parameters
     virtual void setParameters(std::vector<V> parameters);
+    // Perform function for value t
     virtual double calculateValue(V t) = 0;
+    // Print on stream
     virtual void showFunction(bool not_first) = 0;
+    // Perform calculation
     double operator()(V t);
     friend bool operator==(Function<V>& lhs, Function<V>& rhs) {
         const type_info& tl = typeid(lhs);
@@ -37,6 +48,7 @@ public:
             return false;
         return true;
     };
+    // Print function name and its parameters
     friend std::ostream& operator<<(std::ostream& os, const Function& func) {
         os << func.operation << " ";
         os << "Function" << " ";
