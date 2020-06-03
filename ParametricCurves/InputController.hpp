@@ -19,36 +19,52 @@ public:
 
 
 class InputController {
-    Function<double>* createFunction(int iterator);
-    void getFieldOfPointsToDraw();
-    void addToEquation(Equation<Function<double>>* Eq);
 protected:
     int number_of_points;
     double left_border;
     double right_border;
     Equation<Function<double>> X;
     Equation<Function<double>> Y;
-    void printEquations() const;
+    // void printEquations() const;
+    virtual void setNumberOfPoints() = 0;
+    virtual void setBorders() = 0;
+    virtual void setXEquation() = 0;
+    virtual void setYEquation() = 0;
+    virtual Function<double>* createFunction(int iterator) = 0;
 
 public:
     InputController();
-    void getInput();
+    virtual void getInput();
     int getNumberOfPoints();
     double getLeftBorder();
     double getRightBorder();
     Equation<Function<double>>& getXEquation();
     Equation<Function<double>>& getYEquation();
-    ~InputController();
+    virtual ~InputController();
+    //friend ostream& operator<<(ostream& os, InputController* dt);
 };
 
 
-class CommandLineInput : public InputController {
+class CMDInput : public InputController {
+private:
+    void setNumberOfPoints();
+    void setBorders();
+    void setXEquation();
+    void setYEquation();
+    virtual Function<double>* createFunction(int iterator);
+
+public:
+    CMDInput();
+    ~CMDInput();
+};
+
+class FileInput : public InputController {
     Function<double>* addToEquation(Equation<Function<double>>* Eq, char operation, int function, double a, double b, double c);
     Function<double>* addToEquation(Equation<Function<double>>* Eq, char operation, double a);
 public:
-    CommandLineInput();
+    FileInput();
     void getInput(std::string filename);
-    ~CommandLineInput();
+    ~FileInput();
 };
 #endif
 

@@ -29,7 +29,75 @@ InputController::~InputController() {
 }
 
 
-void InputController::getFieldOfPointsToDraw() {
+void InputController::getInput() {
+
+    setNumberOfPoints();
+    setBorders();
+    setXEquation();
+    setYEquation();
+
+    /*getFieldOfPointsToDraw();
+
+    // X parameter
+    cout << "X equation components" << endl;
+    addToEquation(&X);
+
+    // Y parameter
+    cout << endl << "Y equation components" << endl;
+    addToEquation(&Y);
+
+    cout << endl << "Your equations are: " << endl;
+    printEquations();*/
+}
+
+
+/*void InputController::printEquations() const {
+    cout << "X(t) = ";
+    X.printEquation();
+    cout << "Y(t) = ";
+    Y.printEquation();
+}*/
+
+
+int InputController::getNumberOfPoints() {
+    return number_of_points;
+}
+
+
+double InputController::getLeftBorder() {
+    return left_border;
+}
+
+
+double InputController::getRightBorder() {
+    return right_border;
+}
+
+
+Equation<Function<double>>& InputController::getXEquation() {
+    return X;
+}
+
+
+Equation<Function<double>>& InputController::getYEquation() {
+    return Y;
+}
+
+CMDInput::CMDInput() {
+#ifdef _DEBUG
+    cout << "Creating CMDInput\n";
+#endif // _DEBUG
+}
+
+
+CMDInput::~CMDInput() {
+#ifdef _DEBUG
+    cout << "Destroying CMDInput\n";
+#endif // _DEBUG
+}
+
+
+void CMDInput::setNumberOfPoints() {
     do {
         cout << "How many points do you want to draw: ";
         cin >> number_of_points;
@@ -39,6 +107,10 @@ void InputController::getFieldOfPointsToDraw() {
             cin.ignore(10000, '\n');
         }
     } while (cin.fail() || number_of_points <= 0);
+}
+
+
+void CMDInput::setBorders() {
     bool correct_input;
     do {
         correct_input = true;
@@ -59,8 +131,51 @@ void InputController::getFieldOfPointsToDraw() {
     cout << endl;
 }
 
+void CMDInput::setXEquation() {
+    int n;
+    do {
+        cout << "How many element do you want to add to your equation: ";
+        cin >> n;
+        if (cin.fail()) {
+            cout << "Number of elements must be an positive integer\n" << endl;
+            cin.clear();
+            cin.ignore(10000, '\n');
+        }
+        else if (n <= 0)
+            cout << "Number of elements can't be a non-positive number\n" << endl;
+    } while (cin.fail() || n <= 0);
+    cout << endl;
 
-Function<double>* InputController::createFunction (int iterator) {
+    for (int i = 0; i < n; ++i) {
+        Function<>* newFunction = createFunction(i);
+        X += newFunction;
+    }
+}
+
+
+void CMDInput::setYEquation() {
+    int n;
+    do {
+        cout << "How many element do you want to add to your equation: ";
+        cin >> n;
+        if (cin.fail()) {
+            cout << "Number of elements must be an positive integer\n" << endl;
+            cin.clear();
+            cin.ignore(10000, '\n');
+        }
+        else if (n <= 0)
+            cout << "Number of elements can't be a non-positive number\n" << endl;
+    } while (cin.fail() || n <= 0);
+    cout << endl;
+
+    for (int i = 0; i < n; ++i) {
+        Function<>* newFunction = createFunction(i);
+        Y += newFunction;
+    }
+}
+
+
+Function<double>* CMDInput::createFunction(int iterator) {
     char operation = '+';
     int fun_type;
     bool correct_input;
@@ -183,7 +298,7 @@ Function<double>* InputController::createFunction (int iterator) {
         } while (!correct_input);
     }
     cout << endl;
-    
+
     p->setParameters(parameters);
     p->setOperation(operation);
     return p;
@@ -191,92 +306,21 @@ Function<double>* InputController::createFunction (int iterator) {
 }
 
 
-void InputController::addToEquation(Equation<Function<double>>* Eq) {
-    int n;
-    do {
-        cout << "How many element do you want to add to your equation: ";
-        cin >> n;
-        if (cin.fail()) {
-            cout << "Number of elements must be an positive integer\n" << endl;
-            cin.clear();
-            cin.ignore(10000, '\n');
-        }
-        else if (n <= 0)
-            cout << "Number of elements can't be a non-positive number\n" << endl;
-    } while (cin.fail() || n <= 0);
-    cout << endl;
-
-    for (int i = 0; i < n; ++i) {
-        Function<>* newFunction = createFunction(i);
-        *Eq += newFunction;
-    }
-}
-
-
-void InputController::getInput() {
-    getFieldOfPointsToDraw();
-
-    // X parameter
-    cout << "X equation components" << endl;
-    addToEquation(&X);
-
-    // Y parameter
-    cout << endl << "Y equation components" << endl;
-    addToEquation(&Y);
-
-    cout << endl << "Your equations are: " << endl;
-    printEquations();
-}
-
-
-void InputController::printEquations() const {
-    cout << "X(t) = ";
-    X.printEquation();
-    cout << "Y(t) = ";
-    Y.printEquation();
-}
-
-
-int InputController::getNumberOfPoints() {
-    return number_of_points;
-}
-
-
-double InputController::getLeftBorder() {
-    return left_border;
-}
-
-
-double InputController::getRightBorder() {
-    return right_border;
-}
-
-
-Equation<Function<double>>& InputController::getXEquation() {
-    return X;
-}
-
-
-Equation<Function<double>>& InputController::getYEquation() {
-    return Y;
-}
-
-
-CommandLineInput::CommandLineInput() {
+FileInput::FileInput() {
 #ifdef _DEBUG
-    cout << "Creating CommandLineInput\n";
+    cout << "Creating FileInput\n";
 #endif // _DEBUG
 }
 
 
-CommandLineInput::~CommandLineInput() {
+FileInput::~FileInput() {
 #ifdef _DEBUG
-    cout << "Destroying CommandLineInput\n";
+    cout << "Destroying FileInput\n";
 #endif // _DEBUG
 }
 
 
-Function<double>* CommandLineInput::addToEquation(Equation<Function<double>>* Eq, char operation, double a) {
+Function<double>* FileInput::addToEquation(Equation<Function<double>>* Eq, char operation, double a) {
     Function<>* p = new FConstant<>;
 #ifdef _DEBUG
     cout << "Creating FConstant\n";
@@ -289,7 +333,7 @@ Function<double>* CommandLineInput::addToEquation(Equation<Function<double>>* Eq
 }
 
 
-Function<double>* CommandLineInput::addToEquation(Equation<Function<double>>* Eq, char operation, int function, double a, double b, double c) {
+Function<double>* FileInput::addToEquation(Equation<Function<double>>* Eq, char operation, int function, double a, double b, double c) {
     Function<double>* p;
     switch (function) {
     case 1:
@@ -322,7 +366,7 @@ Function<double>* CommandLineInput::addToEquation(Equation<Function<double>>* Eq
 }
 
 
-void CommandLineInput::getInput(string filename) {
+void FileInput::getInput(string filename) {
     ifstream f(filename);
 
     if (!f.is_open()) {
@@ -371,5 +415,5 @@ void CommandLineInput::getInput(string filename) {
 
     f.close();
 
-    printEquations();
+    //printEquations();
 }
