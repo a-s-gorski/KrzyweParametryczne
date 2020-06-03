@@ -11,10 +11,19 @@ class Equation {
     std::vector<T*> equation;
 public:
     Equation();
-    void printEquation() const;
+    // void printEquation() const;
     void operator += (T* func);
     const std::vector<T*>& getEquation();
     ~Equation();
+    friend std::ostream& operator<<(std::ostream& os, Equation<T>& ob) {
+        bool not_first = false;
+        for (auto v : equation) {
+            os << v->showFunction(os, not_first);
+            not_first = true;
+        }
+        os << endl;
+        return os;
+    }
 };
 
 
@@ -25,7 +34,6 @@ protected:
     double right_border;
     Equation<Function<double>> X;
     Equation<Function<double>> Y;
-    // void printEquations() const;
     virtual void setNumberOfPoints() = 0;
     virtual void setBorders() = 0;
     virtual void setXEquation() = 0;
@@ -35,13 +43,13 @@ protected:
 public:
     InputController();
     virtual void getInput();
+    void printEquations() const;
     int getNumberOfPoints();
     double getLeftBorder();
     double getRightBorder();
     Equation<Function<double>>& getXEquation();
     Equation<Function<double>>& getYEquation();
     virtual ~InputController();
-    //friend ostream& operator<<(ostream& os, InputController* dt);
 };
 
 
@@ -56,7 +64,9 @@ private:
 public:
     CMDInput();
     ~CMDInput();
+    friend std::ostream& operator<<(std::ostream& os, CMDInput& ob);
 };
+
 
 class FileInput : public InputController {
     Function<double>* addToEquation(Equation<Function<double>>* Eq, char operation, int function, double a, double b, double c);
@@ -99,7 +109,7 @@ void Equation<T>::operator += (T* func) {
 }
 
 
-template <typename T>
+/*template <typename T>
 void Equation<T>::printEquation() const {
     bool not_first = false;
     for (auto v : equation) {
@@ -107,7 +117,7 @@ void Equation<T>::printEquation() const {
         not_first = true;
     }
     cout << endl;
-}
+}*/
 
 template <typename T>
 const vector<T*>& Equation<T>::getEquation() {

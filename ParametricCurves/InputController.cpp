@@ -30,33 +30,26 @@ InputController::~InputController() {
 
 
 void InputController::getInput() {
-
     setNumberOfPoints();
     setBorders();
     setXEquation();
     setYEquation();
-
-    /*getFieldOfPointsToDraw();
-
-    // X parameter
-    cout << "X equation components" << endl;
-    addToEquation(&X);
-
-    // Y parameter
-    cout << endl << "Y equation components" << endl;
-    addToEquation(&Y);
-
-    cout << endl << "Your equations are: " << endl;
-    printEquations();*/
+    //printEquations();
 }
 
+ostream& operator<<(ostream& os, CMDInput& ob) {
+    os << "X(t) = " << ob.X;
+    os << "Y(t) = " << ob.Y;
 
-/*void InputController::printEquations() const {
+    return os;
+}
+
+void InputController::printEquations() const {
     cout << "X(t) = ";
-    X.printEquation();
+    //X.printEquation();
     cout << "Y(t) = ";
-    Y.printEquation();
-}*/
+    //Y.printEquation();
+}
 
 
 int InputController::getNumberOfPoints() {
@@ -82,6 +75,7 @@ Equation<Function<double>>& InputController::getXEquation() {
 Equation<Function<double>>& InputController::getYEquation() {
     return Y;
 }
+
 
 CMDInput::CMDInput() {
 #ifdef _DEBUG
@@ -134,7 +128,7 @@ void CMDInput::setBorders() {
 void CMDInput::setXEquation() {
     int n;
     do {
-        cout << "How many element do you want to add to your equation: ";
+        cout << "How many element do you want to add to your X equation: ";
         cin >> n;
         if (cin.fail()) {
             cout << "Number of elements must be an positive integer\n" << endl;
@@ -147,7 +141,7 @@ void CMDInput::setXEquation() {
     cout << endl;
 
     for (int i = 0; i < n; ++i) {
-        Function<>* newFunction = createFunction(i);
+        Function<double>* newFunction = createFunction(i);
         X += newFunction;
     }
 }
@@ -156,7 +150,7 @@ void CMDInput::setXEquation() {
 void CMDInput::setYEquation() {
     int n;
     do {
-        cout << "How many element do you want to add to your equation: ";
+        cout << "How many element do you want to add to your Y equation: ";
         cin >> n;
         if (cin.fail()) {
             cout << "Number of elements must be an positive integer\n" << endl;
@@ -169,7 +163,7 @@ void CMDInput::setYEquation() {
     cout << endl;
 
     for (int i = 0; i < n; ++i) {
-        Function<>* newFunction = createFunction(i);
+        Function<double>* newFunction = createFunction(i);
         Y += newFunction;
     }
 }
@@ -223,28 +217,28 @@ Function<double>* CMDInput::createFunction(int iterator) {
 
     switch (fun_type) {
     case 1:
-        p = new FSin<>;
+        p = new FSin<double>;
 #ifdef _DEBUG
         cout << "Creating FSin\n";
 #endif // _DEBUG
         break;
 
     case 2:
-        p = new FCos<>;
+        p = new FCos<double>;
 #ifdef _DEBUG
         cout << "Creating FCos\n";
 #endif // _DEBUG
         break;
 
     case 3:
-        p = new FMonomial<>;
+        p = new FMonomial<double>;
 #ifdef _DEBUG
         cout << "Creating FPolynomial\n";
 #endif // _DEBUG
         break;
 
     case 4:
-        p = new FConstant<>;
+        p = new FConstant<double>;
 #ifdef _DEBUG
         cout << "Creating FConstant\n";
 #endif // _DEBUG
@@ -321,7 +315,7 @@ FileInput::~FileInput() {
 
 
 Function<double>* FileInput::addToEquation(Equation<Function<double>>* Eq, char operation, double a) {
-    Function<>* p = new FConstant<>;
+    Function<double>* p = new FConstant<double>;
 #ifdef _DEBUG
     cout << "Creating FConstant\n";
 #endif // _DEBUG
