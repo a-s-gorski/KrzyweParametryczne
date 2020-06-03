@@ -11,6 +11,8 @@
 
 #include "..\ParametricCurves\Calculator.hpp"
 
+#include "..\ParametricCurves\ComplexNumber.hpp"
+
 #include "..\ParametricCurves\DrawingPlot.h"
 #include "..\ParametricCurves\DrawingPlot.cpp"
 

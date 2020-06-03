@@ -1,13 +1,25 @@
+
+//£ukasz Bondaruk
+
+#ifndef COMPLEXNUMBER_H
+#define COMPLEXNUMBER_H
+
 #include <iostream>
 
 class Complex {
 private:
+	// Eps to compare doubles
 	const double EPS = 1e-9;
+	// Real part of number
 	double re = 0;
+	// Imaginary part of number
 	double im = 0;
+	// Phi of number in trigonometric or exponential form
 	double phi = 0;
+	// R of number in trigonometric or exponential form
 	double r = 0;
 
+	// Calculate proper value and set it 
 	void calculatePhi();
 	void calculateR();
 
@@ -22,10 +34,17 @@ public:
 	Complex(const Complex& c);
 	~Complex();
 
+	// Getters
 	double getPhi() { return phi; }
 	double getAbsoluteValue() { return r; }
+	double getRe() { return re; }
+	double getIm() { return im; }
 
+	// Print function in proper form
 	std::string show(Complex::FORM ver);
+
+	// Set function to it conjugation
+	Complex reflect();
 
 	friend std::istream& operator >> (std::istream& in, Complex& c)
 	{
@@ -34,84 +53,40 @@ public:
 		return in;
 	}
 
-	Complex operator + (Complex const& c) {
-		double RE = re + c.re;
-		double IM = im + c.im;
-		Complex res(RE, IM);
-		return res;
+	friend std::ofstream& operator << (std::ofstream& out, Complex& c)
+	{
+		//out << 
+		return out;
 	}
 
-	Complex operator - (Complex const& c) {
-		double RE = re - c.re;
-		double IM = im - c.im;
-		Complex res(RE, IM);
-		return res;
-	}
+	//Arithmetic operators with Complex and double
 
-	Complex operator * (Complex const& c) {
-		double RE = re * c.re - im * c.im;
-		double IM = re * c.im + im * c.re;
-		Complex res(RE, IM);
-		return res;
-	}
+	Complex operator + (Complex const& c);
+	Complex operator + (double re);
 
-	Complex operator / (Complex const& c) {
-		double RE = (re * c.re + im * c.im) / (re * re + im * im);
-		double IM = (re * c.im - im * c.re) / (re * re + im * im);
-		Complex res(RE, IM);
-		return res;
-	}
+	Complex operator - (Complex const& c);
+	Complex operator - (double re);
 
-	void operator = (const Complex& c) {
-		re = c.re;
-		im = c.im;
-		phi = c.phi;
-		r = c.r;
-	}
+	Complex operator * (Complex const& c);
+	Complex operator * (double re);
 
-	Complex& operator+=(const Complex& c) {
+	Complex operator / (Complex const& c);
+	Complex operator / (double re);
 
-		re += c.re;
-		im += c.im;
-		calculatePhi();
-		calculateR();
-		return *this;
-	}
+	void operator = (const Complex& c);
+	void operator = (const double& c);
 
-	Complex& operator-=(const Complex& c) {
+	Complex& operator+=(const Complex& c);
+	Complex& operator+=(const double& c);
 
-		re -= c.re;
-		im -= c.im;
-		calculatePhi();
-		calculateR();
-		return *this;
-	}
+	Complex& operator-=(const Complex& c);
+	Complex& operator-=(const double& c);
 
-	Complex& operator*=(const Complex& c) {
+	Complex& operator*=(const Complex& c);
+	Complex& operator*=(const double& c);
 
-		double temp_re = re;
-
-		re = re * c.re - im * c.im;
-		im = temp_re * c.im + im * c.re;
-
-		calculatePhi();
-		calculateR();
-		return *this;
-	}
-
-	Complex& operator/=(const Complex& c) {
-
-		double temp_re = re;
-
-		re = (re * c.re + im * c.im) / (re * re + im * im);
-		im = (re * c.im - im * c.re) / (re * re + im * im);
-
-		calculatePhi();
-		calculateR();
-		return *this;
-	}
+	Complex& operator/=(const Complex& c);
+	Complex& operator/=(const double& c);
 };
 
-class ComplexNumber
-{
-};
+#endif

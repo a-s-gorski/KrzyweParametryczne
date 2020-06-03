@@ -1,3 +1,5 @@
+//£ukasz Bondaruk
+
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "..\ParametricCurves\Calculator.cpp"

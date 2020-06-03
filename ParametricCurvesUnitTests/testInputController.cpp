@@ -1,9 +1,8 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "..\ParametricCurves\Functions.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-
+/*
 namespace TestInputController
 {
 	double pi = 3.14159265359;
@@ -189,4 +188,4 @@ namespace TestInputController
 			Assert::AreEqual(expected, actual);
 		}
 	};
-}
+}*/

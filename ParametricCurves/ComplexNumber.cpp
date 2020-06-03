@@ -1,3 +1,6 @@
+
+//£ukasz Bondaruk
+
 #include <iostream>
 #include <string>
 #include <cmath>
@@ -6,7 +9,8 @@
 using namespace std;
 
 Complex::Complex(double x, double y) : re(x), im(y) {
-
+	calculateR();
+	calculatePhi();
 }
 
 Complex::Complex(const Complex& c) {
@@ -21,11 +25,12 @@ Complex::~Complex() {
 }
 
 void Complex::calculatePhi() {
-	double result = atan2(this->im, this->re);
+	double result = atan2(im, re);
+	this->phi = result;
 }
 
 void Complex::calculateR() {
-	double result = sqrt(pow(this->re, 2) + pow(this->im, 2));
+	double result = sqrt(re*re + im*im);
 	this->r = result;
 }
 
@@ -71,4 +76,162 @@ string Complex::show(FORM ver) {
 		break;
 	}
 	return c;
+}
+
+Complex Complex::reflect() {
+	double RE = re;
+	double IM = -im;
+	Complex res(RE, IM);
+	return res;
+}
+
+Complex Complex::operator + (Complex const& c) {
+	double RE = re + c.re;
+	double IM = im + c.im;
+	Complex res(RE, IM);
+	return res;
+}
+
+Complex Complex::operator + (double re) {
+	double RE = this->re + re;
+	double IM = im;
+	Complex res(RE, IM);
+	return res;
+}
+
+Complex Complex::operator - (Complex const& c) {
+	double RE = re - c.re;
+	double IM = im - c.im;
+	Complex res(RE, IM);
+	return res;
+}
+
+Complex Complex::operator - (double re) {
+	double RE = this->re - re;
+	double IM = im;
+	Complex res(RE, IM);
+	return res;
+}
+
+Complex Complex::operator * (Complex const& c) {
+	double RE = re * c.re - im * c.im;
+	double IM = re * c.im + im * c.re;
+	Complex res(RE, IM);
+	return res;
+}
+
+Complex Complex::operator * (double re) {
+	double RE = this->re * re;
+	double IM = this->im * re;
+	Complex res(RE, IM);
+	return res;
+}
+
+Complex Complex::operator / (Complex const& c) {
+	double RE = double(re * c.re + im * c.im) / double(c.re * c.re + c.im * c.im);
+	double IM = double(c.re * im - c.im * re) / double(c.re * c.re + c.im * c.im);
+	Complex res(RE, IM);
+	return res;
+}
+
+Complex Complex::operator / (double re) {
+	double RE = this->re / re;
+	double IM = this->im / re;
+	Complex res(RE, IM);
+	return res;
+}
+
+void Complex::operator = (const Complex& c) {
+	re = c.re;
+	im = c.im;
+	phi = c.phi;
+	r = c.r;
+}
+
+void Complex::operator = (const double& c) {
+	re = c;
+	im = 0;
+	calculatePhi();
+	calculateR();
+}
+
+Complex& Complex::operator+=(const Complex& c) {
+
+	re += c.re;
+	im += c.im;
+	calculatePhi();
+	calculateR();
+	return *this;
+}
+
+Complex& Complex::operator-=(const Complex& c) {
+
+	re -= c.re;
+	im -= c.im;
+
+	calculatePhi();
+	calculateR();
+	return *this;
+}
+
+Complex& Complex::operator*=(const Complex& c) {
+
+	double temp_re = re;
+
+	re = re * c.re - im * c.im;
+	im = temp_re * c.im + im * c.re;
+
+	calculatePhi();
+	calculateR();
+	return *this;
+}
+
+Complex& Complex::operator/=(const Complex& c) {
+
+	double temp_re = re;
+
+	re = double(re * c.re + im * c.im) / double(c.re * c.re + c.im * c.im);
+	im = double(c.re * im - c.im * temp_re) / double(c.re * c.re + c.im * c.im);
+
+	calculatePhi();
+	calculateR();
+	return *this;
+}
+
+Complex& Complex::operator+=(const double& c) {
+
+	re += c;
+
+	calculatePhi();
+	calculateR();
+	return *this;
+}
+
+Complex& Complex::operator-=(const double& c) {
+
+	re -= c;
+
+	calculatePhi();
+	calculateR();
+	return *this;
+}
+
+Complex& Complex::operator*=(const double& c) {
+
+	re *= c;
+	im *= c;
+
+	calculatePhi();
+	calculateR();
+	return *this;
+}
+
+Complex& Complex::operator/=(const double& c) {
+
+	re /= c;
+	im /= c;
+
+	calculatePhi();
+	calculateR();
+	return *this;
 }
