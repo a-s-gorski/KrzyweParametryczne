@@ -22,13 +22,26 @@ Kolejne wersje zakładają przede wszystkim tryb graficzny oraz większą dowoln
 
 ## 4. Sposób użycia
 
+### Na początku użytkownik wybiera czy wprowadzi wejście z terminala czy z pliku - odpowiedznio 1 lub 2
+
+
+#### Jeżeli zdecyduje się na wporwadzanie danych z terminala to:
+
+
 Użytkownik podaje kolejnow konsoli:
 - liczbe punktów
 - lewą i prawą granicę równania
 - liczbe funkcji dla x
 - rodzaje funkcjii i ich parametry
+- działanie +, -, *, / dla następnej funkcji
 - liczbe funkcji dla y
 - rodzaje funkcjii i ich parametry
+- oraz działanie +, -, *, / dla następnej funkcji
+
+#### Dla wejścia z pliku użytkownik podaję nazwę pliku w którym jest wejście
+
+Dane wejściowe w pliku powinny być identyczne jak dla wejścia z terminalu
+są już przykładowe pliki
 
 ## 5. Przygotowanie środowiska do testowania interfejsu graficznego
 
