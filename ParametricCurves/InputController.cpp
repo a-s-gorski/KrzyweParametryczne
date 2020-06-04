@@ -87,7 +87,7 @@ void CMDInput::setNumberOfPoints() {
                 throw notinteger;
         }
         catch (iostream::failure& iof) {
-            cerr << "Invalid Input" << endl;
+            cerr << "Invalid Input" << iof.what() << endl;
             cin.clear();                                // reset error flags
             cin.ignore(10000, '\n');    // clear buffer
         }
@@ -117,7 +117,7 @@ void CMDInput::setBorders() {
             cin >> left_border;
         }
         catch (iostream::failure& iof) {
-            cerr << "Invalid Input" << endl;
+            cerr << "Invalid Input" << iof.what() << endl;
             correct_input = false;
         }
 
@@ -125,7 +125,7 @@ void CMDInput::setBorders() {
             cin >> right_border;
         }
         catch (iostream::failure& iof) {
-            cerr << "Invalid Input" << endl;
+            cerr << "Invalid Input" << iof.what() << endl;
             left_border = 0;
             correct_input = false;
         }
@@ -151,7 +151,7 @@ void CMDInput::setXEquation() {
                 throw notinteger;
         }
         catch (iostream::failure& iof) {
-            cerr << "Invalid Input " << endl;
+            cerr << "Invalid Input " << iof.what() << endl;
             cin.clear();                                // reset error flags
             cin.ignore(10000, '\n');    // clear buffer
         }
@@ -188,7 +188,7 @@ void CMDInput::setYEquation() {
                 throw notinteger;
         }
         catch (iostream::failure& iof) {
-            cerr << "Invalid Input " << endl;
+            cerr << "Invalid Input " << iof.what() << endl;
             cin.clear();                                // reset error flags
             cin.ignore(10000, '\n');    // clear buffer
         }
@@ -245,7 +245,7 @@ Function<double>* CMDInput::createFunction(int iterator) {
             cin >> fun_type;
         }
         catch (iostream::failure& iof) {
-            cerr << "Invalid Input " << endl;
+            cerr << "Invalid Input " << iof.what() << endl;
             cout << "Choose between 1, 2, 3, 4, 5 and 6\n" << endl;
             cin.clear();                                // reset error flags
             cin.ignore(10000, '\n');    // clear buffer
@@ -312,7 +312,7 @@ Function<double>* CMDInput::createFunction(int iterator) {
                 cin >> a >> b >> c;
             }
             catch (iostream::failure& iof) {
-                cerr << "Invalid arameters\n" << endl;
+                cerr << "Invalid arameters" << iof.what() << "\n" << endl;
                 cin.clear();                                // reset error flags
                 cin.ignore(10000, '\n');    // clear buffer
                 correct_input = false;
@@ -337,7 +337,7 @@ Function<double>* CMDInput::createFunction(int iterator) {
                 cin >> a;
             }
             catch (iostream::failure& iof) {
-                cerr << "Invalid parameter\n" << endl;
+                cerr << "Invalid parameter" << iof.what() << "\n" << endl;
                 cin.clear();
                 cin.ignore(10000, '\n');
                 correct_input = false;
@@ -360,7 +360,7 @@ Function<double>* CMDInput::createFunction(int iterator) {
                 cin >> a >> b;
             }
             catch (iostream::failure& iof) {
-                cerr << "Invalid arameters\n" << endl;
+                cerr << "Invalid arameters" << iof.what() << "\n" << endl;
                 cin.clear();                                // reset error flags
                 cin.ignore(10000, '\n');    // clear buffer
                 correct_input = false;
@@ -427,7 +427,7 @@ Function<double>* FileInput::createFunction(int iterator) {
     char operation = '+';
     double a, b, c;
     int func;
-    Function<double>* p;
+    Function<double>* p = NULL;
 
     if (iterator != 0)
         f >> operation;
@@ -477,6 +477,7 @@ Function<double>* FileInput::createFunction(int iterator) {
 #ifdef _DEBUG
         cout << "Creating FConstant\n";
 #endif // _DEBUG
+        break;
     }
 
     p->setParameters(parameters);

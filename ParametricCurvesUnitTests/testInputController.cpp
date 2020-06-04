@@ -1,8 +1,9 @@
 #include "pch.h"
 #include "CppUnitTest.h"
+#include "..\ParametricCurves\InputController.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-/*
+
 namespace TestInputController
 {
 	double pi = 3.14159265359;
@@ -66,7 +67,7 @@ namespace TestInputController
 
 		TEST_METHOD(AddingXEquation)
 		{
-			InputController c;
+			CMDInput c;
 			FSin<double> s;
 			FMonomial<double> m;
 			Equation<Function<double>> eq;
@@ -96,7 +97,7 @@ namespace TestInputController
 
 		TEST_METHOD(AddYEquation)
 		{
-			InputController c;
+			CMDInput c;
 			FSin<double> s;
 			FMonomial<double> m;
 			Equation<Function<double>> eq;
@@ -126,11 +127,12 @@ namespace TestInputController
 	};
 
 
-	TEST_CLASS(TestCommandLineInput)
+	TEST_CLASS(CheckFileInput)
 	{
 		TEST_METHOD(AddingXEquation)
 		{
-			CommandLineInput c;
+			std::string v = "circle.txt";
+			FileInput c(v);
 			FSin<double> s;
 			FMonomial<double> m;
 			Equation<Function<double>> eq;
@@ -160,7 +162,7 @@ namespace TestInputController
 
 		TEST_METHOD(AddingYEquation)
 		{
-			CommandLineInput c;
+			FileInput c("circle.txt");
 			FSin<double> s;
 			FMonomial<double> m;
 			Equation<Function<double>> eq;
@@ -188,4 +190,4 @@ namespace TestInputController
 			Assert::AreEqual(expected, actual);
 		}
 	};
-}*/
+}

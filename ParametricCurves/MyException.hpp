@@ -1,3 +1,4 @@
+//Andrzej Kusiak
 #include <iostream>
 #include <exception>
 
