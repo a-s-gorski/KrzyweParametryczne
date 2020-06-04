@@ -116,6 +116,7 @@
     <ClInclude Include="DrawingGridGui.h" />
     <ClInclude Include="DrawingPlot.h" />
     <ClInclude Include="DrawingPlotGui.h" />
+    <ClInclude Include="Equation.hpp" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="Functions.hpp" />
     <ClInclude Include="Grid.h" />

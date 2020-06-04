@@ -29,7 +29,54 @@ InputController::~InputController() {
 }
 
 
-void InputController::getFieldOfPointsToDraw() {
+void InputController::getInput() {
+    setNumberOfPoints();
+    setBorders();
+    setXEquation();
+    setYEquation();
+}
+
+
+int InputController::getNumberOfPoints() {
+    return number_of_points;
+}
+
+
+double InputController::getLeftBorder() {
+    return left_border;
+}
+
+
+double InputController::getRightBorder() {
+    return right_border;
+}
+
+
+Equation<Function<double>>& InputController::getXEquation() {
+    return X;
+}
+
+
+Equation<Function<double>>& InputController::getYEquation() {
+    return Y;
+}
+
+
+CMDInput::CMDInput() {
+#ifdef _DEBUG
+    cout << "Creating CMDInput\n";
+#endif // _DEBUG
+}
+
+
+CMDInput::~CMDInput() {
+#ifdef _DEBUG
+    cout << "Destroying CMDInput\n";
+#endif // _DEBUG
+}
+
+
+void CMDInput::setNumberOfPoints() {
     do {
         cout << "How many points do you want to draw: ";
         cin >> number_of_points;
@@ -39,6 +86,10 @@ void InputController::getFieldOfPointsToDraw() {
             cin.ignore(10000, '\n');
         }
     } while (cin.fail() || number_of_points <= 0);
+}
+
+
+void CMDInput::setBorders() {
     bool correct_input;
     do {
         correct_input = true;
@@ -59,8 +110,51 @@ void InputController::getFieldOfPointsToDraw() {
     cout << endl;
 }
 
+void CMDInput::setXEquation() {
+    int n;
+    do {
+        cout << "How many element do you want to add to your X equation: ";
+        cin >> n;
+        if (cin.fail()) {
+            cout << "Number of elements must be an positive integer\n" << endl;
+            cin.clear();
+            cin.ignore(10000, '\n');
+        }
+        else if (n <= 0)
+            cout << "Number of elements can't be a non-positive number\n" << endl;
+    } while (cin.fail() || n <= 0);
+    cout << endl;
 
-Function<double>* InputController::createFunction (int iterator) {
+    for (int i = 0; i < n; ++i) {
+        Function<double>* newFunction = createFunction(i);
+        X += newFunction;
+    }
+}
+
+
+void CMDInput::setYEquation() {
+    int n;
+    do {
+        cout << "How many element do you want to add to your Y equation: ";
+        cin >> n;
+        if (cin.fail()) {
+            cout << "Number of elements must be an positive integer\n" << endl;
+            cin.clear();
+            cin.ignore(10000, '\n');
+        }
+        else if (n <= 0)
+            cout << "Number of elements can't be a non-positive number\n" << endl;
+    } while (cin.fail() || n <= 0);
+    cout << endl;
+
+    for (int i = 0; i < n; ++i) {
+        Function<double>* newFunction = createFunction(i);
+        Y += newFunction;
+    }
+}
+
+
+Function<double>* CMDInput::createFunction(int iterator) {
     char operation = '+';
     int fun_type;
     bool correct_input;
@@ -108,28 +202,28 @@ Function<double>* InputController::createFunction (int iterator) {
 
     switch (fun_type) {
     case 1:
-        p = new FSin<>;
+        p = new FSin<double>;
 #ifdef _DEBUG
         cout << "Creating FSin\n";
 #endif // _DEBUG
         break;
 
     case 2:
-        p = new FCos<>;
+        p = new FCos<double>;
 #ifdef _DEBUG
         cout << "Creating FCos\n";
 #endif // _DEBUG
         break;
 
     case 3:
-        p = new FMonomial<>;
+        p = new FMonomial<double>;
 #ifdef _DEBUG
         cout << "Creating FPolynomial\n";
 #endif // _DEBUG
         break;
 
     case 4:
-        p = new FConstant<>;
+        p = new FConstant<double>;
 #ifdef _DEBUG
         cout << "Creating FConstant\n";
 #endif // _DEBUG
@@ -183,7 +277,7 @@ Function<double>* InputController::createFunction (int iterator) {
         } while (!correct_input);
     }
     cout << endl;
-    
+
     p->setParameters(parameters);
     p->setOperation(operation);
     return p;
@@ -191,109 +285,69 @@ Function<double>* InputController::createFunction (int iterator) {
 }
 
 
-void InputController::addToEquation(Equation<Function<double>>* Eq) {
-    int n;
-    do {
-        cout << "How many element do you want to add to your equation: ";
-        cin >> n;
-        if (cin.fail()) {
-            cout << "Number of elements must be an positive integer\n" << endl;
-            cin.clear();
-            cin.ignore(10000, '\n');
-        }
-        else if (n <= 0)
-            cout << "Number of elements can't be a non-positive number\n" << endl;
-    } while (cin.fail() || n <= 0);
-    cout << endl;
+ostream& operator<<(ostream& os, CMDInput& ob) {
+    os << "X(t) = " << ob.X;
+    os << "Y(t) = " << ob.Y;
 
-    for (int i = 0; i < n; ++i) {
-        Function<>* newFunction = createFunction(i);
-        *Eq += newFunction;
+    return os;
+}
+
+
+FileInput::FileInput(std::string s) : filename(s) {
+    f.open(filename);
+
+    if (!f.is_open()) {
+        cout << "Couldn't open a file" << endl;
+        exit(1);
     }
-}
-
-
-void InputController::getInput() {
-    getFieldOfPointsToDraw();
-
-    // X parameter
-    cout << "X equation components" << endl;
-    addToEquation(&X);
-
-    // Y parameter
-    cout << endl << "Y equation components" << endl;
-    addToEquation(&Y);
-
-    cout << endl << "Your equations are: " << endl;
-    printEquations();
-}
-
-
-void InputController::printEquations() const {
-    cout << "X(t) = ";
-    X.printEquation();
-    cout << "Y(t) = ";
-    Y.printEquation();
-}
-
-
-int InputController::getNumberOfPoints() {
-    return number_of_points;
-}
-
-
-double InputController::getLeftBorder() {
-    return left_border;
-}
-
-
-double InputController::getRightBorder() {
-    return right_border;
-}
-
-
-Equation<Function<double>>& InputController::getXEquation() {
-    return X;
-}
-
-
-Equation<Function<double>>& InputController::getYEquation() {
-    return Y;
-}
-
-
-CommandLineInput::CommandLineInput() {
 #ifdef _DEBUG
-    cout << "Creating CommandLineInput\n";
+    cout << "Creating FileInput\n";
 #endif // _DEBUG
 }
 
 
-CommandLineInput::~CommandLineInput() {
+FileInput::~FileInput() {
 #ifdef _DEBUG
-    cout << "Destroying CommandLineInput\n";
+    cout << "Destroying FileInput\n";
 #endif // _DEBUG
 }
 
 
-Function<double>* CommandLineInput::addToEquation(Equation<Function<double>>* Eq, char operation, double a) {
-    Function<>* p = new FConstant<>;
-#ifdef _DEBUG
-    cout << "Creating FConstant\n";
-#endif // _DEBUG
-    vector<double> parameter{ a };
-    p->setParameters(parameter);
-    p->setOperation(operation);
-
-    return p;
+void FileInput::setNumberOfPoints() {
+    f >> number_of_points;
 }
 
 
-Function<double>* CommandLineInput::addToEquation(Equation<Function<double>>* Eq, char operation, int function, double a, double b, double c) {
+void FileInput::setBorders() {
+    f >> left_border;
+    f >> right_border;
+}
+
+
+Function<double>* FileInput::createFunction(int iterator) {
+    char operation = '+';
+    double a, b, c;
+    int func;
     Function<double>* p;
-    switch (function) {
+
+    if (iterator != 0)
+        f >> operation;
+    f >> func;
+    if (func >= 1 && func <= 3) {
+        f >> a >> b >> c;
+    }
+    else if (func == 4) {
+        f >> a;
+    }
+
+    vector<double> parameters;
+
+    switch (func) {
     case 1:
         p = new FSin<>;
+        parameters.push_back(a);
+        parameters.push_back(b);
+        parameters.push_back(c);
 #ifdef _DEBUG
         cout << "Creating FSin\n";
 #endif // _DEBUG
@@ -301,6 +355,9 @@ Function<double>* CommandLineInput::addToEquation(Equation<Function<double>>* Eq
 
     case 2:
         p = new FCos<>;
+        parameters.push_back(a);
+        parameters.push_back(b);
+        parameters.push_back(c);
 #ifdef _DEBUG
         cout << "Creating FCos\n";
 #endif // _DEBUG
@@ -308,68 +365,62 @@ Function<double>* CommandLineInput::addToEquation(Equation<Function<double>>* Eq
 
     case 3:
         p = new FMonomial<>;
+        parameters.push_back(a);
+        parameters.push_back(b);
+        parameters.push_back(c);
 #ifdef _DEBUG
         cout << "Creating FPolynomial\n";
 #endif // _DEBUG
         break;
+    case 4:
+        p = new FConstant<>;
+        parameters.push_back(a);
+#ifdef _DEBUG
+        cout << "Creating FConstant\n";
+#endif // _DEBUG
     }
 
-    vector<double> parameters{ a, b, c };
     p->setParameters(parameters);
     p->setOperation(operation);
 
     return p;
 }
 
-
-void CommandLineInput::getInput(string filename) {
-    ifstream f(filename);
-
-    if (!f.is_open()) {
-        cout << "Couldn't open a file" << endl;
-        exit(1);
-    }
-
-    f >> number_of_points;
-    f >> left_border;
-    f >> right_border;
-
+void FileInput::setXEquation() {
+    Function<double>* p;
     int nelements;
-
-    char operation = '+';
-    double a, b, c;
-    int func;
-    Function<double>* ptr = NULL;
-    for (int j = 0; j < 2; j++) {
-        f >> nelements;
-        for (int i = 0; i < nelements; i++) {
-            if (i != 0)
-                f >> operation;
-            f >> func;
-            if (func >= 1 && func <= 3) {
-                f >> a >> b >> c;
-                if (j == 0)
-                    ptr = addToEquation(&X, operation, func, a, b, c);
-                else if (j == 1)
-                    ptr = addToEquation(&Y, operation, func, a, b, c);
-            }
-            else if (func == 4) {
-                f >> a;
-                if (j == 0)
-                    ptr = addToEquation(&X, operation, a);
-                else if (j == 1)
-                    ptr = addToEquation(&Y, operation, a);
-            }
-            if (j == 0) {
-                X += ptr;
-            }
-            else if (j == 1) {
-                Y += ptr;
-            }
-        }
+    f >> nelements;
+    for (int i = 0; i < nelements; i++) {
+        p = createFunction(i);
+        X += p;
     }
+}
+
+
+void FileInput::setYEquation() {
+    Function<double>* p;
+    int nelements;
+    f >> nelements;
+    for (int i = 0; i < nelements; i++) {
+        p = createFunction(i);
+        Y += p;
+    }
+}
+
+
+void FileInput::getInput() {
+    setNumberOfPoints();
+    setBorders();
+    setXEquation();
+    setYEquation();
 
     f.close();
+}
 
-    printEquations();
+
+ostream& operator<<(ostream& os, FileInput& ob) {
+    os << "X(t) = " << ob.X;
+    os << "Y(t) = " << ob.Y;
+
+    return os;
 }

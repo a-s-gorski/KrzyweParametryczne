@@ -26,9 +26,11 @@ int main(int argc, char* argv[])
     //Make a class from this to menage process
 
     //Prepare input
-    InputController* console_input = new InputController;
+    CMDInput* console_input = new CMDInput;
+    console_input->getInput();
+    cout << *console_input << endl;
 
-    if (argc == 2) {
+    /*if (argc == 2) {
         delete console_input;
         string filename(argv[1]);
 #ifdef _DEBUG
@@ -39,7 +41,7 @@ int main(int argc, char* argv[])
     }
     else {
         console_input->getInput();
-    }
+    }*/
 
     Equation<Function<double>>& x = console_input->getXEquation();
     Equation<Function<double>>& y = console_input->getYEquation();
