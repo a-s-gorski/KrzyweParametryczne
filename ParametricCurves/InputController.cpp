@@ -34,7 +34,6 @@ void InputController::getInput() {
     setBorders();
     setXEquation();
     setYEquation();
-    //printEquations();
 }
 
 ostream& operator<<(ostream& os, CMDInput& ob) {
@@ -42,13 +41,6 @@ ostream& operator<<(ostream& os, CMDInput& ob) {
     os << "Y(t) = " << ob.Y;
 
     return os;
-}
-
-void InputController::printEquations() const {
-    cout << "X(t) = ";
-    //X.printEquation();
-    cout << "Y(t) = ";
-    //Y.printEquation();
 }
 
 

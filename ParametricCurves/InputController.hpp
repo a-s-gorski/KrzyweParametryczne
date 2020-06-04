@@ -11,14 +11,13 @@ class Equation {
     std::vector<T*> equation;
 public:
     Equation();
-    // void printEquation() const;
     void operator += (T* func);
     const std::vector<T*>& getEquation();
     ~Equation();
     friend std::ostream& operator<<(std::ostream& os, Equation<T>& ob) {
         bool not_first = false;
-        for (auto v : equation) {
-            os << v->showFunction(os, not_first);
+        for (auto v : ob.equation) {
+            v->showFunction(not_first);
             not_first = true;
         }
         os << endl;
@@ -43,7 +42,6 @@ protected:
 public:
     InputController();
     virtual void getInput();
-    void printEquations() const;
     int getNumberOfPoints();
     double getLeftBorder();
     double getRightBorder();
@@ -108,16 +106,6 @@ void Equation<T>::operator += (T* func) {
 #endif // _DEBUG
 }
 
-
-/*template <typename T>
-void Equation<T>::printEquation() const {
-    bool not_first = false;
-    for (auto v : equation) {
-        v->showFunction(not_first);
-        not_first = true;
-    }
-    cout << endl;
-}*/
 
 template <typename T>
 const vector<T*>& Equation<T>::getEquation() {
