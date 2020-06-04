@@ -12,10 +12,20 @@
 ## R
     R of number in trigonometric or exponential form
 
-### Calculating singiel coordinate
-### Need:
-- punctor to functions witch are used to calculate coordinate
-- value of t witch we want to formula on
+# Forms
+    Used in show
+    
+## CANONICAL
+    Function is shown as
+    a + bi
+
+## TRIGONOMETRIC
+    Function is shown as
+    r(cos(phi) + isin(phi))
+
+## EXPONENTIAL
+    Function is shown as
+    re^(phi*i)
 
 ```cpp
 double calculateSingiel (std::vector<Function<double>*>* function, double t);
