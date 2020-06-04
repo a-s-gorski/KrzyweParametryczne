@@ -65,4 +65,8 @@ public:
     ~FileInput();
     friend std::ostream& operator<<(std::ostream& os, FileInput& ob);
 };
+
+InputController* chooseInput();
+FileInput* getFromFile();
+CMDInput* getFromCMD();
 #endif

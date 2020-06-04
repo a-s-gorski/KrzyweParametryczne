@@ -87,7 +87,7 @@ void CMDInput::setNumberOfPoints() {
                 throw notinteger;
         }
         catch (iostream::failure& iof) {
-            cerr << "Invalid Input" << iof.what() << endl;
+            cerr << "Invalid Input " << iof.what() << endl;
             cin.clear();                                // reset error flags
             cin.ignore(10000, '\n');    // clear buffer
         }
@@ -117,7 +117,7 @@ void CMDInput::setBorders() {
             cin >> left_border;
         }
         catch (iostream::failure& iof) {
-            cerr << "Invalid Input" << iof.what() << endl;
+            cerr << "Invalid Input " << iof.what() << endl;
             correct_input = false;
         }
 
@@ -125,7 +125,7 @@ void CMDInput::setBorders() {
             cin >> right_border;
         }
         catch (iostream::failure& iof) {
-            cerr << "Invalid Input" << iof.what() << endl;
+            cerr << "Invalid Input " << iof.what() << endl;
             left_border = 0;
             correct_input = false;
         }
@@ -435,8 +435,11 @@ Function<double>* FileInput::createFunction(int iterator) {
     if (func >= 1 && func <= 3) {
         f >> a >> b >> c;
     }
-    else if (func == 4) {
+    else if (func == 4 || func == 6) {
         f >> a;
+    }
+    else if (func == 5) {
+        f >> a >> b;
     }
 
     vector<double> parameters;
@@ -478,6 +481,20 @@ Function<double>* FileInput::createFunction(int iterator) {
         cout << "Creating FConstant\n";
 #endif // _DEBUG
         break;
+    case 5:
+        p = new FExp<>;
+        parameters.push_back(a);
+        parameters.push_back(b);
+#ifdef _DEBUG
+        cout << "Creating FExpt\n";
+#endif // _DEBUG
+        break;
+    case 6:
+        p = new FLog<>;
+        parameters.push_back(a);
+#ifdef _DEBUG
+        cout << "Creating FExpt\n";
+#endif // _DEBUG
     }
 
     p->setParameters(parameters);
@@ -523,4 +540,61 @@ ostream& operator<<(ostream& os, FileInput& ob) {
     os << "Y(t) = " << ob.Y;
 
     return os;
+}
+
+
+InputController* chooseInput() {
+    cin.exceptions(iostream::failbit);
+    int choice;
+    do {
+        cout << "Do you want to read input from a command line or from a file" << endl;
+        cout << "Press 1 to read from CMD" << endl;
+        cout << "Press 2 to read from file" << endl;
+        try {
+            cin >> choice;
+        }
+        catch (iostream::failure& iof) {
+            cerr << "Invalid Input " << iof.what() << endl;
+            cin.clear();                                // reset error flags
+            cin.ignore(10000, '\n');
+            choice = 0;
+        }
+        if (choice != 0 && choice != 1 && choice != 2) {
+            cout << "Choose 1 or 2" << endl;
+            cin.clear();                                // reset error flags
+            cin.ignore(10000, '\n');
+        }
+
+    } while (choice != 1 && choice != 2);
+
+    InputController* p = NULL;
+
+    if (choice == 1)
+         p = getFromCMD();
+    else if(choice == 2)
+         p = getFromFile();
+
+    return p;
+}
+
+FileInput* getFromFile() {
+    string s;
+    cout << "Enter name of a file: ";
+    cin >> s;
+    cout << endl;
+    FileInput* console_input = new FileInput(s);
+
+    console_input->getInput();
+    cout << *console_input << endl;
+
+    return console_input;
+}
+
+CMDInput* getFromCMD() {
+    CMDInput* console_input = new CMDInput;
+
+    console_input->getInput();
+    cout << *console_input << endl;
+
+    return console_input;
 }
