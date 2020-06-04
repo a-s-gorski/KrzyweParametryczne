@@ -121,6 +121,7 @@
     <ClInclude Include="Functions.hpp" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="InputController.hpp" />
+    <ClInclude Include="MyException.hpp" />
     <ClInclude Include="TestCalculator.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

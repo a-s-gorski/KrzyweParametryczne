@@ -7,6 +7,7 @@
 #include "Functions.hpp"
 #include "Functions.cpp"
 #include "InputController.hpp"
+#include "MyException.hpp"
 
 
 
@@ -77,52 +78,96 @@ CMDInput::~CMDInput() {
 
 
 void CMDInput::setNumberOfPoints() {
+    cin.exceptions(iostream::failbit);
     do {
-        cout << "How many points do you want to draw: ";
-        cin >> number_of_points;
-        if (cin.fail() || number_of_points <= 0) {
+        try {
+            cout << "How many points do you want to draw: ";
+            cin >> number_of_points;
+            if (cin.peek() != '\n')
+                throw notinteger;
+        }
+        catch (iostream::failure& iof) {
+            cerr << "Invalid Input" << endl;
+            cin.clear();                                // reset error flags
+            cin.ignore(10000, '\n');    // clear buffer
+        }
+        catch (EnteredValueIsNotAnInteger& e) {
+            cerr << e.what() <<  " You entered something after " << number_of_points << "." << endl;
+            cin.clear();                                            // reset error flags
+            cin.ignore(10000, '\n');    // clear buffer
+
+            number_of_points = 0;      // reset num to its initial value
+        }
+        if (number_of_points < 0) {
             cout << "Number of points must be an positive integer\n" << endl;
             cin.clear();
             cin.ignore(10000, '\n');
         }
-    } while (cin.fail() || number_of_points <= 0);
+    } while (number_of_points <= 0);
 }
 
 
 void CMDInput::setBorders() {
+    cin.exceptions(iostream::failbit);
     bool correct_input;
     do {
         correct_input = true;
-        cout << endl << "Field of your equation: ";
-        cin >> left_border >> right_border;
-        if (cin.fail()) {
-            cout << "Invalid input" << endl << "Give <x, y> as space seperated values" << endl;
+        try {
+            cout << endl << "Field of your equation: ";
+            cin >> left_border;
+        }
+        catch (iostream::failure& iof) {
+            cerr << "Invalid Input" << endl;
+            correct_input = false;
+        }
+
+        try {
+            cin >> right_border;
+        }
+        catch (iostream::failure& iof) {
+            cerr << "Invalid Input" << endl;
+            left_border = 0;
+            correct_input = false;
+        }
+        if (left_border >= right_border || !correct_input) {
+            cout << "Give <x, y> as space seperated values" << endl;
+            cout << "Left border value can't be bigger than right or same as right" << endl;
             cin.clear();
             cin.ignore(10000, '\n');
             correct_input = false;
         }
-        else if (left_border >= right_border) {
-            cout << "Left border value can't be bigger than right or same as right" << endl;
-            correct_input = false;
-        }
-
     } while (!correct_input);
     cout << endl;
 }
 
 void CMDInput::setXEquation() {
+    cin.exceptions(iostream::failbit);
     int n;
     do {
-        cout << "How many element do you want to add to your X equation: ";
-        cin >> n;
-        if (cin.fail()) {
-            cout << "Number of elements must be an positive integer\n" << endl;
-            cin.clear();
-            cin.ignore(10000, '\n');
+        try {
+            cout << "How many element do you want to add to your X equation: ";
+            cin >> n;
+            if (cin.peek() != '\n')
+                throw notinteger;
         }
-        else if (n <= 0)
-            cout << "Number of elements can't be a non-positive number\n" << endl;
-    } while (cin.fail() || n <= 0);
+        catch (iostream::failure& iof) {
+            cerr << "Invalid Input " << endl;
+            cin.clear();                                // reset error flags
+            cin.ignore(10000, '\n');    // clear buffer
+        }
+        catch (EnteredValueIsNotAnInteger& e) {
+            cerr << e.what() << " You entered something after " << n << "." << endl;
+            cin.clear();                                            // reset error flags
+            cin.ignore(10000, '\n');    // clear buffer
+
+            n = 0;      // reset num to its initial value
+        }
+        if (n < 0) {
+            cout << "Number of elements must be an positive integer\n" << endl;
+            cin.clear();                                            // reset error flags
+            cin.ignore(10000, '\n');    // clear buffer
+        }
+    } while (n <= 0);
     cout << endl;
 
     for (int i = 0; i < n; ++i) {
@@ -133,18 +178,33 @@ void CMDInput::setXEquation() {
 
 
 void CMDInput::setYEquation() {
+    cin.exceptions(iostream::failbit);
     int n;
     do {
-        cout << "How many element do you want to add to your Y equation: ";
-        cin >> n;
-        if (cin.fail()) {
-            cout << "Number of elements must be an positive integer\n" << endl;
-            cin.clear();
-            cin.ignore(10000, '\n');
+        try {
+            cout << "How many element do you want to add to your Y equation: ";
+            cin >> n;
+            if (cin.peek() != '\n')
+                throw notinteger;
         }
-        else if (n <= 0)
-            cout << "Number of elements can't be a non-positive number\n" << endl;
-    } while (cin.fail() || n <= 0);
+        catch (iostream::failure& iof) {
+            cerr << "Invalid Input " << endl;
+            cin.clear();                                // reset error flags
+            cin.ignore(10000, '\n');    // clear buffer
+        }
+        catch (EnteredValueIsNotAnInteger& e) {
+            cerr << e.what() << " You entered something after " << n << "." << endl;
+            cin.clear();                                            // reset error flags
+            cin.ignore(10000, '\n');    // clear buffer
+
+            n = 0;      // reset num to its initial value
+        }
+        if (n < 0) {
+            cout << "Number of elements must be an positive integer\n" << endl;
+            cin.clear();                                            // reset error flags
+            cin.ignore(10000, '\n');    // clear buffer
+        }
+    } while (n <= 0);
     cout << endl;
 
     for (int i = 0; i < n; ++i) {
@@ -155,6 +215,7 @@ void CMDInput::setYEquation() {
 
 
 Function<double>* CMDInput::createFunction(int iterator) {
+    cin.exceptions(iostream::failbit);
     char operation = '+';
     int fun_type;
     bool correct_input;
@@ -165,13 +226,8 @@ Function<double>* CMDInput::createFunction(int iterator) {
             correct_input = true;
             cout << "Which operation do you want to use?\nType: \"+\", \"-\", \"*\", \"/\": ";
             cin >> operation;
-            if (cin.fail()) {
-                cout << "Invalid input\nChoose between: \"+\", \"-\", \"*\", \"/\"\n" << endl;
-                cin.clear();
-                cin.ignore(10000, '\n');
-                correct_input = false;
-            }
-            else if (operation != '+' && operation != '-' && operation != '*' && operation != '/') {
+            
+            if (operation != '+' && operation != '-' && operation != '*' && operation != '/') {
                 cout << "Operations allowed: \"+\", \"-\", \"*\", \"/\"\n" << endl;
                 cin.clear();
                 cin.ignore(10000, '\n');
@@ -185,15 +241,17 @@ Function<double>* CMDInput::createFunction(int iterator) {
         cout << "Which function do you want to use?\n";
         cout << "1. a*sin(b*t)*c    2. a*cos(b*t)*c    3. a*(b+t)*c    4. Constant" << endl;
         cout << "Your choice: ";
-        cin >> fun_type;
-        if (cin.fail()) {
-            cout << "Invalid input\n";
+        try {
+            cin >> fun_type;
+        }
+        catch (iostream::failure& iof) {
+            cerr << "Invalid Input " << endl;
             cout << "Choose between 1, 2, 3 and 4\n" << endl;
-            cin.clear();
-            cin.ignore(10000, '\n');
+            cin.clear();                                // reset error flags
+            cin.ignore(10000, '\n');    // clear buffer
             correct_input = false;
         }
-        else if (fun_type < 1 || fun_type > 4) {
+        if (fun_type < 1 || fun_type > 4) {
             cout << "Choose between given funtions\n" << endl;
             correct_input = false;
         }
@@ -237,14 +295,16 @@ Function<double>* CMDInput::createFunction(int iterator) {
             parameters = { 0, 0, 0 };
             correct_input = true;
             cout << "Parameters of this element: ";
-            cin >> a >> b >> c;
-            if (cin.fail()) {
-                cout << "Invalid parameters\n" << endl;
-                cin.clear();
-                cin.ignore(10000, '\n');
+            try {
+                cin >> a >> b >> c;
+            }
+            catch (iostream::failure& iof) {
+                cerr << "Invalid arameters\n" << endl;
+                cin.clear();                                // reset error flags
+                cin.ignore(10000, '\n');    // clear buffer
                 correct_input = false;
             }
-            else {
+            if(correct_input) {
                 parameters.at(0) = a;
                 parameters.at(1) = b;
                 parameters.at(2) = c;
@@ -260,14 +320,16 @@ Function<double>* CMDInput::createFunction(int iterator) {
             parameters = { 0 };
             correct_input = true;
             cout << "Value of your constant: ";
-            cin >> a;
-            if (cin.fail()) {
-                cout << "Invalid parameter\n" << endl;
+            try {
+                cin >> a;
+            }
+            catch (iostream::failure& iof) {
+                cerr << "Invalid parameter\n" << endl;
                 cin.clear();
                 cin.ignore(10000, '\n');
                 correct_input = false;
             }
-            else {
+            if(correct_input) {
                 parameters.at(0) = a;
                 if (!p->checkParameters(parameters)) {
                     cout << "Constant can't be equal to 0\n" << endl;
