@@ -135,5 +135,8 @@
     <ClInclude Include="Equation.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MyException.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -27,21 +27,10 @@ int main(int argc, char* argv[])
 
     //Prepare input
     CMDInput* console_input = new CMDInput;
+    // FileInput* console_input = new FileInput("spiral.txt");
     console_input->getInput();
     cout << *console_input << endl;
 
-    /*if (argc == 2) {
-        delete console_input;
-        string filename(argv[1]);
-#ifdef _DEBUG
-        cout << filename << endl;
-#endif // _DEBUG
-        CommandLineInput* console_input = new CommandLineInput;
-        console_input->getInput(filename);
-    }
-    else {
-        console_input->getInput();
-    }*/
 
     Equation<Function<double>>& x = console_input->getXEquation();
     Equation<Function<double>>& y = console_input->getYEquation();
