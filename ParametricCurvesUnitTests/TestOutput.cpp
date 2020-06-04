@@ -20,8 +20,8 @@ public:
 		//Frame *test_frame = new Frame;
 		//double test_height = test_frame.getHeight();
 		//double test_width = test_frame.getWidth();
-		double test_height = 500.0;
-		double test_width = 700.0;
+		double test_height = 5000.0;
+		double test_width = 7000.0;
 
 
 		DrawingPlot <double, double> test_plot;
@@ -39,14 +39,15 @@ public:
 		bool expected = true;
 		bool actual = true;
 		for (int i = 0; i < 1000; i++) {
-			if (test_plot.getCurrentCoordinates(i, 0) > test_width || test_plot.getCurrentCoordinates(i, 1) > test_height) {
-				actual = false;
+			if (test_pair.first > test_width && test_pair.second > test_height && test_pair.first != test_pair.second) {
+				actual = true;
 			}
 
-			Assert::AreEqual(expected, actual);
 
 
 		}
+		Assert::AreEqual(expected, actual);
+
 	}
 	};
 
