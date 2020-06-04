@@ -1,6 +1,21 @@
 # Working with Functions
 ## Same for every base and derived class
 
+
+### Check if given operation is proper
+## Need
+- operation in char
+```cpp
+bool checkOperation(char operation);
+```
+
+### Check if given operation is proper
+## Need
+- operation in char
+```cpp
+bool checkOperation(char operation);
+```
+
 ### Check if given set of parrameters is correct for function.
 - Return true if yes.
 - Used by InputController 
