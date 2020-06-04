@@ -239,19 +239,19 @@ Function<double>* CMDInput::createFunction(int iterator) {
     do {
         correct_input = true;
         cout << "Which function do you want to use?\n";
-        cout << "1. a*sin(b*t)*c    2. a*cos(b*t)*c    3. a*(b+t)*c    4. Constant" << endl;
+        cout << "1. a*sin(b*t)*c    2. a*cos(b*t)*c    3. a*(b+t)*c    4. Constant  5. a*(b)^t  6. log_a(t)" << endl;
         cout << "Your choice: ";
         try {
             cin >> fun_type;
         }
         catch (iostream::failure& iof) {
             cerr << "Invalid Input " << endl;
-            cout << "Choose between 1, 2, 3 and 4\n" << endl;
+            cout << "Choose between 1, 2, 3, 4, 5 and 6\n" << endl;
             cin.clear();                                // reset error flags
             cin.ignore(10000, '\n');    // clear buffer
             correct_input = false;
         }
-        if (fun_type < 1 || fun_type > 4) {
+        if (fun_type < 1 || fun_type > 6) {
             cout << "Choose between given funtions\n" << endl;
             correct_input = false;
         }
@@ -286,6 +286,19 @@ Function<double>* CMDInput::createFunction(int iterator) {
         cout << "Creating FConstant\n";
 #endif // _DEBUG
         break;
+    case 5:
+        p = new FExp<double>;
+#ifdef _DEBUG
+        cout << "Creating FExp\n";
+#endif // _DEBUG
+        break;
+    case 6:
+        p = new FLog<double>;
+#ifdef _DEBUG
+        cout << "Creating FLog\n";
+#endif // _DEBUG
+        break;
+
     }
 
     double a, b, c;
@@ -315,11 +328,11 @@ Function<double>* CMDInput::createFunction(int iterator) {
             }
         } while (!correct_input);
     }
-    else if (fun_type == 4) {
+    else if (fun_type == 4 || fun_type == 6) {
         do {
             parameters = { 0 };
             correct_input = true;
-            cout << "Value of your constant: ";
+            cout << "Parameters of this element: ";
             try {
                 cin >> a;
             }
@@ -332,7 +345,31 @@ Function<double>* CMDInput::createFunction(int iterator) {
             if(correct_input) {
                 parameters.at(0) = a;
                 if (!p->checkParameters(parameters)) {
-                    cout << "Constant can't be equal to 0\n" << endl;
+                    cout << "This parametre is not allowed\n" << endl;
+                    correct_input = false;
+                }
+            }
+        } while (!correct_input);
+    }
+    else if (fun_type == 5) {
+        do {
+            correct_input = true;
+            parameters = { 0, 0 };
+            cout << "Parameters of this element: ";
+            try {
+                cin >> a >> b;
+            }
+            catch (iostream::failure& iof) {
+                cerr << "Invalid arameters\n" << endl;
+                cin.clear();                                // reset error flags
+                cin.ignore(10000, '\n');    // clear buffer
+                correct_input = false;
+            }
+            if (correct_input) {
+                parameters.at(0) = a;
+                parameters.at(1) = b;
+                if (!p->checkParameters(parameters)) {
+                    cout << "Parameters can't be 0\n" << endl;
                     correct_input = false;
                 }
             }

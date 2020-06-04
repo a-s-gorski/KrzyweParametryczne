@@ -629,12 +629,10 @@ void FExp<V>::showFunction(const bool not_first) {
     else
         std::cout << a << '*';
     cout << "(";
-    if (abs(b - 2.7183 <= 0.001)) {
+    if (fabs(b - 2.7182) <= 0.001)
         std::cout << "e";
-    }
-    else {
+    else
         std::cout << b;
-    }
     std::cout << ")^(t) ";
 }
 
@@ -727,10 +725,14 @@ void FLog<V>::showFunction(const bool not_first) {
 
     double& a = this->parameters[0];
 
-    std::cout << "log_";
-    if (abs(a - 2.7183 <= 0.001)) {
-        std::cout << "e";
+    if (not_first) {
+        std::cout << this->operation << " ";
     }
+    std::cout << "log_";
+    if (fabs(a - 2.7182) <= 0.001)
+        std::cout << "e";
+    else
+        std::cout << a;
     std::cout << "(t)" << " ";
 }
 
