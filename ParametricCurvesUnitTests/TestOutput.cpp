@@ -40,7 +40,7 @@ public:
 		bool actual = true;
 		for (int i = 0; i < 1000; i++) {
 			if (test_pair.first > test_width && test_pair.second > test_height && test_pair.first != test_pair.second) {
-				actual = true;
+				actual = false;
 			}
 
 
