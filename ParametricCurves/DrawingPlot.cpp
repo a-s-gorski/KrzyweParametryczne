@@ -8,6 +8,7 @@
 #include <utility>
 #include <cmath>
 #include "Frame.h"
+#include <algorithm>
 
 using namespace std;
 
