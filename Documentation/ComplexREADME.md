@@ -12,6 +12,7 @@
 ## R
     R of number in trigonometric or exponential form
 
+
 # Forms
     Used in show
     
@@ -27,9 +28,51 @@
     Function is shown as
     re^(phi*i)
 
+
+# Functions
+
+## Calculating absolute value of z
 ```cpp
-double calculateSingiel (std::vector<Function<double>*>* function, double t);
+void calculateR();
 ```
 
+## Calculating value of phi
+```cpp
+void calculatePhi();
+```
 
+## Return function conjugation
+```cpp
+Complex reflect();
+```
 
+## Airthmetic operators
+    Allows to work with either Complex and double
+```cpp
+Complex operator + (Complex const& c);
+	Complex operator + (double re);
+
+	Complex operator - (Complex const& c);
+	Complex operator - (double re);
+
+	Complex operator * (Complex const& c);
+	Complex operator * (double re);
+
+	Complex operator / (Complex const& c);
+	Complex operator / (double re);
+
+	void operator = (const Complex& c);
+	void operator = (const double& c);
+
+	Complex& operator+=(const Complex& c);
+	Complex& operator+=(const double& c);
+
+	Complex& operator-=(const Complex& c);
+	Complex& operator-=(const double& c);
+
+	Complex& operator*=(const Complex& c);
+	Complex& operator*=(const double& c);
+
+	Complex& operator/=(const Complex& c);
+	Complex& operator/=(const double& c);
+```
