@@ -25,12 +25,7 @@ int main(int argc, char* argv[])
 {
     //Make a class from this to menage process
 
-    //Prepare input
-    CMDInput* console_input = new CMDInput;
-    // FileInput* console_input = new FileInput("spiral.txt");
-    console_input->getInput();
-    cout << *console_input << endl;
-
+    InputController* console_input = chooseInput();
 
     Equation<Function<double>>& x = console_input->getXEquation();
     Equation<Function<double>>& y = console_input->getYEquation();
