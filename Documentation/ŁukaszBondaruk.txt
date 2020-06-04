@@ -5,10 +5,28 @@ Pliki .cpp, .hpp
     
 2. Functions
     Klasa virtualna Functions. Służy do obliczania punktu, prezentacji parametrów i sprawdzania poprawności wejścia.
-    Przykładowe klasy  - Sin, Cos
-    
-3. TestFunctions
-    Funkcje służące do testowania klasy Functions i dziedziczących.
-    
-4. TestCalculator
+    Przykładowe klasy:
+        - Sin
+        - Cos
+        - Monomial
+        - Constant
+        - Log
+        - Exp
+
+3. Complex 
+    Klasa symulująca zachowanie liczb zespolonych
+
+
+Pliki do testów i unit testy
+
+1. TestCalculator
     Funkcje służące do testowania klasy Calculator
+
+2. Unit testy Calculator
+    Sprawdza czy poprawnie wykonuje operacje arytmetyczne i liczy wykonane operacje
+    
+3. Unit testy Function
+    Sprawdza poprawność obliczeń i operacji między funkcjami
+
+4. Unit testy Complex
+    Sprawdza poprawność operacji arytmetycznych i funkcji na liczbach zespolonych
