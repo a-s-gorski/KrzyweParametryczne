@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <vector>
+#include <fstream>
 #include "Functions.hpp"
 #include "Equation.hpp"
 
@@ -39,7 +40,7 @@ private:
     void setBorders();
     void setXEquation();
     void setYEquation();
-    virtual Function<double>* createFunction(int iterator);
+    Function<double>* createFunction(int iterator);
 
 public:
     CMDInput();
@@ -49,11 +50,19 @@ public:
 
 
 class FileInput : public InputController {
-    Function<double>* addToEquation(Equation<Function<double>>* Eq, char operation, int function, double a, double b, double c);
-    Function<double>* addToEquation(Equation<Function<double>>* Eq, char operation, double a);
+private:
+    std::string filename;
+    std::ifstream f;
+    void setNumberOfPoints();
+    void setBorders();
+    void setXEquation();
+    void setYEquation();
+    Function<double>* createFunction(int iterator);
+
 public:
-    FileInput();
-    void getInput(std::string filename);
+    FileInput(std::string s);
+    void getInput();
     ~FileInput();
+    friend std::ostream& operator<<(std::ostream& os, FileInput& ob);
 };
 #endif

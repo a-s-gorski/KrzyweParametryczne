@@ -36,13 +36,6 @@ void InputController::getInput() {
     setYEquation();
 }
 
-ostream& operator<<(ostream& os, CMDInput& ob) {
-    os << "X(t) = " << ob.X;
-    os << "Y(t) = " << ob.Y;
-
-    return os;
-}
-
 
 int InputController::getNumberOfPoints() {
     return number_of_points;
@@ -292,7 +285,21 @@ Function<double>* CMDInput::createFunction(int iterator) {
 }
 
 
-FileInput::FileInput() {
+ostream& operator<<(ostream& os, CMDInput& ob) {
+    os << "X(t) = " << ob.X;
+    os << "Y(t) = " << ob.Y;
+
+    return os;
+}
+
+
+FileInput::FileInput(std::string s) : filename(s) {
+    f.open(filename);
+
+    if (!f.is_open()) {
+        cout << "Couldn't open a file" << endl;
+        exit(1);
+    }
 #ifdef _DEBUG
     cout << "Creating FileInput\n";
 #endif // _DEBUG
@@ -306,24 +313,41 @@ FileInput::~FileInput() {
 }
 
 
-Function<double>* FileInput::addToEquation(Equation<Function<double>>* Eq, char operation, double a) {
-    Function<double>* p = new FConstant<double>;
-#ifdef _DEBUG
-    cout << "Creating FConstant\n";
-#endif // _DEBUG
-    vector<double> parameter{ a };
-    p->setParameters(parameter);
-    p->setOperation(operation);
-
-    return p;
+void FileInput::setNumberOfPoints() {
+    f >> number_of_points;
 }
 
 
-Function<double>* FileInput::addToEquation(Equation<Function<double>>* Eq, char operation, int function, double a, double b, double c) {
+void FileInput::setBorders() {
+    f >> left_border;
+    f >> right_border;
+}
+
+
+Function<double>* FileInput::createFunction(int iterator) {
+    char operation = '+';
+    double a, b, c;
+    int func;
     Function<double>* p;
-    switch (function) {
+
+    if (iterator != 0)
+        f >> operation;
+    f >> func;
+    if (func >= 1 && func <= 3) {
+        f >> a >> b >> c;
+    }
+    else if (func == 4) {
+        f >> a;
+    }
+
+    vector<double> parameters;
+
+    switch (func) {
     case 1:
         p = new FSin<>;
+        parameters.push_back(a);
+        parameters.push_back(b);
+        parameters.push_back(c);
 #ifdef _DEBUG
         cout << "Creating FSin\n";
 #endif // _DEBUG
@@ -331,6 +355,9 @@ Function<double>* FileInput::addToEquation(Equation<Function<double>>* Eq, char 
 
     case 2:
         p = new FCos<>;
+        parameters.push_back(a);
+        parameters.push_back(b);
+        parameters.push_back(c);
 #ifdef _DEBUG
         cout << "Creating FCos\n";
 #endif // _DEBUG
@@ -338,68 +365,62 @@ Function<double>* FileInput::addToEquation(Equation<Function<double>>* Eq, char 
 
     case 3:
         p = new FMonomial<>;
+        parameters.push_back(a);
+        parameters.push_back(b);
+        parameters.push_back(c);
 #ifdef _DEBUG
         cout << "Creating FPolynomial\n";
 #endif // _DEBUG
         break;
+    case 4:
+        p = new FConstant<>;
+        parameters.push_back(a);
+#ifdef _DEBUG
+        cout << "Creating FConstant\n";
+#endif // _DEBUG
     }
 
-    vector<double> parameters{ a, b, c };
     p->setParameters(parameters);
     p->setOperation(operation);
 
     return p;
 }
 
-
-void FileInput::getInput(string filename) {
-    ifstream f(filename);
-
-    if (!f.is_open()) {
-        cout << "Couldn't open a file" << endl;
-        exit(1);
-    }
-
-    f >> number_of_points;
-    f >> left_border;
-    f >> right_border;
-
+void FileInput::setXEquation() {
+    Function<double>* p;
     int nelements;
-
-    char operation = '+';
-    double a, b, c;
-    int func;
-    Function<double>* ptr = NULL;
-    for (int j = 0; j < 2; j++) {
-        f >> nelements;
-        for (int i = 0; i < nelements; i++) {
-            if (i != 0)
-                f >> operation;
-            f >> func;
-            if (func >= 1 && func <= 3) {
-                f >> a >> b >> c;
-                if (j == 0)
-                    ptr = addToEquation(&X, operation, func, a, b, c);
-                else if (j == 1)
-                    ptr = addToEquation(&Y, operation, func, a, b, c);
-            }
-            else if (func == 4) {
-                f >> a;
-                if (j == 0)
-                    ptr = addToEquation(&X, operation, a);
-                else if (j == 1)
-                    ptr = addToEquation(&Y, operation, a);
-            }
-            if (j == 0) {
-                X += ptr;
-            }
-            else if (j == 1) {
-                Y += ptr;
-            }
-        }
+    f >> nelements;
+    for (int i = 0; i < nelements; i++) {
+        p = createFunction(i);
+        X += p;
     }
+}
+
+
+void FileInput::setYEquation() {
+    Function<double>* p;
+    int nelements;
+    f >> nelements;
+    for (int i = 0; i < nelements; i++) {
+        p = createFunction(i);
+        Y += p;
+    }
+}
+
+
+void FileInput::getInput() {
+    setNumberOfPoints();
+    setBorders();
+    setXEquation();
+    setYEquation();
 
     f.close();
+}
 
-    //printEquations();
+
+ostream& operator<<(ostream& os, FileInput& ob) {
+    os << "X(t) = " << ob.X;
+    os << "Y(t) = " << ob.Y;
+
+    return os;
 }
