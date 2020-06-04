@@ -18,20 +18,18 @@ void DrawingPlotGui<X, Y>::drawPlot() {
 	painting_canvas.setRenderHint(QPainter::Antialiasing);
 
 	try {
-		X x_test = DrawingPlotGui::coordinates[i - 1][0];
-		Y y_test = DrawingPlotGui::coordinates[i - 1][1];
-		X x_test = DrawingPlotGui::coordinates[i][0];
-		Y y_test = DrawingPlotGui::coordinates[i][1];
+		X x1_test = DrawingPlotGui::coordinates[0][0];
+		Y y1_test = DrawingPlotGui::coordinates[0][1];
+		X x2_test = DrawingPlotGui::coordinates[1][0];
+		Y y2_test = DrawingPlotGui::coordinates[1][1];
 
-		if (typeid(x1).name() != typeid(y1).name) {
+		if (typeid(x1_test).name() != typeid(y1_test).name()) {
 			throw std::runtime_error("not the same type");
 		}
 
-		if (x_test == NullPtr)
-		{
-			throw std::bad_alloc("assigned NullPtr-> throw exception");
-		}
-
+	}
+	catch (std::bad_alloc) {
+		exit(1);
 	}
 
 		for (int i = 1; i < DrawingPlot::points.size(); i++) {
