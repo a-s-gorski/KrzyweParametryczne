@@ -70,6 +70,9 @@
     <ClCompile Include="DrawingGridGui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ComplexNumber.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="OutputController.h">
@@ -125,10 +128,12 @@
     </ClInclude>
     <ClInclude Include="DrawingGridGui.h">
       <Filter>Header Files</Filter>
-        </ClCompile>
-    <ClCompile Include="ComplexNumber.cpp">
     </ClInclude>
-    <ClCompile Include="ComplexNumber.hpp">
+    <ClInclude Include="ComplexNumber.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Equation.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
