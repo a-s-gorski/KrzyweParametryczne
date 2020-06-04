@@ -59,4 +59,4 @@ korzystaliśmy z wersji Open Source
 5. W przypadku problemów z konsolą trzeba ustawić w ustawieniach projektu zamiast windows zamienić na console (często po instalacji wtyczki może to zostać zmienione).
 
 ## 6. Hierarchia klas
-![Obrazek hierarchii](spaghetti.png)
+![Obrazek hierarchii](ClassHierarchy.png)
