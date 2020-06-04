@@ -11,7 +11,7 @@ namespace TestInputController
 	{
 	public:
 
-		TEST_METHOD(AddingToEquation)
+		TEST_METHOD(AddingToEquationSin)
 		{
 			Equation<Function<double>> eq;
 			FSin<double> s;
@@ -56,6 +56,106 @@ namespace TestInputController
 
 			double expected = c.calculateValue(pi);
 			double actual = vec[1]->calculateValue(pi);
+
+			Assert::AreEqual(expected, actual);
+		}
+		TEST_METHOD(AddingToEquationCin)
+		{
+			Equation<Function<double>> eq;
+			FCos<double> s;
+
+			vector<double> parameters{ 1, 1, 1 };
+			s.setParameters(parameters);
+			s.setOperation('+');
+
+			Function<double>* ps = &s;
+
+			eq += ps;
+
+			const std::vector<Function<double>*> vec = eq.getEquation();
+
+			double expected = s.calculateValue(0.5 * pi);
+			double actual = vec[0]->calculateValue(0.5 * pi);
+
+			Assert::AreEqual(expected, actual);
+		}
+		TEST_METHOD(AddingToEquationMonomial)
+		{
+			Equation<Function<double>> eq;
+			FMonomial<double> s;
+
+			vector<double> parameters{ 1, 1, 1 };
+			s.setParameters(parameters);
+			s.setOperation('+');
+
+			Function<double>* ps = &s;
+
+			eq += ps;
+
+			const std::vector<Function<double>*> vec = eq.getEquation();
+
+			double expected = s.calculateValue(0.5 * pi);
+			double actual = vec[0]->calculateValue(0.5 * pi);
+
+			Assert::AreEqual(expected, actual);
+		}
+		TEST_METHOD(AddingToEquationConstant)
+		{
+			Equation<Function<double>> eq;
+			FConstant<double> s;
+
+			vector<double> parameters{6};
+			s.setParameters(parameters);
+			s.setOperation('+');
+
+			Function<double>* ps = &s;
+
+			eq += ps;
+
+			const std::vector<Function<double>*> vec = eq.getEquation();
+
+			double expected = s.calculateValue(0.5 * pi);
+			double actual = vec[0]->calculateValue(0.5 * pi);
+
+			Assert::AreEqual(expected, actual);
+		}
+		TEST_METHOD(AddingToEquationExp)
+		{
+			Equation<Function<double>> eq;
+			FExp<double> s;
+
+			vector<double> parameters{ 1, 2 };
+			s.setParameters(parameters);
+			s.setOperation('+');
+
+			Function<double>* ps = &s;
+
+			eq += ps;
+
+			const std::vector<Function<double>*> vec = eq.getEquation();
+
+			double expected = s.calculateValue(0.5 * pi);
+			double actual = vec[0]->calculateValue(0.5 * pi);
+
+			Assert::AreEqual(expected, actual);
+		}
+		TEST_METHOD(AddingToEquationLog)
+		{
+			Equation<Function<double>> eq;
+			FSin<double> s;
+
+			vector<double> parameters{ 2 };
+			s.setParameters(parameters);
+			s.setOperation('+');
+
+			Function<double>* ps = &s;
+
+			eq += ps;
+
+			const std::vector<Function<double>*> vec = eq.getEquation();
+
+			double expected = s.calculateValue(4);
+			double actual = vec[0]->calculateValue(4);
 
 			Assert::AreEqual(expected, actual);
 		}
@@ -124,27 +224,17 @@ namespace TestInputController
 
 			Assert::AreEqual(expected, actual);
 		}
-	};
-
-
-	TEST_CLASS(CheckFileInput)
-	{
-		TEST_METHOD(AddingXEquation)
+		TEST_METHOD(AddingToXEquationLog)
 		{
-			std::string v = "circle.txt";
-			FileInput c(v);
-			FSin<double> s;
-			FMonomial<double> m;
+			CMDInput c;
+			FLog<double> s;
 			Equation<Function<double>> eq;
 
-			vector<double> parameters{ 1, 1, 1 };
+			vector<double> parameters{ 2 };
 			s.setParameters(parameters);
-			m.setParameters(parameters);
 			s.setOperation('+');
-			m.setOperation('+');
 
 			eq += &s;
-			eq += &m;
 
 			c.getXEquation() = eq;
 
@@ -154,38 +244,33 @@ namespace TestInputController
 			x = c.getXEquation();
 			xf = x.getEquation();
 
-			double expected = m.calculateValue(1);
-			double actual = xf[1]->calculateValue(1);
+			double expected = s.calculateValue(8);
+			double actual = xf[0]->calculateValue(8);
 
 			Assert::AreEqual(expected, actual);
 		}
-
-		TEST_METHOD(AddingYEquation)
+		TEST_METHOD(AddingToXEquationExp)
 		{
-			FileInput c("circle.txt");
-			FSin<double> s;
-			FMonomial<double> m;
+			CMDInput c;
+			FExp<double> s;
 			Equation<Function<double>> eq;
 
-			vector<double> parameters{ 1, 1, 1 };
+			vector<double> parameters{ 2, 6 };
 			s.setParameters(parameters);
-			m.setParameters(parameters);
 			s.setOperation('+');
-			m.setOperation('+');
 
 			eq += &s;
-			eq += &m;
 
-			c.getYEquation() = eq;
+			c.getXEquation() = eq;
 
 			Equation<Function<double>> x;
 			vector<Function<double>*> xf;
 
-			x = c.getYEquation();
+			x = c.getXEquation();
 			xf = x.getEquation();
 
-			double expected = m.calculateValue(1);
-			double actual = xf[1]->calculateValue(1);
+			double expected = s.calculateValue(8);
+			double actual = xf[0]->calculateValue(8);
 
 			Assert::AreEqual(expected, actual);
 		}
